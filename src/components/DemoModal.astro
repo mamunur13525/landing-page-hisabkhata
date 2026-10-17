@@ -4,33 +4,35 @@ import Button from './ui/Button.astro';
 
 <div
   id="demo-modal"
-  class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-ink/80 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 top-0 left-0 w-screen h-screen h-[100dvh] z-[100] flex items-center justify-center p-2.5 sm:p-5 md:p-8 bg-ink/80 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
 >
   <div
-    class="demo-modal-dialog w-[92vw] sm:w-[88vw] h-[86vh] sm:h-[88vh] max-w-[1440px] bg-paper border-2 border-line shadow-[8px_8px_0_0_#171715] scale-95 transition-all duration-300 overflow-hidden flex flex-col my-auto"
+    class="demo-modal-dialog w-[min(96vw,1080px)] max-h-[92dvh] bg-paper border-2 border-line shadow-[8px_8px_0_0_#171715] scale-95 transition-all duration-300 flex flex-col overflow-hidden"
   >
     <!-- Modal Header (Fixed height, retro window bar) -->
-    <div class="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 bg-white border-b-2 border-line shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="w-3 h-3 rounded-full bg-red-500 border border-line"></span>
-        <span class="w-3 h-3 rounded-full bg-yellow border border-line"></span>
-        <span class="w-3 h-3 rounded-full bg-emerald-500 border border-line"></span>
-        <span id="modal-title" class="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-ink ml-1.5 flex items-center gap-2">
-          <span>HisabeeOS · প্রোডাক্ট ভিডিও ডেমো</span>
-          <span class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-yellow/40 border border-line text-[10px] text-ink font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            HD 1080p
-          </span>
+    <div class="flex items-center justify-between px-3.5 sm:px-6 py-2.5 sm:py-3.5 bg-white border-b-2 border-line shrink-0">
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="flex items-center gap-1.5 shrink-0">
+          <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 border border-line"></span>
+          <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow border border-line"></span>
+          <span class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500 border border-line"></span>
+        </div>
+        <span id="modal-title" class="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-ink ml-1 truncate">
+          HisabeeOS · ভিডিও ডেমো
+        </span>
+        <span class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-yellow/40 border border-line text-[10px] text-ink font-semibold shrink-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          HD 1080p
         </span>
       </div>
 
       <button
         type="button"
         id="modal-close-btn"
-        class="w-8 h-8 border border-line bg-paper hover:bg-yellow active:bg-ink active:text-white flex items-center justify-center font-mono font-bold text-sm text-ink cursor-pointer transition-all duration-150 shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0 select-none"
+        class="w-7 h-7 sm:w-8 sm:h-8 border border-line bg-paper hover:bg-yellow active:bg-ink active:text-white flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-ink cursor-pointer transition-all shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0 select-none shrink-0 ml-2"
         aria-label="মডাল বন্ধ করুন"
         title="বন্ধ করুন (Esc)"
       >
@@ -38,8 +40,8 @@ import Button from './ui/Button.astro';
       </button>
     </div>
 
-    <!-- Modal Middle: Full Theater 85-90% Video Area -->
-    <div class="flex-1 min-h-0 w-full bg-[#080807] relative flex items-center justify-center overflow-hidden">
+    <!-- Modal Middle: 16:9 Video Area with NO letterboxing or excess height -->
+    <div class="w-full bg-black relative aspect-video shrink-0 max-h-[calc(92dvh-95px)] flex items-center justify-center overflow-hidden">
       <iframe
         id="demo-youtube-iframe"
         class="w-full h-full border-0 absolute inset-0"
@@ -52,35 +54,26 @@ import Button from './ui/Button.astro';
     </div>
 
     <!-- Modal Footer: Fixed height, compact editorial details & CTAs -->
-    <div class="px-4 sm:px-6 py-3 sm:py-3.5 bg-paper border-t-2 border-line shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-      <div class="flex items-center gap-3 min-w-0">
-        <span class="hidden md:inline-flex items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-wider text-muted shrink-0">
-          <span class="text-red-600">▶</span> অফিসিয়াল গাইড
-        </span>
-        <span class="hidden md:inline text-muted shrink-0">·</span>
-        <h3 class="font-serif font-bold text-sm sm:text-base text-ink truncate">
+    <div class="px-3.5 sm:px-6 py-2.5 sm:py-3.5 bg-paper border-t-2 border-line shrink-0 flex items-center justify-between gap-3">
+      <div class="min-w-0 flex-1">
+        <h3 class="font-serif font-bold text-xs sm:text-sm md:text-base text-ink truncate">
           পণ্য বিক্রয় (POS), দ্রুত মেমো প্রিন্ট ও ডিজিটাল বাকি খাতা
         </h3>
-        <div class="hidden lg:flex items-center gap-2 shrink-0 ml-1">
-          <span class="px-2 py-0.5 bg-white border border-line font-mono text-[11px] text-ink font-semibold">
-            ⚡ ৩ সেকেন্ডে বিল
-          </span>
-          <span class="px-2 py-0.5 bg-white border border-line font-mono text-[11px] text-ink font-semibold">
-            📱 অটো এসএমএস বাকি
-          </span>
-        </div>
+        <p class="hidden md:block text-[11px] font-mono text-muted truncate mt-0.5">
+          সহজ ইন্টারফেস · ৩ সেকেন্ডে ক্যাশ মেমো · অটো এসএমএস বাকি আদায়
+        </p>
       </div>
 
       <!-- Action buttons & badges -->
-      <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0">
+      <div class="flex items-center gap-2 shrink-0">
         <span class="hidden xl:inline text-xs font-mono text-muted mr-1">
-          <span class="text-emerald-600 font-bold">✓</span> ১৪ দিন ফ্রি ট্রায়াল
+          <span class="text-emerald-600 font-bold">✓</span> ১৪ দিন ফ্রি
         </span>
 
         <button
           type="button"
           id="modal-secondary-close"
-          class="inline-flex items-center justify-center px-3.5 py-1.5 border border-line bg-white hover:bg-paper font-mono text-xs font-bold text-ink cursor-pointer transition-colors shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0"
+          class="hidden sm:inline-flex items-center justify-center px-3 py-1.5 border border-line bg-white hover:bg-paper font-mono text-xs font-bold text-ink cursor-pointer transition-colors shadow-xs"
         >
           বন্ধ করুন
         </button>
@@ -90,9 +83,9 @@ import Button from './ui/Button.astro';
           size="sm"
           href="#pricing"
           id="modal-start-free"
-          class="font-bold whitespace-nowrap shadow-[2px_2px_0_0_#171715]"
+          class="font-bold text-xs sm:text-sm whitespace-nowrap shadow-xs px-3 sm:px-4 py-1.5"
         >
-          ফ্রি ট্রায়াল শুরু করুন →
+          ফ্রি ট্রায়াল →
         </Button>
       </div>
     </div>

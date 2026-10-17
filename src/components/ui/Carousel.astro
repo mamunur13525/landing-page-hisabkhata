@@ -96,6 +96,16 @@ const {
         const items = Array.from(track.children) as HTMLElement[];
         if (items.length === 0) return;
 
+        // Smoothly scroll the track element horizontally ONLY. Never scrolls the window!
+        const scrollToSlide = (idx: number) => {
+          if (!items[idx]) return;
+          const targetIdx = Math.max(0, Math.min(items.length - 1, idx));
+          const trackRect = track.getBoundingClientRect();
+          const itemRect = items[targetIdx].getBoundingClientRect();
+          const targetLeft = track.scrollLeft + (itemRect.left - trackRect.left);
+          track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+        };
+
         // Build dots using DocumentFragment to prevent layout thrashing
         const dotButtons: HTMLButtonElement[] = [];
         if (dotsContainer) {
@@ -106,7 +116,7 @@ const {
             dot.className = `w-7 h-2 border border-line transition-colors cursor-pointer ${idx === 0 ? 'bg-ink' : 'bg-transparent hover:bg-soft-line'}`;
             dot.setAttribute('aria-label', `স্লাইড ${idx + 1}`);
             dot.addEventListener('click', () => {
-              items[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              scrollToSlide(idx);
             });
             dotButtons.push(dot);
             fragment.appendChild(dot);
@@ -115,7 +125,7 @@ const {
           dotsContainer.appendChild(fragment);
         }
 
-        // Use IntersectionObserver: Zero forced reflows, compositor-driven
+        // Use IntersectionObserver inside the track to track active slide
         let activeIndex = 0;
         if ('IntersectionObserver' in window && dotButtons.length > 0) {
           const observer = new IntersectionObserver(
@@ -147,27 +157,31 @@ const {
           items.forEach((item) => observer.observe(item));
         }
 
-        // Arrow click handlers - navigate by slide element with native smooth scroll
+        // Arrow click handlers - navigate purely horizontal scroll inside track
         prevBtn?.addEventListener('click', () => {
           const targetIdx = Math.max(0, activeIndex - 1);
-          items[targetIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+          scrollToSlide(targetIdx);
         });
 
         nextBtn?.addEventListener('click', () => {
           const targetIdx = Math.min(items.length - 1, activeIndex + 1);
-          items[targetIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+          scrollToSlide(targetIdx);
         });
 
-        // Autoplay if enabled
+        // Autoplay if enabled (ONLY when the carousel is actively visible in the viewport)
         if (root.getAttribute('data-autoplay') === 'true') {
           const interval = parseInt(root.getAttribute('data-interval') || '6000', 10);
           let timer: number | null = null;
+          let isVisible = false;
+          let isHovered = false;
 
           const startTimer = () => {
             if (timer) clearInterval(timer);
+            if (!isVisible || isHovered) return;
             timer = window.setInterval(() => {
+              if (!isVisible || isHovered) return;
               const nextIdx = (activeIndex + 1) % items.length;
-              items[nextIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              scrollToSlide(nextIdx);
             }, interval);
           };
 
@@ -178,9 +192,30 @@ const {
             }
           };
 
-          startTimer();
-          root.addEventListener('mouseenter', stopTimer, { passive: true });
-          root.addEventListener('mouseleave', startTimer, { passive: true });
+          if ('IntersectionObserver' in window) {
+            const viewportObserver = new IntersectionObserver(
+              (entries) => {
+                isVisible = entries[0].isIntersecting;
+                if (isVisible) {
+                  startTimer();
+                } else {
+                  stopTimer();
+                }
+              },
+              { threshold: 0.25 }
+            );
+            viewportObserver.observe(root);
+          }
+
+          root.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopTimer();
+          }, { passive: true });
+
+          root.addEventListener('mouseleave', () => {
+            isHovered = false;
+            if (isVisible) startTimer();
+          }, { passive: true });
         }
       });
     };

@@ -14,7 +14,7 @@ const navLinks = [
 <!-- Mobile Drawer Backdrop -->
 <div
   id="mobile-drawer-backdrop"
-  class="fixed inset-0 bg-ink/60 z-50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 top-0 left-0 w-screen h-screen h-[100dvh] bg-ink/60 z-[60] backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
   aria-hidden="true"
 >
 </div>
@@ -22,7 +22,7 @@ const navLinks = [
 <!-- Mobile Drawer Sidebar -->
 <aside
   id="mobile-drawer"
-  class="fixed top-0 right-0 bottom-0 h-full w-[min(340px,88vw)] max-w-sm bg-paper border-l-2 border-line z-[60] flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out shadow-[-8px_0_0_0_#171715] overflow-y-auto"
+  class="fixed top-0 right-0 h-screen h-[100dvh] w-[min(340px,88vw)] max-w-sm bg-paper border-l-2 border-line z-[70] flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out shadow-[-8px_0_0_0_#171715] overflow-y-auto"
   role="dialog"
   aria-modal="true"
   aria-label="মোবাইল নেভিগেশন মেনু"
@@ -96,7 +96,7 @@ const navLinks = [
 
       <div class="text-[11px] font-mono text-center text-muted pt-2 flex items-center justify-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>সরাসরি হেল্পলাইন: +৮৮০ ১৮০০-HISABEE</span>
+        <a href="tel:+8801935015460" class="hover:text-ink hover:underline font-semibold">সরাসরি হেল্পলাইন: 01935-015460</a>
       </div>
     </div>
   </div>
