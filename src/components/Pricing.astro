@@ -2,14 +2,16 @@
 import SectionHeading from './ui/SectionHeading.astro';
 import Button from './ui/Button.astro';
 
+const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 const plans = [
   {
     id: 'starter',
     name: 'স্টারটার স্টোর',
     category: 'ছোট দোকান ও ফার্মেসি',
     desc: 'একক খুচরা দোকান বা মুদির জন্য আদর্শ।',
-    monthlyPrice: '$12',
-    annualPrice: '$9',
+    monthlyPrice: 12,
+    annualPrice: 9,
     featured: false,
     features: [
       '১টি দোকান ও ২ জন ক্যাশিয়ার',
@@ -26,8 +28,8 @@ const plans = [
     name: 'গ্রোথ প্রো (Growth Pro)',
     category: 'ব্যস্ত দোকান ও বুটিক',
     desc: 'মাঝারি রিটেল, পোশাক ও ইলেকট্রনিক্স দোকানের জন্য।',
-    monthlyPrice: '$29',
-    annualPrice: '$22',
+    monthlyPrice: 29,
+    annualPrice: 22,
     featured: true,
     tag: '★ সর্বাধিক জনপ্রিয়',
     features: [
@@ -46,8 +48,8 @@ const plans = [
     name: 'এন্টারপ্রাইজ চেইন',
     category: 'মাল্টি-ব্রাঞ্চ ও পাইকারি',
     desc: 'একাধিক শোরুম, সুপারশপ ও আড়তের জন্য।',
-    monthlyPrice: '$69',
-    annualPrice: '$55',
+    monthlyPrice: 69,
+    annualPrice: 55,
     featured: false,
     features: [
       'আনলিমিটেড শাখা ও আনলিমিটেড কর্মচারী',
@@ -73,27 +75,29 @@ const plans = [
     />
 
     <!-- Billing Switch (Monthly vs Annual) with comfortable margin -->
-    <div class="flex items-center justify-center gap-4 my-10 sm:my-12">
-      <span class="font-mono text-xs sm:text-sm font-semibold text-ink">মাসিক বিলিং</span>
-      <label class="relative inline-flex items-center cursor-pointer" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন">
-        <input
-          type="checkbox"
-          id="billing-toggle"
-          role="switch"
-          aria-checked="false"
-          aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন"
-          class="sr-only peer"
-        />
-        <div class="w-13 h-7 border-2 border-line bg-white peer-checked:bg-ink transition-colors relative">
-          <div class="w-4.5 h-4.5 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
+    <div class="flex items-center justify-center my-10 sm:my-12 select-none">
+      <label class="inline-flex items-center gap-3.5 sm:gap-4 cursor-pointer" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন">
+        <span class="font-mono text-xs sm:text-sm font-semibold text-ink">মাসিক বিলিং</span>
+        <div class="relative inline-flex items-center">
+          <input
+            type="checkbox"
+            id="billing-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন"
+            class="sr-only peer"
+          />
+          <div class="w-13 h-7 border-2 border-line bg-white peer-checked:bg-ink transition-colors relative">
+            <div class="w-4.5 h-4.5 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
+          </div>
         </div>
-      </label>
-      <span class="font-mono text-xs sm:text-sm font-semibold text-ink flex items-center gap-2">
-        <span>বার্ষিক বিলিং</span>
-        <span class="bg-yellow text-ink border border-line text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
-          ২০% ছাড়
+        <span class="font-mono text-xs sm:text-sm font-semibold text-ink flex items-center gap-2">
+          <span>বার্ষিক বিলিং</span>
+          <span class="bg-yellow text-ink border border-line text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+            ২০% ছাড়
+          </span>
         </span>
-      </span>
+      </label>
     </div>
 
     <!-- Pricing Grid with generous gap and padding -->
@@ -123,17 +127,47 @@ const plans = [
                 {plan.desc}
               </p>
 
-              <!-- Price Display -->
+              <!-- Price Display with Pure Tailwind iOS Digit Reels -->
               <div class="border-y border-soft-line py-6 mb-7">
-                <div class="flex items-baseline gap-1.5">
-                  <span
-                    class="font-serif font-bold text-4xl sm:text-5xl text-ink tracking-tight plan-price"
+                <div class="flex items-baseline gap-1 font-serif font-bold text-4xl sm:text-5xl text-ink tracking-tight tabular-nums">
+                  <span class="currency-symbol select-none">$</span>
+                  <div
+                    class="price-reels inline-flex items-baseline leading-none"
                     data-monthly={plan.monthlyPrice}
                     data-annual={plan.annualPrice}
+                    aria-label={`$${plan.monthlyPrice} প্রতি মাসে`}
                   >
-                    {plan.monthlyPrice}
-                  </span>
-                  <span class="font-mono text-xs text-muted billing-unit">/প্রতি মাসে</span>
+                    <!-- Tens Digit Slot (collapses when value is 1 digit) -->
+                    <div
+                      class={`digit-slot relative h-[1em] overflow-hidden leading-none inline-block transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${Math.floor(plan.monthlyPrice / 10) === 0 ? 'w-0 opacity-0' : 'w-[0.62em] opacity-100'}`}
+                      data-slot="tens"
+                    >
+                      <div
+                        class="digit-strip flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+                        style={`transform: translateY(-${Math.floor(plan.monthlyPrice / 10) * 10}%);`}
+                      >
+                        {digits.map((d) => (
+                          <span class="h-[1em] flex items-center justify-center leading-none select-none">{d}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <!-- Ones Digit Slot -->
+                    <div
+                      class="digit-slot relative h-[1em] w-[0.62em] overflow-hidden leading-none inline-block"
+                      data-slot="ones"
+                    >
+                      <div
+                        class="digit-strip flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+                        style={`transform: translateY(-${(plan.monthlyPrice % 10) * 10}%);`}
+                      >
+                        {digits.map((d) => (
+                          <span class="h-[1em] flex items-center justify-center leading-none select-none">{d}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <span class="font-mono text-xs font-normal text-muted billing-unit ml-1">/প্রতি মাসে</span>
                 </div>
                 <div class="text-[11px] font-mono text-emerald-700 font-semibold mt-1.5">
                   ১৪ দিনের সম্পূর্ণ ফ্রি ট্রায়াল অন্তর্ভুক্ত
@@ -169,18 +203,54 @@ const plans = [
 <script>
   function setupPricingToggle() {
     const toggle = document.getElementById('billing-toggle') as HTMLInputElement | null;
-    const prices = document.querySelectorAll<HTMLElement>('.plan-price');
+    const reels = document.querySelectorAll<HTMLElement>('.price-reels');
     const units = document.querySelectorAll<HTMLElement>('.billing-unit');
 
-    toggle?.addEventListener('change', () => {
+    if (!toggle) return;
+
+    toggle.addEventListener('change', () => {
       const isAnnual = toggle.checked;
       toggle.setAttribute('aria-checked', isAnnual ? 'true' : 'false');
-      prices.forEach((el) => {
-        const val = isAnnual ? el.getAttribute('data-annual') : el.getAttribute('data-monthly');
-        if (val) el.textContent = val;
+
+      reels.forEach((reel) => {
+        const rawVal = isAnnual ? reel.getAttribute('data-annual') : reel.getAttribute('data-monthly');
+        if (!rawVal) return;
+        const num = parseInt(rawVal, 10);
+        const tens = Math.floor(num / 10);
+        const ones = num % 10;
+
+        const tensSlot = reel.querySelector<HTMLElement>('[data-slot="tens"]');
+        const tensStrip = tensSlot?.querySelector<HTMLElement>('.digit-strip');
+        const onesSlot = reel.querySelector<HTMLElement>('[data-slot="ones"]');
+        const onesStrip = onesSlot?.querySelector<HTMLElement>('.digit-strip');
+
+        // Roll ones digit strip
+        if (onesStrip) {
+          onesStrip.style.transform = `translateY(-${ones * 10}%)`;
+        }
+
+        // Roll tens digit or smoothly collapse if single digit
+        if (tensSlot && tensStrip) {
+          if (tens === 0) {
+            tensSlot.classList.remove('w-[0.62em]', 'opacity-100');
+            tensSlot.classList.add('w-0', 'opacity-0');
+          } else {
+            tensSlot.classList.remove('w-0', 'opacity-0');
+            tensSlot.classList.add('w-[0.62em]', 'opacity-100');
+            tensStrip.style.transform = `translateY(-${tens * 10}%)`;
+          }
+        }
+
+        reel.setAttribute('aria-label', `$${num} ${isAnnual ? 'প্রতি মাসে (বাৎসরিক)' : 'প্রতি মাসে'}`);
       });
+
       units.forEach((el) => {
-        el.textContent = isAnnual ? '/প্রতি মাসে (বাৎসরিক)' : '/প্রতি মাসে';
+        el.style.transition = 'opacity 140ms ease';
+        el.style.opacity = '0.3';
+        setTimeout(() => {
+          el.textContent = isAnnual ? '/প্রতি মাসে (বাৎসরিক)' : '/প্রতি মাসে';
+          el.style.opacity = '1';
+        }, 120);
       });
     });
   }
