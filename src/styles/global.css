@@ -79,6 +79,12 @@ mark {
   }
 }
 
+/* Progressive Viewport Rendering: Defer layout, reflow & paint for offscreen sections until scrolled near */
+.section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 750px;
+}
+
 /* Pulsing live dot */
 @keyframes pulse-dot {
   0%, 100% { transform: scale(1); opacity: 1; }

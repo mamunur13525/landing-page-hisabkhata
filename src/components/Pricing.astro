@@ -62,7 +62,7 @@ const plans = [
 ];
 ---
 
-<section id="pricing" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper">
+<section id="pricing" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper section-deferred">
   <div class="shell">
     <SectionHeading
       title="আপনার ব্যবসার উপযোগী"
@@ -185,6 +185,26 @@ const plans = [
     });
   }
 
-  setupPricingToggle();
-  document.addEventListener('astro:page-load', setupPricingToggle);
+  function initPricingWhenVisible() {
+    const section = document.getElementById('pricing');
+    if (!section) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setupPricingToggle();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '250px' }
+      );
+      observer.observe(section);
+    } else {
+      setupPricingToggle();
+    }
+  }
+
+  initPricingWhenVisible();
+  document.addEventListener('astro:page-load', initPricingWhenVisible);
 </script>

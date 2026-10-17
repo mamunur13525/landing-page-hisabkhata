@@ -9,7 +9,7 @@ const tabs = [
 ];
 ---
 
-<section id="showcase" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper">
+<section id="showcase" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper section-deferred">
   <div class="shell">
     <SectionHeading
       title="সফটওয়্যারটি দেখতে ও চালাতে"
@@ -179,6 +179,26 @@ const tabs = [
     });
   }
 
-  setupTourTabs();
-  document.addEventListener('astro:page-load', setupTourTabs);
+  function initTourWhenVisible() {
+    const section = document.getElementById('showcase');
+    if (!section) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setupTourTabs();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '250px' }
+      );
+      observer.observe(section);
+    } else {
+      setupTourTabs();
+    }
+  }
+
+  initTourWhenVisible();
+  document.addEventListener('astro:page-load', initTourWhenVisible);
 </script>

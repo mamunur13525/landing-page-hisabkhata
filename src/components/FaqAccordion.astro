@@ -46,7 +46,7 @@ const faqs: FaqItem[] = [
 ];
 ---
 
-<section id="faq" class="border-t border-line py-20 md:py-28 lg:py-32 bg-white">
+<section id="faq" class="border-t border-line py-20 md:py-28 lg:py-32 bg-white section-deferred">
   <div class="shell">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20">
       <!-- Sticky Left Intro Column -->
@@ -164,6 +164,26 @@ const faqs: FaqItem[] = [
     });
   }
 
-  setupFaqAccordion();
-  document.addEventListener('astro:page-load', setupFaqAccordion);
+  function initFaqWhenVisible() {
+    const section = document.getElementById('faq');
+    if (!section) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setupFaqAccordion();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '250px' }
+      );
+      observer.observe(section);
+    } else {
+      setupFaqAccordion();
+    }
+  }
+
+  initFaqWhenVisible();
+  document.addEventListener('astro:page-load', initFaqWhenVisible);
 </script>

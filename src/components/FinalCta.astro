@@ -2,7 +2,7 @@
 import Button from './ui/Button.astro';
 ---
 
-<section id="cta" class="bg-ink text-white border-t-2 border-line py-24 md:py-32 lg:py-36 relative overflow-hidden">
+<section id="cta" class="bg-ink text-white border-t-2 border-line py-24 md:py-32 lg:py-36 relative overflow-hidden section-deferred">
   <!-- Yellow highlight line at top -->
   <div class="absolute top-0 left-0 right-0 h-1.5 bg-yellow"></div>
 
@@ -77,6 +77,26 @@ import Button from './ui/Button.astro';
     });
   }
 
-  setupCtaForm();
-  document.addEventListener('astro:page-load', setupCtaForm);
+  function initCtaWhenVisible() {
+    const section = document.getElementById('cta');
+    if (!section) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setupCtaForm();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '250px' }
+      );
+      observer.observe(section);
+    } else {
+      setupCtaForm();
+    }
+  }
+
+  initCtaWhenVisible();
+  document.addEventListener('astro:page-load', initCtaWhenVisible);
 </script>
