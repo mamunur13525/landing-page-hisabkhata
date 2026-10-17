@@ -12,21 +12,25 @@ const navLinks = [
 ---
 
 <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-line transition-all duration-200">
-  <div class="shell h-[68px] flex items-center justify-between gap-6">
-    <!-- Brand Mark -->
-    <a href="#" class="font-mono font-bold text-xl tracking-tighter text-ink flex items-center group select-none">
+  <div class="shell h-16 sm:h-[68px] flex items-center justify-between gap-2.5 sm:gap-4 lg:gap-6">
+    <!-- Brand Mark (Shrink protected, scalable text for mobile) -->
+    <a
+      href="#"
+      class="font-mono font-bold text-lg sm:text-xl tracking-tighter text-ink flex items-center group select-none shrink-0"
+      aria-label="HisabeeOS হোমপেজ"
+    >
       <span>Hisabee</span>
-      <span class="text-xs bg-yellow px-1 py-0.5 ml-1 border border-line">OS</span>
-      <sup class="text-[#777670] font-sans font-medium text-[11px] ml-1.5 tracking-normal">পিওএস</sup>
+      <span class="text-[11px] sm:text-xs bg-yellow px-1 py-0.5 ml-1 border border-line font-bold">OS</span>
+      <sup class="text-[#777670] font-sans font-medium text-[10px] sm:text-[11px] ml-1 tracking-normal">পিওএস</sup>
     </a>
 
-    <!-- Desktop Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-6" aria-label="প্রধান নেভিগেশন">
+    <!-- Desktop Navigation Links (Shown on lg+ with optimal spacing) -->
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="প্রধান নেভিগেশন">
       {
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="font-mono text-xs tracking-wider text-ink hover:underline underline-offset-4 transition-transform hover:-translate-y-0.5"
+            class="font-mono text-xs tracking-wider text-ink hover:underline underline-offset-4 transition-transform hover:-translate-y-0.5 whitespace-nowrap"
           >
             {link.label}
           </a>
@@ -35,48 +39,43 @@ const navLinks = [
     </nav>
 
     <!-- Header Actions -->
-    <div class="flex items-center gap-2.5 sm:gap-3">
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <!-- Demo button (Shown on xl+) -->
       <Button
         variant="outline"
         size="sm"
         id="open-demo-modal"
-        class="hidden md:inline-flex text-xs"
+        class="hidden xl:inline-flex text-xs"
         data-open-demo
       >
         ভিডিও ডেমো ▷
       </Button>
 
-      <Button
-        variant="outline"
-        size="sm"
-        href="#pricing"
-        class="hidden sm:inline-flex text-xs"
-      >
-        ফ্রি ট্রায়াল
-      </Button>
-
-      <!-- Far Right Login Button -->
+      <!-- Far Right Login Button: Clean and perfectly responsive on all screen sizes -->
       <Button
         variant="dark"
         size="sm"
         href="https://hisabs-khata.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-xs font-bold"
+        class="text-xs font-bold whitespace-nowrap shadow-[2px_2px_0_0_#171715] min-h-[36px] sm:min-h-[38px] px-3 sm:px-4"
         ariaLabel="হিসাবী অ্যাকাউন্টে লগইন করুন"
       >
         <span>লগইন</span>
         <span class="text-yellow ml-0.5 font-bold">↗</span>
       </Button>
 
-      <!-- Mobile Hamburger Button -->
+      <!-- Mobile Hamburger Button (< lg) -->
       <button
         id="mobile-menu-btn"
         type="button"
-        class="lg:hidden w-10 h-10 border border-line bg-transparent flex items-center justify-center text-lg cursor-pointer hover:bg-white transition-colors"
+        class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 border border-line bg-paper hover:bg-yellow active:bg-ink active:text-white flex items-center justify-center font-bold text-base sm:text-lg cursor-pointer transition-all duration-150 shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0 select-none shrink-0"
         aria-label="নেভিগেশন মেনু খুলুন"
+        aria-controls="mobile-drawer"
+        aria-expanded="false"
+        title="মেনু"
       >
-        ☰
+        <span class="leading-none text-ink text-base sm:text-lg select-none">☰</span>
       </button>
     </div>
   </div>

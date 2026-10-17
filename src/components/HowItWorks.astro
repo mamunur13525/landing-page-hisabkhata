@@ -23,7 +23,7 @@ const steps = [
 ];
 ---
 
-<section id="how-it-works" class="border-t border-line py-14 md:py-20 bg-paper">
+<section id="how-it-works" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper">
   <div class="shell">
     <SectionHeading
       title="শুরু করা একদম সহজ।"
@@ -33,17 +33,17 @@ const steps = [
       split={true}
     />
 
-    <div class="border border-line bg-white/40 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-line shadow-xs">
+    <div class="border-2 border-line bg-white/40 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x-2 divide-line shadow-[4px_4px_0_0_var(--color-line)]">
       {
         steps.map((item) => (
-          <article class="p-6 sm:p-8 flex flex-col min-h-[220px] bg-white/70 hover:bg-white transition-all duration-200 hover:-translate-y-1">
-            <span class="font-mono text-xs text-muted font-semibold">
+          <article class="p-8 sm:p-10 md:p-12 flex flex-col min-h-[260px] md:min-h-[290px] bg-white/70 hover:bg-white transition-all duration-200 hover:-translate-y-1">
+            <span class="font-mono text-sm sm:text-base text-muted font-bold">
               {item.step}
             </span>
-            <b class="font-mono text-[11px] font-semibold tracking-wider uppercase text-ink mt-auto pt-6">
+            <b class="font-mono text-[11px] font-semibold tracking-wider uppercase text-ink mt-auto pt-10 sm:pt-14">
               {item.tag}
             </b>
-            <h3 class="font-serif font-bold text-xl text-ink leading-snug my-2">
+            <h3 class="font-serif font-bold text-xl sm:text-2xl text-ink leading-snug my-2.5">
               {item.title}
             </h3>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">

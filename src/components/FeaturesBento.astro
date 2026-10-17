@@ -72,7 +72,7 @@ const features = [
 ];
 ---
 
-<section id="features" class="border-t border-line py-14 md:py-20 bg-white">
+<section id="features" class="border-t border-line py-20 md:py-28 lg:py-32 bg-white">
   <div class="shell">
     <SectionHeading
       title="কেন আপনার দোকানে"
@@ -82,33 +82,33 @@ const features = [
       split={true}
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
       {
         features.map((item) => {
           const IconComponent = item.icon;
           return (
-            <article class="border border-line bg-paper p-6 sm:p-7 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-line)] transition-all duration-200">
+            <article class="border-2 border-line bg-paper p-7 sm:p-8 md:p-9 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-line)] transition-all duration-200">
               <div>
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-6">
                   <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
                     [ {item.index} · {item.tag} ]
                   </span>
-                  <div class="w-10 h-10 border border-line bg-white flex items-center justify-center text-ink shrink-0">
+                  <div class="w-11 h-11 border border-line bg-white flex items-center justify-center text-ink shrink-0 shadow-xs">
                     <IconComponent class="w-5 h-5" />
                   </div>
                 </div>
 
-                <h3 class="font-serif font-bold text-lg sm:text-xl text-ink leading-snug mb-2.5">
+                <h3 class="font-serif font-bold text-xl sm:text-2xl text-ink leading-snug mb-3">
                   {item.title}
                 </h3>
-                <p class="text-xs sm:text-sm text-muted leading-relaxed mb-5">
+                <p class="text-xs sm:text-sm text-muted leading-relaxed mb-6">
                   {item.description}
                 </p>
               </div>
 
-              <ul class="border-t border-soft-line pt-3.5 flex flex-col gap-2 font-mono text-xs text-ink/80">
+              <ul class="border-t border-soft-line pt-5 flex flex-col gap-2.5 font-mono text-xs text-ink/85">
                 {item.points.map((pt) => (
-                  <li class="flex items-center gap-2">
+                  <li class="flex items-center gap-2.5">
                     <span class="font-bold text-emerald-700">✓</span>
                     <span>{pt}</span>
                   </li>

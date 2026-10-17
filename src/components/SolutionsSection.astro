@@ -1,0 +1,171 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Button from './ui/Button.astro';
+
+const solutions = [
+  {
+    category: 'রিটেইল গ্রোসারি',
+    title: 'সুপারমার্কেট ও মুদি দোকান',
+    description: 'ওজন স্কেল সরাসরি যুক্ত করুন, দ্রুত বারকোড স্ক্যান করুন এবং কাস্টমার বাকি খাতা রাখুন আঙুলের ডগায়।',
+    tag: 'জনপ্রিয়',
+    points: ['ওজন মেশিন ও বারকোড ইন্টিগ্রেশন', 'বাকির দ্রুত ডিজিটাল হিসাব'],
+    link: '#pricing'
+  },
+  {
+    category: 'লাইফস্টাইল ও ফ্যাশন',
+    title: 'পোশাক, জুতা ও ফ্যাশন বুটিক',
+    description: 'সাইজ ও কালার অনুযায়ী স্টক রাখুন। পণ্যের গায়ে নিজের দোকানের নাম ও দামসহ বারকোড স্টিকার লাগান।',
+    tag: 'কালার-সাইজ',
+    points: ['সাইজ ও কালার ভ্যারিয়েন্ট ট্র্যাকিং', 'দোকানের নামে বারকোড প্রিন্ট'],
+    link: '#pricing'
+  },
+  {
+    category: 'ফার্মাসিউটিক্যালস',
+    title: 'ফার্মেসি ও ড্রাগ স্টোর',
+    description: 'ওষুধ শেষ হওয়ার বা মেয়াদোত্তীর্ণের আগেই ফোনে এলার্ট পাবেন। মেয়াদ শেষ ওষুধের আর্থিক ক্ষতি বাঁচান।',
+    tag: 'মেয়াদ এলার্ট',
+    points: ['৬০ দিন আগে মেয়াদোত্তীর্ণ সতর্কবার্তা', 'দ্রুত ওষুধ খোঁজার সার্চ ইঞ্জিন'],
+    link: '#pricing'
+  },
+  {
+    category: 'হার্ডওয়্যার ও ডিভাইস',
+    title: 'ইলেকট্রনিক্স ও মোবাইল শপ',
+    description: 'আইএমইআই (IMEI) ও সিরিয়াল নম্বর ওয়ারেন্টি ট্র্যাকিং করুন। কাস্টমার সার্ভিস জব কার্ড সংরক্ষণ করুন।',
+    tag: 'ওয়ারেন্টি',
+    points: ['আইএমইআই ও সিরিয়াল লগ', 'ওয়ারেন্টি ও সার্ভিস কার্ড ট্র্যাকিং'],
+    link: '#pricing'
+  },
+  {
+    category: 'পাইকারি ও আড়ত',
+    title: 'পাইকারি ব্যবসায়ী ও পরিবেশক',
+    description: 'বাল্ক হোলসেল রেট, ডিস্ট্রিবিউটর বাকি লেজার, ডেলিভারি চালান ও বিক্রয় প্রতিনিধিদের অর্ডার বুকিং।',
+    tag: 'বাল্ক ট্রেড',
+    points: ['পাইকারি বিশেষ রেট নির্ধারণ', 'ডেলিভারি চালান ও বাকি লেজার'],
+    link: '#pricing'
+  },
+  {
+    category: 'খাবার ও পানীয়',
+    title: 'রেস্তোরাঁ, ক্যাফে ও বেকারি',
+    description: 'টেবিল ম্যানেজমেন্ট, কিচেন অর্ডার টিকিট (KOT) প্রিন্ট এবং পার্সেল ও অনলাইন ডেলিভারির নিখুঁত হিসাব।',
+    tag: 'ফাস্ট ফুড',
+    points: ['কিচেন প্রিন্টার (KOT) সাপোর্ট', 'টেবিল ও পার্সেল বিলিং'],
+    link: '#pricing'
+  }
+];
+---
+
+<section id="solutions" class="border-t border-line py-20 md:py-28 lg:py-32 bg-white">
+  <div class="shell">
+    <SectionHeading
+      title="আপনার ব্যবসার উপযোগী"
+      emphasis="সমাধান।"
+      eyebrow="যেকোনো কাজের ধরন ও সাইজের দোকানের জন্য প্রস্তুত"
+      description="মুদি দোকান, কাপড়ের শোরুম, ফার্মেসি কিংবা পাইকারি—হিসাবী প্রতিটি ব্যবসার কাজের ধরন অনুযায়ী বিশেষভাবে সাজানো হয়েছে।"
+      split={true}
+    />
+
+    <!-- Real Store Showcase Banner with Image & Generous Padding -->
+    <div class="border-2 border-line bg-paper shadow-[8px_8px_0_0_var(--ink)] overflow-hidden mb-16 sm:mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <!-- Store Photograph -->
+        <div class="lg:col-span-7 relative min-h-[340px] sm:min-h-[420px] bg-charcoal overflow-hidden border-b lg:border-b-0 lg:border-r-2 border-line">
+          <img
+            src="/images/shop-owner-pos.jpg"
+            alt="হিসাবী পার্টনার শপে হাসিমুখ দোকানদার ল্যাপটপে পিওএস চালাচ্ছেন এবং কর্মী গ্রাহককে পণ্য বিক্রি করছেন"
+            class="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute top-4 left-4 bg-ink/90 text-white font-mono text-[11px] font-bold px-3 py-1.5 border border-white/20 flex items-center gap-2 backdrop-blur-xs shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            বাস্তব শপ পার্টনার · ঢাকা
+          </div>
+        </div>
+
+        <!-- Banner Content Column -->
+        <div class="lg:col-span-5 p-7 sm:p-10 md:p-12 flex flex-col justify-between bg-paper">
+          <div>
+            <div class="inline-block bg-yellow text-ink border border-line font-mono text-xs font-bold px-3 py-1 mb-5 shadow-xs">
+              দোকান মালিক ও কর্মচারীর নিখুঁত সমন্বয়
+            </div>
+
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-tight mb-4">
+              কাউন্টার সেলস ও ব্যাকঅফিস—সব এক স্ক্রিনে
+            </h3>
+
+            <p class="font-serif text-sm text-charcoal/80 leading-relaxed mb-8">
+              মালিক ল্যাপটপ বা মোবাইলে লাইভ হিসাব দেখছেন, আর ক্যাশিয়ার কাউন্টারে দ্রুত বারকোড স্ক্যান করে কাস্টমারকে মেমো দিচ্ছেন। কোনো ক্যাশ অমিল নেই, কোনো পণ্য চুরি হওয়ার ভয় নেই।
+            </p>
+
+            <ul class="space-y-3 font-mono text-xs text-ink/85 pb-8 border-b border-soft-line">
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-700 font-bold">✓</span>
+                <span>ল্যাপটপ, মোবাইল বা পিসি—যেকোনো ডিভাইসে চলে</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-700 font-bold">✓</span>
+                <span>ক্যাশ মেমো প্রিন্ট ও ফোনে অটো ডিজিটাল রিসিট</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="text-emerald-700 font-bold">✓</span>
+                <span>কর্মচারীর ক্যাশ ড্রয়ার প্রতিদিন নিখুঁত হিসাব মিলানো</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pt-8 flex items-center justify-between gap-4">
+            <div class="font-mono text-xs text-charcoal/70">
+              ১০,০০০+ সফল মার্চেন্ট
+            </div>
+            <Button variant="dark" size="sm" href="#pricing" class="font-bold text-xs">
+              আপনার দোকানের জন্য শুরু করুন →
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All 6 Industry Solutions Grid (ALL SHOWN - Generous spacing) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+      {
+        solutions.map((item) => (
+          <article class="border-2 border-line bg-paper p-7 sm:p-8 md:p-9 flex flex-col justify-between hover:bg-white hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-line)] transition-all duration-200">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] font-semibold text-charcoal/70 uppercase tracking-wider">
+                  {item.category}
+                </span>
+                <span class="bg-yellow text-ink border border-line font-mono text-[10px] font-bold px-2.5 py-0.5">
+                  {item.tag}
+                </span>
+              </div>
+
+              <h3 class="font-serif font-bold text-lg sm:text-xl text-ink leading-snug mb-2.5">
+                {item.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-charcoal/80 leading-relaxed mb-5">
+                {item.description}
+              </p>
+
+              <ul class="space-y-2 font-mono text-xs text-ink/85 mb-7 pt-4 border-t border-soft-line">
+                {item.points.map((pt) => (
+                  <li class="flex items-center gap-2">
+                    <span class="text-emerald-700 font-bold">✓</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={item.link}
+              class="font-mono font-semibold text-xs text-ink hover:underline underline-offset-4 flex items-center gap-1 group mt-auto pt-4 border-t border-soft-line"
+            >
+              <span>এই সলিউশনটি বেছে নিন</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

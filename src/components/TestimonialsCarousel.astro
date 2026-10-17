@@ -84,7 +84,7 @@ const testimonials: Testimonial[] = [
 ];
 ---
 
-<section id="testimonials" class="border-t border-line py-16 md:py-20 bg-paper">
+<section id="testimonials" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper">
   <div class="shell">
     <SectionHeading
       title="গ্রাহকের"
@@ -97,11 +97,11 @@ const testimonials: Testimonial[] = [
     <Carousel id="testimonials-carousel" autoplay={true} interval={6000}>
       {
         testimonials.map((item) => (
-          <article class="w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] shrink-0 snap-start border border-line bg-white p-6 md:p-7 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0_0_var(--line)]">
+          <article class="w-full md:w-[calc(50%-14px)] lg:w-[calc(33.333%-18px)] shrink-0 snap-start border-2 border-line bg-white p-7 sm:p-8 md:p-9 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_var(--line)]">
             <div>
               <!-- Top Category & Rating Tag -->
-              <div class="flex items-center justify-between pb-4 mb-4 border-b border-soft-line">
-                <span class="font-mono text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 border border-line bg-paper">
+              <div class="flex items-center justify-between pb-5 mb-5 border-b border-soft-line">
+                <span class="font-mono text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 border border-line bg-paper">
                   {item.category}
                 </span>
                 <span class="font-mono text-xs font-bold text-ink flex items-center gap-1">
@@ -111,34 +111,34 @@ const testimonials: Testimonial[] = [
               </div>
 
               <!-- Quote Content -->
-              <blockquote class="font-serif italic text-ink text-[15px] leading-relaxed mb-6">
+              <blockquote class="font-serif italic text-ink text-[15px] sm:text-base leading-relaxed mb-8">
                 "{item.quote}"
               </blockquote>
             </div>
 
             <!-- Bottom Metric & Author Info -->
-            <div class="pt-4 border-t border-soft-line mt-auto">
+            <div class="pt-5 border-t border-soft-line mt-auto">
               <!-- Result Stat Tag -->
-              <div class="bg-paper border border-line/40 px-3 py-1.5 mb-4 flex items-center justify-between font-mono text-xs">
+              <div class="bg-paper border border-line/50 px-3.5 py-2 mb-5 flex items-center justify-between font-mono text-xs">
                 <span class="font-bold text-ink">{item.metric}</span>
                 <span class="text-charcoal/70 text-[11px]">{item.metricLabel}</span>
               </div>
 
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 border border-line bg-ink text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+              <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 border-2 border-line bg-ink text-white font-mono font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                   {item.initials}
                 </div>
                 <div class="min-w-0">
-                  <div class="font-bold text-sm text-ink truncate flex items-center gap-1.5">
+                  <div class="font-bold text-sm sm:text-base text-ink truncate flex items-center gap-1.5">
                     {item.name}
                     <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-300 px-1 py-0.2 rounded-xs font-normal">
                       ✓ ভেরিফায়েড
                     </span>
                   </div>
-                  <div class="font-mono text-[11px] text-charcoal/70 truncate">
+                  <div class="font-mono text-xs text-charcoal/70 truncate">
                     {item.role}, {item.business}
                   </div>
-                  <div class="font-mono text-[10px] text-charcoal/50 truncate">
+                  <div class="font-mono text-[11px] text-charcoal/50 truncate">
                     📍 {item.location}
                   </div>
                 </div>

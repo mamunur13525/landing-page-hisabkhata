@@ -62,7 +62,7 @@ const plans = [
 ];
 ---
 
-<section id="pricing" class="border-t border-line py-14 md:py-20 bg-paper">
+<section id="pricing" class="border-t border-line py-20 md:py-28 lg:py-32 bg-paper">
   <div class="shell">
     <SectionHeading
       title="আপনার ব্যবসার উপযোগী"
@@ -72,53 +72,53 @@ const plans = [
       split={true}
     />
 
-    <!-- Billing Switch (Monthly vs Annual) -->
-    <div class="flex items-center justify-center gap-3 my-8">
+    <!-- Billing Switch (Monthly vs Annual) with comfortable margin -->
+    <div class="flex items-center justify-center gap-4 my-10 sm:my-12">
       <span class="font-mono text-xs sm:text-sm font-semibold text-ink">মাসিক বিলিং</span>
       <label class="relative inline-flex items-center cursor-pointer" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন">
         <input type="checkbox" id="billing-toggle" class="sr-only peer" />
-        <div class="w-12 h-6 border border-line bg-white peer-checked:bg-ink transition-colors relative">
-          <div class="w-4 h-4 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
+        <div class="w-13 h-7 border-2 border-line bg-white peer-checked:bg-ink transition-colors relative">
+          <div class="w-4.5 h-4.5 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
         </div>
       </label>
       <span class="font-mono text-xs sm:text-sm font-semibold text-ink flex items-center gap-2">
         <span>বার্ষিক বিলিং</span>
-        <span class="bg-yellow text-ink border border-line text-[10px] font-bold px-1.5 py-0.5 uppercase tracking-wider">
+        <span class="bg-yellow text-ink border border-line text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
           ২০% ছাড়
         </span>
       </span>
     </div>
 
-    <!-- Pricing Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+    <!-- Pricing Grid with generous gap and padding -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-9 items-stretch">
       {
         plans.map((plan) => (
           <article
-            class={`border border-line bg-white p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 relative ${plan.featured ? 'ring-2 ring-ink shadow-[6px_6px_0_var(--color-line)] -translate-y-1' : 'hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-line)]'}`}
+            class={`border-2 border-line bg-white p-8 sm:p-9 md:p-10 flex flex-col justify-between transition-all duration-200 relative ${plan.featured ? 'ring-2 ring-ink shadow-[8px_8px_0_var(--color-line)] -translate-y-1' : 'hover:-translate-y-1 hover:shadow-[6px_6px_0_var(--color-line)]'}`}
           >
             {plan.featured && (
-              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-yellow text-ink border border-line font-mono text-[11px] font-bold px-3 py-0.5 uppercase tracking-wider whitespace-nowrap">
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-yellow text-ink border-2 border-line font-mono text-[11px] font-bold px-3.5 py-1 uppercase tracking-wider whitespace-nowrap shadow-xs">
                 {plan.tag}
               </div>
             )}
 
             <div>
-              <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center justify-between mb-3">
                 <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
                   {plan.category}
                 </span>
               </div>
 
-              <h3 class="font-serif font-bold text-2xl text-ink leading-snug mb-1">
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-snug mb-1.5">
                 {plan.name}
               </h3>
-              <p class="text-xs text-muted leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-muted leading-relaxed mb-7">
                 {plan.desc}
               </p>
 
               <!-- Price Display -->
-              <div class="border-y border-soft-line py-5 mb-6">
-                <div class="flex items-baseline gap-1">
+              <div class="border-y border-soft-line py-6 mb-7">
+                <div class="flex items-baseline gap-1.5">
                   <span
                     class="font-serif font-bold text-4xl sm:text-5xl text-ink tracking-tight plan-price"
                     data-monthly={plan.monthlyPrice}
@@ -128,13 +128,13 @@ const plans = [
                   </span>
                   <span class="font-mono text-xs text-muted billing-unit">/প্রতি মাসে</span>
                 </div>
-                <div class="text-[11px] font-mono text-emerald-700 font-semibold mt-1">
+                <div class="text-[11px] font-mono text-emerald-700 font-semibold mt-1.5">
                   ১৪ দিনের সম্পূর্ণ ফ্রি ট্রায়াল অন্তর্ভুক্ত
                 </div>
               </div>
 
               <!-- Feature Checklist -->
-              <ul class="flex flex-col gap-2.5 font-mono text-xs text-ink/85 mb-8">
+              <ul class="flex flex-col gap-3 font-mono text-xs text-ink/85 mb-9">
                 {plan.features.map((feat) => (
                   <li class="flex items-start gap-2.5">
                     <span class="text-emerald-700 font-bold shrink-0 mt-0.5">✓</span>

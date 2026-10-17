@@ -46,39 +46,39 @@ const faqs: FaqItem[] = [
 ];
 ---
 
-<section id="faq" class="border-t border-line py-14 md:py-20 bg-white">
+<section id="faq" class="border-t border-line py-20 md:py-28 lg:py-32 bg-white">
   <div class="shell">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20">
       <!-- Sticky Left Intro Column -->
       <div class="lg:col-span-4">
-        <div class="lg:sticky lg:top-24">
-          <div class="flex items-center gap-2 mb-2">
+        <div class="lg:sticky lg:top-28">
+          <div class="flex items-center gap-2 mb-3">
             <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span class="font-mono text-xs font-semibold tracking-wider uppercase text-muted">
               সাপোর্ট ও জিজ্ঞাসা
             </span>
           </div>
 
-          <h2 class="font-serif text-2xl md:text-3xl font-bold text-ink mb-3">
-            সাধারণ <em class="italic text-ink">প্রশ্নোত্তর।</em>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-ink mb-4 leading-tight">
+            সাধারণ <em class="italic text-ink font-normal">প্রশ্নোত্তর।</em>
           </h2>
 
-          <p class="font-serif text-xs md:text-sm text-muted leading-relaxed mb-6">
-            হিসাবী শুরু করার আগে প্রয়োজনীয় প্রশ্নগুলোর পরিষ্কার উত্তর জেনে নিন।
+          <p class="font-serif text-sm md:text-base text-muted leading-relaxed mb-8">
+            হিসাবী শুরু করার আগে প্রয়োজনীয় প্রশ্নগুলোর পরিষ্কার উত্তর জেনে নিন। কোনো কিছু জানার থাকলে যেকোনো সময় কল দিন।
           </p>
 
-          <div class="border border-line bg-paper p-5 space-y-2.5">
+          <div class="border-2 border-line bg-paper p-6 sm:p-7 space-y-3 shadow-xs">
             <div class="font-mono text-xs font-bold text-ink uppercase tracking-wide">
               সরাসরি কথা বলতে চান?
             </div>
-            <p class="text-xs text-muted">
-              আমাদের টিম সকাল ৯টা থেকে রাত ১১টা পর্যন্ত আপনার সহযোগিতায় প্রস্তুত।
+            <p class="text-xs text-muted leading-relaxed">
+              আমাদের ডেডিকেটেড টিম সকাল ৯টা থেকে রাত ১১টা পর্যন্ত আপনার সহযোগিতায় প্রস্তুত।
             </p>
-            <div class="pt-1 flex flex-col gap-1.5 font-mono text-xs">
-              <a href="tel:+8801800447223" class="font-bold text-ink hover:text-emerald-700 underline flex items-center gap-1.5">
+            <div class="pt-2 flex flex-col gap-2 font-mono text-xs">
+              <a href="tel:+8801800447223" class="font-bold text-ink hover:text-emerald-700 underline flex items-center gap-2">
                 📞 +৮৮০ ১৮০০-HISABEE
               </a>
-              <a href="mailto:support@hisabee.com" class="text-muted hover:text-ink underline flex items-center gap-1.5">
+              <a href="mailto:support@hisabee.com" class="text-muted hover:text-ink underline flex items-center gap-2">
                 ✉️ support@hisabee.com
               </a>
             </div>
@@ -86,28 +86,28 @@ const faqs: FaqItem[] = [
         </div>
       </div>
 
-      <!-- Right Accordion List -->
-      <div class="lg:col-span-8 divide-y divide-line border-y border-line" id="faq-accordion-list">
+      <!-- Right Accordion List with relaxed vertical spacing -->
+      <div class="lg:col-span-8 divide-y-2 divide-line border-y-2 border-line" id="faq-accordion-list">
         {
           faqs.map((faq) => (
-            <div class={`faq-item transition-colors duration-200 ${faq.defaultOpen ? 'bg-paper/40' : ''}`}>
+            <div class={`faq-item transition-colors duration-200 ${faq.defaultOpen ? 'bg-paper/50' : ''}`}>
               <button
                 type="button"
-                class="faq-trigger w-full py-4 sm:py-5 px-4 md:px-6 flex items-start justify-between gap-4 text-left cursor-pointer transition-colors hover:bg-paper"
+                class="faq-trigger w-full py-6 sm:py-7 px-5 md:px-7 flex items-start justify-between gap-5 text-left cursor-pointer transition-colors hover:bg-paper"
                 aria-expanded={faq.defaultOpen ? 'true' : 'false'}
                 aria-controls={`answer-${faq.id}`}
                 id={`btn-${faq.id}`}
               >
-                <div class="flex items-baseline gap-3">
+                <div class="flex items-baseline gap-4">
                   <span class="font-mono text-xs font-bold text-muted shrink-0 select-none">
                     {faq.num}
                   </span>
-                  <span class="font-serif text-base sm:text-lg font-bold text-ink tracking-tight">
+                  <span class="font-serif text-base sm:text-lg lg:text-xl font-bold text-ink tracking-tight leading-snug">
                     {faq.question}
                   </span>
                 </div>
                 <span
-                  class="faq-icon font-mono text-base font-bold text-ink shrink-0 w-6 h-6 border border-line bg-white flex items-center justify-center select-none"
+                  class="faq-icon font-mono text-base font-bold text-ink shrink-0 w-7 h-7 border-2 border-line bg-white flex items-center justify-center select-none shadow-xs mt-0.5"
                   aria-hidden="true"
                 >
                   {faq.defaultOpen ? '−' : '+'}
@@ -118,9 +118,9 @@ const faqs: FaqItem[] = [
                 id={`answer-${faq.id}`}
                 role="region"
                 aria-labelledby={`btn-${faq.id}`}
-                class={`faq-body overflow-hidden transition-all duration-300 ${faq.defaultOpen ? 'max-h-96 opacity-100 pb-5 px-4 md:px-6 pl-10 md:pl-12' : 'max-h-0 opacity-0 px-4 md:px-6 pl-10 md:pl-12'}`}
+                class={`faq-body overflow-hidden transition-all duration-300 ${faq.defaultOpen ? 'max-h-96 opacity-100 pb-7 px-5 md:px-7 pl-12 md:pl-16' : 'max-h-0 opacity-0 px-5 md:px-7 pl-12 md:pl-16'}`}
               >
-                <p class="font-serif text-xs sm:text-sm text-ink/80 leading-relaxed">
+                <p class="font-serif text-sm sm:text-base text-ink/80 leading-relaxed max-w-2xl">
                   {faq.answer}
                 </p>
               </div>
@@ -149,16 +149,16 @@ const faqs: FaqItem[] = [
 
         if (isExpanded) {
           trigger.setAttribute('aria-expanded', 'false');
-          body.classList.remove('max-h-96', 'opacity-100', 'pb-5');
+          body.classList.remove('max-h-96', 'opacity-100', 'pb-7');
           body.classList.add('max-h-0', 'opacity-0');
           icon.textContent = '+';
-          item.classList.remove('bg-paper/40');
+          item.classList.remove('bg-paper/50');
         } else {
           trigger.setAttribute('aria-expanded', 'true');
           body.classList.remove('max-h-0', 'opacity-0');
-          body.classList.add('max-h-96', 'opacity-100', 'pb-5');
+          body.classList.add('max-h-96', 'opacity-100', 'pb-7');
           icon.textContent = '−';
-          item.classList.add('bg-paper/40');
+          item.classList.add('bg-paper/50');
         }
       });
     });
