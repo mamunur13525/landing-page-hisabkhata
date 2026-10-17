@@ -81,94 +81,122 @@ const {
 
 <script>
   function setupCarousels() {
-    document.querySelectorAll('.carousel-root').forEach((root) => {
-      const track = root.querySelector('.carousel-track') as HTMLElement | null;
-      const prevBtn = root.querySelector('.carousel-prev') as HTMLElement | null;
-      const nextBtn = root.querySelector('.carousel-next') as HTMLElement | null;
-      const dotsContainer = root.querySelector('.carousel-dots') as HTMLElement | null;
+    const init = () => {
+      document.querySelectorAll<HTMLElement>('.carousel-root').forEach((root) => {
+        if (root.dataset.carouselInitialized === 'true') return;
+        root.dataset.carouselInitialized = 'true';
 
-      if (!track) return;
+        const track = root.querySelector('.carousel-track') as HTMLElement | null;
+        const prevBtn = root.querySelector('.carousel-prev') as HTMLElement | null;
+        const nextBtn = root.querySelector('.carousel-next') as HTMLElement | null;
+        const dotsContainer = root.querySelector('.carousel-dots') as HTMLElement | null;
 
-      const items = Array.from(track.children) as HTMLElement[];
-      if (items.length === 0) return;
+        if (!track) return;
 
-      // Setup dots if container exists
-      if (dotsContainer) {
-        dotsContainer.innerHTML = '';
-        items.forEach((_, idx) => {
-          const dot = document.createElement('button');
-          dot.type = 'button';
-          dot.className = `w-7 h-2 border border-line transition-all cursor-pointer ${idx === 0 ? 'bg-ink' : 'bg-transparent hover:bg-soft-line'}`;
-          dot.setAttribute('aria-label', `স্লাইড ${idx + 1}`);
-          dot.addEventListener('click', () => {
-            items[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        const items = Array.from(track.children) as HTMLElement[];
+        if (items.length === 0) return;
+
+        // Build dots using DocumentFragment to prevent layout thrashing
+        const dotButtons: HTMLButtonElement[] = [];
+        if (dotsContainer) {
+          const fragment = document.createDocumentFragment();
+          items.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `w-7 h-2 border border-line transition-colors cursor-pointer ${idx === 0 ? 'bg-ink' : 'bg-transparent hover:bg-soft-line'}`;
+            dot.setAttribute('aria-label', `স্লাইড ${idx + 1}`);
+            dot.addEventListener('click', () => {
+              items[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            });
+            dotButtons.push(dot);
+            fragment.appendChild(dot);
           });
-          dotsContainer.appendChild(dot);
-        });
-      }
+          dotsContainer.innerHTML = '';
+          dotsContainer.appendChild(fragment);
+        }
 
-      const updateDots = () => {
-        if (!dotsContainer) return;
-        const scrollLeft = track.scrollLeft;
-        const width = track.clientWidth;
-        let activeIndex = Math.round(scrollLeft / width);
-        activeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
-
-        dotsContainer.querySelectorAll('button').forEach((d, idx) => {
-          if (idx === activeIndex) {
-            d.classList.add('bg-ink');
-            d.classList.remove('bg-transparent');
-          } else {
-            d.classList.remove('bg-ink');
-            d.classList.add('bg-transparent');
-          }
-        });
-      };
-
-      track.addEventListener('scroll', updateDots, { passive: true });
-
-      // Arrow click handlers
-      prevBtn?.addEventListener('click', () => {
-        const itemWidth = items[0]?.offsetWidth || 300;
-        track.scrollBy({ left: -itemWidth - 20, behavior: 'smooth' });
-      });
-
-      nextBtn?.addEventListener('click', () => {
-        const itemWidth = items[0]?.offsetWidth || 300;
-        track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
-      });
-
-      // Autoplay if enabled
-      if (root.getAttribute('data-autoplay') === 'true') {
-        const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
-        let timer = setInterval(() => {
-          const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
-          if (atEnd) {
-            track.scrollTo({ left: 0, behavior: 'smooth' });
-          } else {
-            const itemWidth = items[0]?.offsetWidth || 300;
-            track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
-          }
-        }, interval);
-
-        root.addEventListener('mouseenter', () => clearInterval(timer));
-        root.addEventListener('mouseleave', () => {
-          clearInterval(timer);
-          timer = setInterval(() => {
-            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
-            if (atEnd) {
-              track.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-              const itemWidth = items[0]?.offsetWidth || 300;
-              track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
+        // Use IntersectionObserver: Zero forced reflows, compositor-driven
+        let activeIndex = 0;
+        if ('IntersectionObserver' in window && dotButtons.length > 0) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const idx = items.indexOf(entry.target as HTMLElement);
+                  if (idx !== -1) {
+                    activeIndex = idx;
+                    dotButtons.forEach((d, i) => {
+                      if (i === idx) {
+                        d.classList.add('bg-ink');
+                        d.classList.remove('bg-transparent');
+                      } else {
+                        d.classList.remove('bg-ink');
+                        d.classList.add('bg-transparent');
+                      }
+                    });
+                  }
+                }
+              });
+            },
+            {
+              root: track,
+              threshold: 0.6,
             }
-          }, interval);
+          );
+
+          items.forEach((item) => observer.observe(item));
+        }
+
+        // Arrow click handlers - navigate by slide element with native smooth scroll
+        prevBtn?.addEventListener('click', () => {
+          const targetIdx = Math.max(0, activeIndex - 1);
+          items[targetIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
         });
-      }
-    });
+
+        nextBtn?.addEventListener('click', () => {
+          const targetIdx = Math.min(items.length - 1, activeIndex + 1);
+          items[targetIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+
+        // Autoplay if enabled
+        if (root.getAttribute('data-autoplay') === 'true') {
+          const interval = parseInt(root.getAttribute('data-interval') || '6000', 10);
+          let timer: number | null = null;
+
+          const startTimer = () => {
+            if (timer) clearInterval(timer);
+            timer = window.setInterval(() => {
+              const nextIdx = (activeIndex + 1) % items.length;
+              items[nextIdx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            }, interval);
+          };
+
+          const stopTimer = () => {
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+          };
+
+          startTimer();
+          root.addEventListener('mouseenter', stopTimer, { passive: true });
+          root.addEventListener('mouseleave', startTimer, { passive: true });
+        }
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(init);
+    } else {
+      setTimeout(init, 60);
+    }
   }
 
   // Run on page load
-  setupCarousels();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCarousels);
+  } else {
+    setupCarousels();
+  }
   document.addEventListener('astro:page-load', setupCarousels);
 </script>

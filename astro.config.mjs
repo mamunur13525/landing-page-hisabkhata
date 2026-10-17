@@ -50,6 +50,9 @@ const staticCompressionPlugin = () => ({
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [staticCompressionPlugin()],
   vite: {
     plugins: [
