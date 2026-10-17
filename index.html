@@ -1,0 +1,2978 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f3ef">
+  <title>Hisabee — Smart POS, Inventory & Digital Khata Platform</title>
+  <meta name="description" content="হিসাবী — খুচরা, পাইকারি ও চেইন স্টোরের জন্য নির্ভরযোগ্য ক্লাউড ও অফলাইন পিওএস, অটো এসএমএস বাকি আদায় লেজার এবং রিয়েল-টাইম ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম।">
+  <meta name="application-name" content="HisabeeOS">
+  <meta name="keywords" content="Hisabee, POS, Cloud POS, Khata, Digital Khata, Inventory Bangladesh, Baki recovery, হিসাব, পিওএস, খাতা, বাকি আদায়">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0b0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z'/><path d='M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8'/><path d='M12 6v2'/><path d='M12 16v2'/></svg>">
+
+  <!-- Google Fonts: Source Serif 4 + IBM Plex Mono + Noto Sans Bengali + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GhushSite-Inspired External Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Embedded Styles for Instant & Reliable Local Rendering -->
+  <style>
+/* ==========================================================================
+   HISABEE - SMART BUSINESS OS & DIGITAL LEDGER
+   Design System & Theme Inspired by GhushSite (https://www.ghush.site/)
+   Palette: Warm Editorial Paper (#f4f3ef), Crisp Dark Ink (#0b0b0a),
+            Deep Border Lines (#171715), Highlighter Accent (#ffda00),
+            Muted Mono Details, Serif Headings & Brutalist Ledger Grids
+   ========================================================================== */
+
+:root {
+  --ink: #0b0b0a;
+  --paper: #f4f3ef;
+  --white: #ffffff;
+  --muted: #696965;
+  --line: #171715;
+  --soft-line: #cbc9c1;
+  --yellow: #ffda00;
+  --orange: #ef8d32;
+  --green: #cfe98e;
+  --emerald: #10b981;
+  --mono: 'IBM Plex Mono', 'Noto Sans Bengali', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --serif: 'Source Serif 4', 'Noto Serif Bengali', Georgia, Cambria, "Times New Roman", Times, serif;
+  --sans: 'Plus Jakarta Sans', 'Noto Sans Bengali', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --motion-fast: .16s;
+  --motion-base: .26s;
+  --motion-slow: .62s;
+}
+
+/* Base Reset & Typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--paper);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--serif);
+  font-feature-settings: "kern" 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.font-mono, .mono {
+  font-family: var(--mono);
+}
+
+/* Lucide Icon & Utility Helper Classes */
+svg.lucide, .lucide {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.w-3, svg.lucide.w-3 { width: 12px; height: 12px; }
+.h-3 { height: 12px; }
+.w-3\.5, svg.lucide.w-3\.5 { width: 14px; height: 14px; }
+.h-3\.5 { height: 14px; }
+.w-4, svg.lucide.w-4 { width: 16px; height: 16px; }
+.h-4 { height: 16px; }
+.w-5, svg.lucide.w-5 { width: 20px; height: 20px; }
+.h-5 { height: 20px; }
+.w-6, svg.lucide.w-6 { width: 24px; height: 24px; }
+.h-6 { height: 24px; }
+.w-8, svg.lucide.w-8 { width: 32px; height: 32px; }
+.h-8 { height: 32px; }
+.ml-1 { margin-left: 4px; }
+.mr-1 { margin-right: 4px; }
+.mr-2 { margin-right: 8px; }
+
+/* Pulse Dot Animation */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.65; }
+}
+
+/* Layout Shells */
+.shell {
+  width: min(1240px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.shell-narrow {
+  width: min(720px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* Vision Strip (Top Announcement Ticker) */
+.vision-strip {
+  background: var(--paper);
+  border-bottom: 1px solid var(--soft-line);
+  min-height: 32px;
+  padding: 6px 16px;
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.vision-strip span.highlight {
+  background: var(--yellow);
+  padding: 1px 6px;
+  margin-right: 6px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+}
+
+/* Site Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 95%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--motion-base) ease, box-shadow var(--motion-base) ease;
+}
+
+.site-header:hover {
+  box-shadow: 0 8px 24px rgba(11, 11, 10, 0.05);
+}
+
+.header-inner {
+  width: min(1240px, 100% - 48px);
+  height: 68px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+
+.brand {
+  font: 700 20px/1 var(--mono);
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.brand span {
+  color: #55544e;
+  font-weight: 400;
+}
+
+.brand sup {
+  color: #777670;
+  letter-spacing: 0;
+  margin-left: 6px;
+  font-size: 11px;
+  font-family: var(--sans);
+  font-weight: 500;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.nav a, .nav button {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: color var(--motion-fast) ease, transform var(--motion-fast) var(--ease-out);
+}
+
+.nav a:hover, .nav button:hover {
+  text-underline-offset: 4px;
+  text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  min-height: 44px;
+  font: 600 12px/1 var(--mono);
+  padding: 0 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--motion-fast), background var(--motion-fast), color var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-dark {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.button-dark:hover {
+  color: var(--ink);
+  background: var(--yellow);
+  border-color: var(--ink);
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.button-outline:hover {
+  background: var(--white);
+}
+
+.button-accent {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.button-accent:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.header-cta {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 11px;
+}
+
+.header-cta-short {
+  display: none;
+}
+
+.menu-button {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  place-items: center;
+}
+
+/* Eyebrow & Live Dot */
+.eyebrow {
+  color: #595955;
+  font-family: var(--mono);
+  letter-spacing: .05em;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 28px;
+}
+
+.eyebrow > span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--emerald);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  flex-shrink: 0;
+  animation: pulse-dot 1.8s infinite;
+}
+
+/* Hero Section */
+.hero {
+  padding: 64px 0 54px;
+}
+
+.hero h1 {
+  max-width: 960px;
+  font: 700 clamp(38px, 5.6vw, 66px)/1.18 var(--serif);
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.hero mark {
+  background: var(--yellow);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: .04em .14em;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.hero p.lead {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 720px;
+  margin: 22px 0 0;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.hero-actions .button {
+  min-height: 50px;
+  padding-inline: 26px;
+  font-size: 13px;
+}
+
+/* Snapshot Grid */
+.snapshot-grid {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.7);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.25fr;
+  min-width: 0;
+  margin-top: 52px;
+}
+
+.snapshot-grid article {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 154px;
+  overflow-wrap: anywhere;
+  background: rgba(255, 255, 255, 0.85);
+  transition: background-color var(--motion-base) ease, transform var(--motion-base) var(--ease-out);
+}
+
+.snapshot-grid article + article {
+  border-left: 1px solid var(--line);
+}
+
+.snapshot-grid article:hover {
+  background: var(--white);
+  transform: translateY(-4px);
+}
+
+.micro-label {
+  font: 600 11px/1.2 var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.snapshot-number {
+  font: 700 clamp(32px, 3.5vw, 44px)/1 var(--serif);
+  margin-top: 4px;
+  color: var(--ink) !important;
+  display: block;
+}
+
+.stat-highlight {
+  display: inline-block;
+  color: var(--ink);
+}
+
+.stat-highlight-green {
+  color: #15803d !important;
+}
+
+.snapshot-grid small {
+  color: #4a4945;
+  font-size: 12px;
+}
+
+.mini-bars {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.mini-bars div {
+  display: grid;
+  grid-template-columns: minmax(75px, 1.2fr) minmax(40px, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font: 11px var(--mono);
+}
+
+.mini-bars span {
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-bars i {
+  display: block;
+  height: 6px;
+  background: var(--ink);
+}
+
+.mini-bars b {
+  text-align: right;
+  color: var(--muted);
+}
+
+/* Cluster Banner */
+.cluster-banner {
+  border: 1px solid var(--line);
+  background: var(--white);
+  min-height: 84px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding: 20px 28px;
+  gap: 20px;
+}
+
+.cluster-banner div {
+  display: grid;
+  gap: 4px;
+}
+
+.cluster-banner strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cluster-banner span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cluster-banner button, .cluster-banner a {
+  background: var(--ink);
+  color: #fff;
+  min-height: 42px;
+  font: 600 11px var(--mono);
+  border: 1px solid var(--ink);
+  padding: 0 20px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--motion-fast), background var(--motion-fast), color var(--motion-fast);
+}
+
+.cluster-banner button:hover, .cluster-banner a:hover {
+  background: var(--yellow);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* Section Headings */
+.section-heading {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+}
+
+.section-heading h2 {
+  font: 600 clamp(28px, 3.5vw, 42px)/1.15 var(--serif);
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.section-heading h2 em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.section-heading p {
+  font: 12px/1.6 var(--mono);
+  color: var(--muted);
+  margin: 0;
+}
+
+.split-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.split-heading p {
+  max-width: 520px;
+}
+
+/* Business & Performance Ledger Section (GhushSite-style) */
+.data-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-summary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid var(--line);
+  background: var(--white);
+  margin-bottom: 28px;
+}
+
+.ledger-summary article {
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ledger-summary article + article {
+  border-left: 1px solid var(--line);
+}
+
+.ledger-summary span {
+  font: 600 10px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ledger-summary strong {
+  font: 700 28px/1 var(--serif);
+  color: var(--ink);
+}
+
+.distribution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.distribution-card {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 24px;
+}
+
+.distribution-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid var(--soft-line);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.distribution-card header span {
+  font: 600 10px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.distribution-card header h3 {
+  font: 600 20px/1.2 var(--serif);
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.distribution-card header small {
+  font: 10px/1.4 var(--mono);
+  color: var(--muted);
+  text-align: right;
+  max-width: 140px;
+}
+
+.distribution-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.distribution-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1.2fr) minmax(80px, 1.5fr) 48px 36px;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  border-bottom: 1px solid #e7e6e2;
+  font: 11px var(--mono);
+}
+
+.distribution-row:last-child {
+  border-bottom: 0;
+}
+
+.distribution-track {
+  background: #e7e6e2;
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid #dcdad3;
+}
+
+.distribution-track u {
+  height: 100%;
+  display: block;
+  background: var(--ink);
+}
+
+.distribution-row-emerald .distribution-track u {
+  background: var(--emerald);
+}
+
+.distribution-row-orange .distribution-track u {
+  background: var(--orange);
+}
+
+.distribution-row-yellow .distribution-track u {
+  background: var(--yellow);
+}
+
+.distribution-row-ink .distribution-track u {
+  background: var(--ink);
+}
+
+.outcome-note {
+  margin: 16px -24px -24px;
+  padding: 14px 24px;
+  background: #faf9f6;
+  border-top: 1px solid var(--soft-line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.outcome-note strong {
+  color: var(--ink);
+}
+
+/* Registry Table */
+.registry {
+  border: 1px solid var(--line);
+  background: var(--white);
+  margin-top: 24px;
+}
+
+.registry-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  font: 600 10px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: #fbfbf9;
+  color: var(--muted);
+}
+
+.registry-row {
+  display: grid;
+  grid-template-columns: 36px 1.4fr 1.5fr 110px 100px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--soft-line);
+  font: 12px var(--mono);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background-color var(--motion-fast) ease, padding-left var(--motion-fast) var(--ease-out);
+}
+
+.registry-row:last-child {
+  border-bottom: 0;
+}
+
+.registry-row:hover {
+  background: #fdfcee;
+  padding-left: 24px;
+}
+
+.registry-rank {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.registry-name {
+  font-weight: 600;
+}
+
+.registry-bar {
+  background: #e7e6e2;
+  height: 6px;
+}
+
+.registry-bar i {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+}
+
+/* Features Bento Grid */
+.features-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--motion-base) var(--ease-out), box-shadow var(--motion-base) ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 4px 0 var(--line);
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.feature-icon-box {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.feature-card h3 {
+  font: 600 22px/1.2 var(--serif);
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.feature-card ul {
+  border-top: 1px solid var(--soft-line);
+  padding-top: 16px;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 12px var(--mono);
+  color: #4a4a45;
+}
+
+.feature-card ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-card ul li i {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Showcase & Interactive Tabs */
+.showcase-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.filter-row button, .feature-tab-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 10px 20px;
+  font: 600 12px var(--mono);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.filter-row button:hover, .feature-tab-btn:hover {
+  transform: translateY(-2px);
+  background: var(--white);
+}
+
+.filter-row button.active, .feature-tab-btn.active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.showcase-panel {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 36px;
+}
+
+.terminal-frame {
+  background: #111110;
+  border: 1px solid var(--line);
+  color: #fff;
+  padding: 24px;
+}
+
+.terminal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #272725;
+  margin-bottom: 18px;
+  font: 11px var(--mono);
+}
+
+/* Industries / Solutions Grid */
+.solutions-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.solution-card {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast), background var(--motion-fast);
+}
+
+.solution-card:hover {
+  background: #fff;
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--line);
+}
+
+.solution-card h3 {
+  font: 600 20px/1.2 var(--serif);
+  margin: 14px 0 8px;
+  color: var(--ink);
+}
+
+.solution-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.solution-card a {
+  font: 600 11px var(--mono);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.solution-card a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Steps (How It Works) */
+.how-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+}
+
+.steps {
+  border: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 36px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.steps article {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  min-height: 270px;
+  transition: background-color var(--motion-base) ease, transform var(--motion-base) var(--ease-out);
+}
+
+.steps article + article {
+  border-left: 1px solid var(--line);
+}
+
+.steps article:hover {
+  background: var(--white);
+  transform: translateY(-4px);
+}
+
+.steps span {
+  color: var(--muted);
+  font: 600 11px var(--mono);
+  letter-spacing: .05em;
+}
+
+.steps b {
+  font: 600 11px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: 50px;
+  color: var(--ink);
+}
+
+.steps h3 {
+  font: 600 clamp(20px, 2vw, 25px)/1.2 var(--serif);
+  margin: 10px 0 12px;
+  color: var(--ink);
+}
+
+.steps p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Quotes Section */
+.quotes-section {
+  border-block: 1px solid var(--line);
+  background: var(--white);
+  text-align: center;
+  place-items: center;
+  min-height: 320px;
+  padding: 70px 24px;
+  display: grid;
+  transition: background-color var(--motion-slow) ease;
+}
+
+.quotes-section:hover {
+  background: var(--yellow);
+}
+
+.quote-inner h2 {
+  font: 600 clamp(28px, 4vw, 44px)/1.2 var(--serif);
+  margin: 0;
+  color: var(--ink);
+}
+
+.quote-inner h2 em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quote-inner p {
+  max-width: 680px;
+  color: var(--muted);
+  margin: 18px auto 26px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.quote-inner button, .quote-inner a {
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  font: 600 11px/2 var(--mono);
+  letter-spacing: .06em;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  padding-bottom: 2px;
+  transition: transform var(--motion-fast) var(--ease-spring);
+}
+
+.quote-inner button:hover, .quote-inner a:hover {
+  transform: translateY(-2px);
+}
+
+/* Pricing Section */
+.pricing-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.billing-switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  font: 600 12px var(--mono);
+}
+
+.switch-toggle-box {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.switch-toggle-box input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  inset: 0;
+  background: #dedcd5;
+  border: 1px solid var(--line);
+  transition: background-color .2s ease;
+}
+
+.switch-slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  top: 4px;
+  background: var(--ink);
+  transition: transform .2s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.switch-toggle-box input:checked + .switch-slider {
+  background: var(--yellow);
+}
+
+.switch-toggle-box input:checked + .switch-slider::before {
+  transform: translateX(22px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--motion-base) var(--ease-out), box-shadow var(--motion-base) ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 4px 0 var(--line);
+}
+
+.pricing-card-featured {
+  border: 2px solid var(--line);
+  background: #ffffff;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--line);
+}
+
+.pricing-card-featured .plan-tag {
+  position: absolute;
+  top: -14px;
+  left: 28px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font: 700 10px var(--mono);
+  letter-spacing: .08em;
+  padding: 3px 10px;
+  text-transform: uppercase;
+}
+
+.pricing-card h3 {
+  font: 600 22px/1.2 var(--serif);
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.pricing-card p.plan-desc {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.pricing-price-box {
+  border-bottom: 1px solid var(--soft-line);
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.pricing-price {
+  font: 700 44px/1 var(--serif);
+  color: var(--ink);
+}
+
+.pricing-period, .billing-period-text {
+  font: 11px var(--mono);
+  color: var(--muted);
+  margin-left: 6px;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  color: #3b3a37;
+}
+
+.pricing-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+}
+
+.pricing-card ul li i {
+  color: var(--ink);
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Testimonials */
+.testimonials-section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.testimonial-card {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--motion-fast);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  background: #fff;
+}
+
+.testimonial-quote {
+  font: 400 15px/1.65 var(--serif);
+  font-style: italic;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--soft-line);
+  padding-top: 14px;
+}
+
+.author-initials {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  background: var(--ink);
+  color: #fff;
+  font: 600 12px var(--mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.author-info strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.author-info span {
+  display: block;
+  font: 11px var(--mono);
+  color: var(--muted);
+}
+
+/* FAQ Section (Split Editorial Ledger Layout) */
+.faq-section {
+  border-top: 1px solid var(--line);
+  padding: 90px 0 110px;
+  background: var(--paper);
+}
+
+.faq {
+  display: grid;
+  grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
+  align-items: start;
+  gap: clamp(40px, 7vw, 90px);
+}
+
+.faq-intro {
+  position: sticky;
+  top: 96px;
+}
+
+.faq-intro .eyebrow {
+  margin-bottom: 16px;
+}
+
+.faq-intro h2 {
+  font: 600 clamp(36px, 4.5vw, 56px)/1 var(--serif);
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.faq-intro p {
+  color: var(--muted);
+  margin: 20px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.faq-list {
+  border-top: 1px solid var(--ink);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  transition: background-color .18s ease;
+}
+
+.faq-item:hover, .faq-item-open {
+  background: #ffdc5829;
+}
+
+.faq-item button {
+  width: 100%;
+  min-height: 84px;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 14px;
+}
+
+.faq-item button:focus-visible {
+  outline: 2px solid var(--ink);
+}
+
+.faq-index {
+  color: var(--muted);
+  font: 500 11px var(--mono);
+}
+
+.faq-item b {
+  font: 600 clamp(16px, 1.6vw, 20px)/1.3 var(--sans);
+  color: var(--ink);
+}
+
+.faq-icon {
+  border: 1px solid var(--line);
+  width: 28px;
+  height: 28px;
+  font: 400 16px/1 var(--mono);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform .2s, background-color .2s;
+  color: var(--ink);
+}
+
+.faq-item-open .faq-icon {
+  background: var(--yellow);
+  border-color: var(--ink);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s var(--ease-out), opacity 0.25s ease, padding 0.35s ease;
+  padding: 0 14px 0 52px;
+}
+
+.faq-item-open .faq-answer {
+  max-height: 350px;
+  opacity: 1;
+  padding: 0 14px 24px 52px;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: #3f3f3a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Final CTA Section */
+.final-cta {
+  background: #171715;
+  color: #fff;
+  text-align: center;
+  align-content: center;
+  place-items: center;
+  min-height: 340px;
+  padding: 75px 24px;
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.final-cta h2 {
+  font: 600 clamp(30px, 4vw, 46px)/1.2 var(--serif);
+  margin: 0 0 14px;
+  color: #fff;
+}
+
+.final-cta p {
+  color: #a8a8a2;
+  font-size: 15px;
+  max-width: 580px;
+  margin: 0 auto 30px;
+}
+
+.final-cta-form {
+  display: flex;
+  gap: 10px;
+  max-width: 480px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.final-cta-form input {
+  flex: 1;
+  background: #242422;
+  border: 1px solid #3d3d38;
+  color: #fff;
+  padding: 12px 18px;
+  font: 13px var(--mono);
+}
+
+.final-cta-form input:focus {
+  outline: none;
+  border-color: var(--yellow);
+}
+
+.final-cta-form button {
+  background: var(--yellow);
+  color: var(--ink);
+  font: 600 12px var(--mono);
+  border: 0;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: transform var(--motion-fast) var(--ease-spring);
+}
+
+.final-cta-form button:hover {
+  transform: translateY(-2px);
+  background: #fff;
+}
+
+/* Footer */
+footer {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 50px 0 36px;
+  font-size: 12px;
+}
+
+footer .shell {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.footer-brand-col p {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 320px;
+  line-height: 1.6;
+  margin: 14px 0 20px;
+}
+
+.footer-social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-social-links a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background var(--motion-fast);
+}
+
+.footer-social-links a:hover {
+  background: var(--yellow);
+}
+
+.footer-col h5 {
+  font: 600 11px var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  color: var(--muted);
+  text-decoration: none;
+  font: 12px var(--sans);
+  transition: color var(--motion-fast);
+}
+
+.footer-col a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 11px var(--mono);
+  color: var(--muted);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-legal-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* Modals & Toasts */
+#demo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 11, 10, 0.7);
+  z-index: 100;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#demo-modal.active {
+  display: flex;
+}
+
+.modal-content-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 8px 8px 0 var(--line);
+  max-width: 760px;
+  width: 100%;
+  padding: 30px;
+  position: relative;
+}
+
+.modal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--soft-line);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.modal-topbar h3 {
+  margin: 0;
+  font: 600 20px var(--serif);
+  color: var(--ink);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+}
+
+.modal-close-btn:hover {
+  background: var(--yellow);
+}
+
+.toast-box {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 110;
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--line);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 12px var(--mono);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform .3s var(--ease-spring), opacity .3s ease;
+  pointer-events: none;
+}
+
+.toast-box.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+/* Mobile Slide-over Drawer */
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 11, 10, 0.5);
+  z-index: 90;
+  display: none;
+}
+
+.mobile-drawer-backdrop.open {
+  display: block;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(340px, 85vw);
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  z-index: 95;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--soft-line);
+  padding-bottom: 16px;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.mobile-nav-list a, .mobile-nav-link {
+  font: 600 13px var(--mono);
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e7e6e2;
+}
+
+/* Responsive Breakpoints matching GhushSite */
+@media (max-width: 1024px) {
+  .header-inner {
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+  }
+  .nav {
+    display: none;
+  }
+  .menu-button {
+    display: grid;
+  }
+  .header-cta-full {
+    display: none;
+  }
+  .header-cta-short {
+    display: inline;
+  }
+  .snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+  .snapshot-grid article + article {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .ledger-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .distribution-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .solutions-grid {
+    grid-template-columns: 1fr;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .steps article + article {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .faq-intro {
+    position: static;
+  }
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .shell, .header-inner {
+    width: min(100% - 32px, 1240px);
+  }
+  .hero {
+    padding: 42px 0 46px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 9.5vw, 44px);
+    line-height: 1.25;
+  }
+  .cluster-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .split-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ledger-summary {
+    grid-template-columns: 1fr;
+  }
+  .distribution-row {
+    grid-template-columns: minmax(100px, 1fr) 60px 32px 32px;
+    gap: 8px;
+  }
+  .registry-row {
+    grid-template-columns: 28px 1fr auto;
+    gap: 10px;
+  }
+  .registry-bar, .registry-row small {
+    display: none;
+  }
+  .faq-item button {
+    grid-template-columns: 28px minmax(0, 1fr) 28px;
+    gap: 10px;
+    min-height: 72px;
+  }
+  .faq-answer {
+    padding: 0 10px 20px 38px;
+  }
+  .faq-item-open .faq-answer {
+    padding: 0 10px 20px 38px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+  .final-cta-form {
+    flex-direction: column;
+  }
+  .final-cta-form button {
+    min-height: 44px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Vision Strip (GhushSite-style) -->
+  <div class="vision-strip">
+    <span class="highlight">নতুন v৩.২</span> পূর্ণ স্বচ্ছ ব্যবসায়িক লেজার — ক্লাউড পিওএস · অটো এসএমএস বাকি আদায় · মাল্টি-ব্রাঞ্চ স্টক সিঙ্ক · কোনো ব্যয়বহুল হার্ডওয়্যার লাগবে না
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Brand Logo -->
+      <a class="brand" href="#">
+        Hisabee<span>OS</span><sup>পিওএস</sup>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav" aria-label="প্রধান নেভিগেশন">
+        <a href="#features">ফিচার্স / FEATURES</a>
+        <a href="#ledger">ব্যবসায়িক লেজার</a>
+        <a href="#showcase">প্রোডাক্ট ট্যুর</a>
+        <a href="#solutions">ইন্ডাস্ট্রিজ</a>
+        <a href="#how-it-works">কীভাবে কাজ করে</a>
+        <a href="#pricing">প্রাইসিং</a>
+        <a href="#faq">প্রশ্নোত্তর</a>
+      </nav>
+
+      <!-- Header Action CTAs -->
+      <div class="header-right">
+        <button type="button" class="button button-outline" id="open-demo-modal" style="min-height: 40px; padding: 0 14px; font-size: 11px;">
+          ডেমো ▷
+        </button>
+        <a href="#pricing" class="button button-dark header-cta">
+          <span class="header-cta-full">ফ্রি ট্রায়াল শুরু করুন →</span>
+          <span class="header-cta-short">ট্রায়াল</span>
+        </a>
+        <button class="menu-button" id="mobile-menu-btn" type="button" aria-label="নেভিগেশন মেনু খুলুন">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-over Drawer Backdrop -->
+  <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
+
+  <!-- Mobile Drawer Menu -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="মোবাইল মেনু">
+    <div>
+      <div class="mobile-drawer-top">
+        <a class="brand" href="#">Hisabee<span>OS</span><sup>পিওএস</sup></a>
+        <button id="close-menu-btn" class="modal-close-btn" type="button" aria-label="মেনু বন্ধ করুন">✕</button>
+      </div>
+      <nav class="mobile-nav-list">
+        <a href="#features" class="mobile-nav-link">ফিচার্স / Features</a>
+        <a href="#ledger" class="mobile-nav-link">ব্যবসায়িক লেজার / Data</a>
+        <a href="#showcase" class="mobile-nav-link">প্রোডাক্ট ট্যুর / Tour</a>
+        <a href="#solutions" class="mobile-nav-link">ইন্ডাস্ট্রিজ / Industries</a>
+        <a href="#how-it-works" class="mobile-nav-link">কীভাবে কাজ করে / Steps</a>
+        <a href="#pricing" class="mobile-nav-link">প্রাইসিং / Pricing</a>
+        <a href="#faq" class="mobile-nav-link">প্রশ্নোত্তর / FAQ</a>
+      </nav>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="#pricing" class="button button-dark mobile-nav-link" style="width:100%; text-align:center;">
+        ১৪ দিনের ফ্রি ট্রায়াল →
+      </a>
+      <button type="button" id="mobile-demo-btn" class="button button-outline" style="width:100%; text-align:center;" onclick="document.getElementById('open-demo-modal').click(); document.getElementById('close-menu-btn').click();">
+        ভিডিও ডেমো দেখুন ▷
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero shell">
+      <div class="eyebrow">
+        <span><i class="live-dot"></i>লাইভ ক্লাউড প্ল্যাটফর্ম · v৩.২</span>
+        <span>১০,০০০+ সক্রিয় মার্চেন্ট</span>
+        <span>৳৫০+ কোটি মাসিক লেনদেন</span>
+        <span>৯৯.৯% আপটাইম</span>
+      </div>
+
+      <h1>
+        সব বিক্রয়, ইনভেন্টরি ও বাকি।<br/>
+        এবার এক ক্লিকে <mark>স্মার্ট খাতায়।</mark><br/>
+        অটো এসএমএস <mark>আদায়।</mark>
+      </h1>
+
+      <p class="lead">
+        হাতের লেখার ভুলের কারণে আর কোনো বকেয়া খোয়া যাবে না। হিসাবী হলো আধুনিক রিটেল ও পাইকারি দোকানের জন্য ক্লাউড ও অফলাইন পিওএস বিলিং, স্বয়ংক্রিয় এসএমএস বাকি আদায় এবং মাল্টি-শাখা ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম।
+      </p>
+
+      <div class="hero-actions">
+        <a href="#pricing" class="button button-dark">
+          ফ্রি ১৪ দিনের ট্রায়াল শুরু করুন →
+        </a>
+        <button type="button" class="button button-outline" id="hero-watch-demo">
+          ভিডিও ডেমো দেখুন ▷
+        </button>
+      </div>
+
+      <!-- GhushSite-style Snapshot Grid -->
+      <div class="snapshot-grid">
+        <article>
+          <span class="micro-label">আজকের মোট বিক্রি (লাইভ)</span>
+          <strong class="snapshot-number"><span class="stat-highlight">৳১,৪৮,২৫০</span></strong>
+          <small>১৮২টি ডিজিটাল ভাউচার প্রস্তুত ও ক্লাউড-সিঙ্কড</small>
+        </article>
+
+        <article>
+          <span class="micro-label">স্বয়ংক্রিয় বকেয়া আদায় (খাতা)</span>
+          <strong class="snapshot-number"><span class="stat-highlight stat-highlight-green">৳৪২,৬০০</span></strong>
+          <small>৯৪% আদায় নিশ্চিত (বিকাশ ও নগদ ডিজিটাল পে লিঙ্ক)</small>
+        </article>
+
+        <article>
+          <span class="micro-label">শাখাভিত্তিক দৈনিক বিক্রয় পারফরম্যান্স</span>
+          <div class="mini-bars">
+            <div>
+              <span>ধানমন্ডি ফ্ল্যাগশিপ</span>
+              <i style="width: 85%;"></i>
+              <b>৳৮৫,০০০</b>
+            </div>
+            <div>
+              <span>উত্তরা শোরুম</span>
+              <i style="width: 62%;"></i>
+              <b>৳৬২,০০০</b>
+            </div>
+            <div>
+              <span>মিরপুর রিটেইল আউটলেট</span>
+              <i style="width: 45%;"></i>
+              <b>৳৪৫,০০০</b>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Cluster Banner -->
+      <div class="cluster-banner">
+        <div>
+          <strong>ম্যানুয়াল খাতার ভুলভ্রান্তি ও অমিল বন্ধ করার সময় এসেছে।</strong>
+          <span>একটি ভুল ভাউচার নিছক সামান্য হিসাবের ত্রুটি নয়, পুরো মাসের নিট মুনাফায় বড় ঘাটতি।</span>
+        </div>
+        <a href="#how-it-works">যেভাবে কাজ করে →</a>
+      </div>
+    </section>
+
+    <!-- BUSINESS & PERFORMANCE LEDGER (GhushSite Transparency Ledger Format) -->
+    <section id="ledger" class="data-section">
+      <div class="shell">
+        <div class="section-heading split-heading">
+          <div>
+            <h2>ব্যবসায়িক <em>লেজার।</em></h2>
+            <p><span class="live-dot" style="width:6px;height:6px;"></span> বাস্তব ব্যবসায়িক লেনদেন বণ্টন, বকেয়া আদায়ের হার ও খাতভিত্তিক বিশ্লেষণ।</p>
+          </div>
+          <p>অস্বাভাবিক কোনো জটিলতা ছাড়াই আপনার প্রতিদিনের ক্যাশ ফ্লো, লাভ-ক্ষতি ও ইনভেন্টরির সার্বিক চিত্র দেখুন একক পরিষ্কার খাতায়।</p>
+        </div>
+
+        <!-- 5-Metric Ledger Summary -->
+        <div class="ledger-summary">
+          <article>
+            <span>সক্রিয় মার্চেন্ট</span>
+            <strong>১০,০০০+</strong>
+          </article>
+          <article>
+            <span>ক্লাউড আপটাইম</span>
+            <strong>৯৯.৯%</strong>
+          </article>
+          <article>
+            <span>বকেয়া আদায়ের হার</span>
+            <strong style="color: #15803d;">৯৪%</strong>
+          </article>
+          <article>
+            <span>দৈনিক ডিজিটাল ভাউচার</span>
+            <strong>১.৫ লাখ+</strong>
+          </article>
+          <article>
+            <span>গড় মুনাফা প্রবৃদ্ধি</span>
+            <strong>+৩২%</strong>
+          </article>
+        </div>
+
+        <!-- Distribution Cards Grid -->
+        <div class="distribution-grid">
+          <!-- Card 1: Payment Method Distribution -->
+          <article class="distribution-card">
+            <header>
+              <div>
+                <span>লেনদেনের মাধ্যম বণ্টন</span>
+                <h3>মার্চেন্টদের বিক্রয় কীভাবে পরিশোধ হচ্ছে?</h3>
+              </div>
+              <small>মোট লেনদেনের অনুপাত ও বণ্টন</small>
+            </header>
+            <div class="distribution-list">
+              <div class="distribution-row distribution-row-ink">
+                <span>নগদ ক্যাশ (Cash Counter)</span>
+                <i class="distribution-track"><u style="width: 54%;"></u></i>
+                <b>৫৪%</b>
+                <small>৳৫.৪ লাখ</small>
+              </div>
+              <div class="distribution-row distribution-row-emerald">
+                <span>bKash / Nagad / Upay</span>
+                <i class="distribution-track"><u style="width: 28%;"></u></i>
+                <b>২৮%</b>
+                <small>৳২.৮ লাখ</small>
+              </div>
+              <div class="distribution-row distribution-row-orange">
+                <span>ভিসা / মাস্টারকার্ড POS</span>
+                <i class="distribution-track"><u style="width: 12%;"></u></i>
+                <b>১২%</b>
+                <small>৳১.২ লাখ</small>
+              </div>
+              <div class="distribution-row distribution-row-yellow">
+                <span>ডিজিটাল বাকি (Khata Credit)</span>
+                <i class="distribution-track"><u style="width: 6%;"></u></i>
+                <b>০৬%</b>
+                <small>৳০.৬ লাখ</small>
+              </div>
+            </div>
+            <div class="outcome-note">
+              <strong>৮২% ক্যাশ ও ডিজিটাল পেমেন্ট</strong> তাৎক্ষণিকভাবে ক্যাশ ড্রয়ার ও মার্চেন্ট ব্যাংক অ্যাকাউন্টে জমা হয়।
+            </div>
+          </article>
+
+          <!-- Card 2: Due Recovery Outcomes -->
+          <article class="distribution-card">
+            <header>
+              <div>
+                <span>বকেয়া আদায়ের ফলাফল</span>
+                <h3>স্বয়ংক্রিয় এসএমএস রিমাইন্ডারের কার্যকারিতা</h3>
+              </div>
+              <small>বাস্তব গ্রাহক প্রতিক্রিয়া ও ডাটা রেকর্ড</small>
+            </header>
+            <div class="distribution-list">
+              <div class="distribution-row distribution-row-emerald">
+                <span>তাৎক্ষণিক অনলাইন পরিশোধ</span>
+                <i class="distribution-track"><u style="width: 68%;"></u></i>
+                <b>৬৮%</b>
+                <small>এসএমএস লিঙ্ক</small>
+              </div>
+              <div class="distribution-row distribution-row-orange">
+                <span>২-৩ দিনের মধ্যে পরিশোধ</span>
+                <i class="distribution-track"><u style="width: 26%;"></u></i>
+                <b>২৬%</b>
+                <small>দোকানে এসে</small>
+              </div>
+              <div class="distribution-row distribution-row-yellow">
+                <span>মুলতুবি / পরবর্তী তাগাদা</span>
+                <i class="distribution-track"><u style="width: 6%;"></u></i>
+                <b>০৬%</b>
+                <small>রিমাইন্ডার</small>
+              </div>
+            </div>
+            <div class="outcome-note">
+              <strong>৯৪% সমাধান হওয়া বাকির টাকা</strong> মাত্র ২ সপ্তাহের মধ্যে আদায় হয়েছে কোনো অসন্তোষ ছাড়াই।
+            </div>
+          </article>
+        </div>
+
+        <!-- Registry Table -->
+        <div class="registry">
+          <div class="registry-head">
+            <span>দপ্তর ও সেক্টর রেজিস্ট্রি</span>
+            <span>লেনদেনের ভলিউম ও শেয়ার</span>
+          </div>
+          
+          <div class="registry-row">
+            <span class="registry-rank">০১</span>
+            <span class="registry-name">সুপারমার্কেট, গ্রোসারি ও ডিপার্টমেন্টাল স্টোর</span>
+            <span class="registry-bar"><i style="width: 35%;"></i></span>
+            <b>৩৫% শেয়ার</b>
+            <small>৳১৮.৫ কোটি</small>
+          </div>
+
+          <div class="registry-row">
+            <span class="registry-rank">০২</span>
+            <span class="registry-name">ফার্মেসি, মেডিকেল শপ ও ড্রাগিস্ট</span>
+            <span class="registry-bar"><i style="width: 24%;"></i></span>
+            <b>২৪% শেয়ার</b>
+            <small>৳১২.৮ কোটি</small>
+          </div>
+
+          <div class="registry-row">
+            <span class="registry-rank">০৩</span>
+            <span class="registry-name">ফ্যাশন, গার্মেন্টস, জুতা ও লাইফস্টাইল ব্র্যান্ড</span>
+            <span class="registry-bar"><i style="width: 18%;"></i></span>
+            <b>১৮% শেয়ার</b>
+            <small>৳৯.৬ কোটি</small>
+          </div>
+
+          <div class="registry-row">
+            <span class="registry-rank">০৪</span>
+            <span class="registry-name">পাইকারি ব্যবসায়ী, আড়ত ও পরিবেশক (Wholesale)</span>
+            <span class="registry-bar"><i style="width: 13%;"></i></span>
+            <b>১৩% শেয়ার</b>
+            <small>৳৭.২ কোটি</small>
+          </div>
+
+          <div class="registry-row">
+            <span class="registry-rank">০৫</span>
+            <span class="registry-name">ইলেকট্রনিক্স, মোবাইল ও হার্ডওয়্যার শপ</span>
+            <span class="registry-bar"><i style="width: 6%;"></i></span>
+            <b>০৬% শেয়ার</b>
+            <small>৳৩.৪ কোটি</small>
+          </div>
+
+          <div class="registry-row">
+            <span class="registry-rank">০৬</span>
+            <span class="registry-name">রেস্তোরাঁ, ক্যাফে ও বেকারি শপ</span>
+            <span class="registry-bar"><i style="width: 4%;"></i></span>
+            <b>০৪% শেয়ার</b>
+            <small>৳২.১ কোটি</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE FEATURES BENTO GRID -->
+    <section id="features" class="features-section shell">
+      <div class="section-heading split-heading">
+        <div>
+          <h2>শক্তিশালী <em>ফিচার্স।</em></h2>
+          <p><span class="live-dot" style="width:6px;height:6px;"></span> আধুনিক ব্যবসার জন্য সম্পূর্ণ অটোমেশন স্যুট</p>
+        </div>
+        <p>ক্যাশ কাউন্টার থেকে গুদাম সাপ্লাই চেইন—হিসাবী দূর করে মানুষের ভুলের ঝুঁকি, ঠেকায় পণ্য চুরি এবং লাভ নিশ্চিত করে স্বয়ংক্রিয়ভাবে।</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Feature 1 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০১ · এক্সপ্রেস পিওএস ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="zap" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>৩ সেকেন্ডের এক্সপ্রেস পিওএস বিলিং</h3>
+            <p>বারকোড স্ক্যান করুন, থার্মাল রিসিট প্রিন্ট করুন অথবা সরাসরি গ্রাহকের হোয়াটসঅ্যাপ ও মোবাইলে ডিজিটাল ভাউচার পাঠান। ইন্টারনেট না থাকলেও নিরবচ্ছিন্ন চলে।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> থার্মাল প্রিন্টার (২ ইঞ্চি ও ৩ ইঞ্চি) ও বারকোড রেডি</li>
+            <li><i>✓</i> স্প্লিট পেমেন্ট (ক্যাশ, কার্ড, বিকাশ ও বাকি)</li>
+          </ul>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০২ · ডিজিটাল খাতা ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="book-open-check" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>স্মার্ট খাতা ও অটো এসএমএস বাকি আদায়</h3>
+            <p>বাকি নিয়ে অস্বস্তিকর ফোনালাপের প্রয়োজন নেই। বিকাশ পেমেন্ট লিঙ্কসহ স্বয়ংক্রিয় মার্জিত এসএমএস রিমাইন্ডার পৌঁছে যাবে গ্রাহকের কাছে সময়মতো।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> ১-ক্লিকে এসএমএস ও হোয়াটসঅ্যাপ রিমাইন্ডার অ্যালার্ট</li>
+            <li><i>✓</i> গ্রাহকভিত্তিক ক্রেডিট লিমিট ও ঝুঁকিপূর্ণ খাতা ডিটেক্টর</li>
+          </ul>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০৩ · রিয়েল-টাইম ইনভেন্টরি ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="boxes" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>স্টক ঘাটতি ও মেয়াদ উত্তীর্ণ সতর্কতা</h3>
+            <p>বহুবিধ তাক ও গুদামে সংরক্ষিত পণ্যের অবস্থান ট্র্যাক করুন। দ্রুত বিক্রি হওয়া পণ্য শেষ হওয়ার আগেই পান স্বয়ংক্রিয় পারচেজ অর্ডার সতর্কবার্তা।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> ব্যাচ নম্বর, লট ও এক্সপায়ারি ডেট ট্র্যাকিং রাডার</li>
+            <li><i>✓</i> এক্সেল থেকে ১০,০০০+ প্রোডাক্ট ৬০ সেকেন্ডে আপলোড</li>
+          </ul>
+        </article>
+
+        <!-- Feature 4 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০৪ · শাখা ও নিরাপত্তা ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="store" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>মাল্টি-ব্রাঞ্চ সিঙ্ক ও রোল পারমিশন</h3>
+            <p>১টি বা ৫০টি শাখা পরিচালনা করুন এক জায়গা থেকেই। ক্যাশিয়ার, ম্যানেজার এবং হিসাবরক্ষকের জন্য আলাদা অ্যাক্সেস কন্ট্রোল ও ড্রয়ার লক বজায় রাখুন।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> আন্তঃশাখা পণ্য স্টক ট্রান্সফার ও ট্রানজিট ট্র্যাক</li>
+            <li><i>✓</i> ক্যাশ ড্রয়ার ওপেন/ক্লোজ দৈনিক নিখুঁত মিলকরণ</li>
+          </ul>
+        </article>
+
+        <!-- Feature 5 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০৫ · নিখুঁত হিসাব ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="pie-chart" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>নিট লাভ-ক্ষতি ও ভ্যাট/ট্যাক্স অডিট শিট</h3>
+            <p>অ্যাকাউন্টিং ডিগ্রি ছাড়াই জানুন আপনার সঠিক দৈনিক মুনাফা। কর্মচারীর বেতন, দোকান ভাড়া, বিদ্যুৎ বিল এবং প্যাকেজিং খরচের পর প্রকৃত লাভ দেখুন।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> এক্সেল ও পিডিএফ ফরম্যাটে ১-ক্লিকে রিপোর্ট ডাউনলোড</li>
+            <li><i>✓</i> এনবিআর ও ভ্যাট অডিটের জন্য অনুমোদিত ফরম্যাট</li>
+          </ul>
+        </article>
+
+        <!-- Feature 6 -->
+        <article class="feature-card">
+          <div>
+            <div class="feature-card-header">
+              <span class="micro-label">[ ০৬ · ওমনিচ্যানেল ]</span>
+              <div class="feature-icon-box">
+                <i data-lucide="qr-code" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <h3>কাস্টম বারকোড মেকার ও ফেসবুক সিঙ্ক</h3>
+            <p>দোকানের নাম ও দামসহ নিজস্ব স্টিকার বারকোড প্রিন্ট করুন। অফলাইন দোকানের স্টককে সরাসরি যুক্ত করুন আপনার ফেসবুক পেজ বা ই-কমার্স ওয়েবসাইটের সাথে।</p>
+          </div>
+          <ul>
+            <li><i>✓</i> ইনবিল্ট বারকোড লেবেল ডিজাইনার ও জেনারেটর</li>
+            <li><i>✓</i> সেন্ট্রাল সিঙ্ক সিস্টেম যাতে ওভারসেলিং কখনো না ঘটে</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PRODUCT SHOWCASE / TOUR -->
+    <section id="showcase" class="showcase-section">
+      <div class="shell">
+        <div class="section-heading split-heading">
+          <div>
+            <h2>প্রোডাক্ট <em>ট্যুর।</em></h2>
+            <p><span class="live-dot" style="width:6px;height:6px;"></span> দ্রুতগতির ও আধুনিক ইন্টারফেসের লাইভ কার্যপ্রণালী</p>
+          </div>
+          <p>হিসাব রাখার জটিল সফটওয়্যার নয়—হিসাবী নির্মিত হয়েছে যাতে সাধারণ কর্মচারীও কোনো ট্রেনিং ছাড়াই প্রথম দিনেই কাজ করতে পারে।</p>
+        </div>
+
+        <!-- Filter Row (Tabs) -->
+        <div class="filter-row" role="tablist">
+          <button type="button" class="feature-tab-btn active" data-tab="pos" role="tab">
+            [০১] পিওএস বিলিং চেকআউট
+          </button>
+          <button type="button" class="feature-tab-btn" data-tab="khata" role="tab">
+            [০২] ডিজিটাল খাতা ও বাকি
+          </button>
+          <button type="button" class="feature-tab-btn" data-tab="inventory" role="tab">
+            [০৩] ইনভেন্টরি ও ব্যাচ রাডার
+          </button>
+          <button type="button" class="feature-tab-btn" data-tab="reports" role="tab">
+            [০৪] এক্সিকিউটিভ লাভ-ক্ষতি
+          </button>
+        </div>
+
+        <!-- Showcase Panel -->
+        <div class="showcase-panel">
+          <!-- TAB 1: POS -->
+          <div id="tab-pos" class="feature-tab-content">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center;">
+              <div>
+                <span class="micro-label">বিদ্যুৎ বা নেট চলে গেলেও সচল</span>
+                <h3 style="font: 600 clamp(24px, 2.5vw, 32px)/1.2 var(--serif); margin: 12px 0 16px;">
+                  চোখের পলকে মেমো প্রিন্ট করুন যেকোনো ডিভাইসে
+                </h3>
+                <p style="color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                  ক্যাশ, বিকাশ, নগদ কিংবা কাস্টমার বাকি—যেকোনো মাধ্যমে বিল গ্রহণ করুন। লোডশেডিংয়ে ওয়াইফাই বন্ধ হলেও অফলাইনে বিলিং চলবে এবং নেট আসার সাথে সাথে সব ডাটা ব্যাকআপ হয়ে যাবে।
+                </p>
+                <div style="border-top: 1px solid var(--soft-line); padding-top: 16px; display:flex; flex-direction:column; gap:8px; font:12px var(--mono);">
+                  <div>✓ ব্লুটুথ ও ইউএসবি থার্মাল প্রিন্টারে ২-ইঞ্চি ও ৩-ইঞ্চি রিসিট সাপোর্ট</div>
+                  <div>✓ গ্রাহকের মোবাইলে এসএমএস বা হোয়াটসঅ্যাপে ডিজিটাল মেমো প্রেরণ</div>
+                  <div>✓ বারকোড রিডার অথবা টাচস্ক্রিন গ্রিড মেনু নির্বাচন</div>
+                </div>
+              </div>
+
+              <!-- Terminal Preview Frame -->
+              <div class="terminal-frame">
+                <div class="terminal-topbar">
+                  <span>TERMINAL #01 · POS PREVIEW</span>
+                  <span style="color: var(--yellow);">INVOICE #INV-9281</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; font:12px var(--mono);">
+                  <div style="display:flex; justify-content:space-between; padding:10px; background:#1b1b19; border:1px solid #2b2b28;">
+                    <span>১x কটন পোলো শার্ট (Navy - L)</span>
+                    <b style="color:var(--yellow);">৳ ৮৫০</b>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:10px; background:#1b1b19; border:1px solid #2b2b28;">
+                    <span>২x চিনো প্যান্টস (Beige - 32)</span>
+                    <b style="color:var(--yellow);">৳ ২,৪০০</b>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:12px 0 6px; border-top:1px solid #333; font-size:14px; font-weight:700;">
+                    <span>মোট প্রদেয় বিল:</span>
+                    <span style="color:#cfe98e;">৳ ৩,২৫০</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                    <span style="color:#888; font-size:11px;">পেমেন্ট: বিকাশ (TXN: 9K8120L)</span>
+                    <span style="background:var(--yellow); color:var(--ink); padding:4px 10px; font-weight:700; font-size:11px;">প্রিন্ট সম্পন্ন (F12)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: KHATA -->
+          <div id="tab-khata" class="feature-tab-content" style="display: none;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center;">
+              <div>
+                <span class="micro-label">ডিজিটাল খাতা ও তাগাদা</span>
+                <h3 style="font: 600 clamp(24px, 2.5vw, 32px)/1.2 var(--serif); margin: 12px 0 16px;">
+                  ৩ গুণ দ্রুত বকেয়া টাকা আদায় করুন কোনো বিবাদ ছাড়াই
+                </h3>
+                <p style="color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                  কাগজের খাতা হারিয়ে যেতে পারে বা হিসাব নিয়ে কাস্টমারের সাথে তর্ক হতে পারে। কিন্তু হিসাবী গ্রাহককে দেয় স্বচ্ছ ডিজিটাল স্টেটমেন্ট, যা তারা ফোনে দেখতে পারেন এবং এক ক্লিকে বিকাশ বা নগদে বাকি শোধ করতে পারেন।
+                </p>
+                <div style="border-top: 1px solid var(--soft-line); padding-top: 16px; display:flex; flex-direction:column; gap:8px; font:12px var(--mono);">
+                  <div>✓ নির্ধারিত তারিখে স্বয়ংক্রিয় শিডিউলড মার্জিত এসএমএস রিমাইন্ডার</div>
+                  <div>✓ সময় ও তারিখসহ গ্রাহকভিত্তিক প্রতিটি মেমোর পূর্ণাঙ্গ অডিট হিস্ট্রি</div>
+                  <div>✓ অতিরিক্ত বাকি হওয়া রোধে কাস্টমার ক্রেডিট লিমিট সতর্কতা</div>
+                </div>
+              </div>
+
+              <div class="terminal-frame">
+                <div class="terminal-topbar">
+                  <span>গ্রাহক প্রোফাইল: তরিকুল ইসলাম</span>
+                  <span style="color:#cfe98e;">ক্রেডিট স্কোর: ৯২/১০০</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:12px; font:12px var(--mono);">
+                  <div style="display:flex; justify-content:space-between; align-items:center; background:#1b1b19; padding:14px; border:1px solid #2b2b28;">
+                    <span style="color:#999;">মোট বকেয়া টাকার পরিমাণ</span>
+                    <strong style="font-size:22px; color:var(--yellow); font-family:var(--serif);">৳ ৮,৪৫০</strong>
+                  </div>
+                  <div style="padding:12px; background:#151514; border-left:3px solid var(--yellow); color:#ccc; line-height:1.5;">
+                    "শ্রদ্ধেয় তরিকুল সাহেব, সততা স্টোরে আপনার বকেয়া ৳ ৮,৪৫০ পরিশোধের তারিখ অদ্য। ঘরে বসে পরিশোধ করতে ক্লিক করুন: hisabee.link/pay/tq918"
+                  </div>
+                  <div style="display:flex; justify-content:flex-end; gap:8px;">
+                    <span style="background:transparent; border:1px solid #555; color:#ccc; padding:6px 12px; font-size:11px;">হোয়াটসঅ্যাপ নোটিশ</span>
+                    <span style="background:var(--yellow); color:var(--ink); font-weight:700; padding:6px 14px; font-size:11px;">এসএমএস পাঠান (অটো)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: INVENTORY -->
+          <div id="tab-inventory" class="feature-tab-content" style="display: none;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center;">
+              <div>
+                <span class="micro-label">মাল্টি-গুদাম ইনভেন্টরি ট্র্যাকিং</span>
+                <h3 style="font: 600 clamp(24px, 2.5vw, 32px)/1.2 var(--serif); margin: 12px 0 16px;">
+                  পণ্য নষ্ট হওয়া বা মেয়াদ শেষ হওয়ার লোকসান আর নয়
+                </h3>
+                <p style="color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                  প্রতিটি পণ্য ব্যাচ নম্বর, এক্সপায়ারি তারিখ ও সিরিয়াল অনুসারে ট্র্যাক করুন। ব্যাকরুমে কী পড়ে আছে আর সামনের তাকে কী আছে তা পরিষ্কার জেনে অতিরিক্ত কেনাকাটা বন্ধ করুন।
+                </p>
+                <div style="border-top: 1px solid var(--soft-line); padding-top: 16px; display:flex; flex-direction:column; gap:8px; font:12px var(--mono);">
+                  <div>✓ ৩০, ৬০ ও ৯০ দিন পূর্বেই মেয়াদোত্তীর্ণ হওয়ার অটো নোটিফিকেশন</div>
+                  <div>✓ বিক্রয়ের গতির ওপর নির্ভর করে স্বয়ংক্রিয় পারচেজ অর্ডার রিকমেন্ডেশন</div>
+                  <div>✓ যেকোনো সময় মোবাইলে গুদামের অবশিষ্ট পণ্যের সঠিক মূল্যায়ন</div>
+                </div>
+              </div>
+
+              <div class="terminal-frame">
+                <div class="terminal-topbar">
+                  <span>ইনভেন্টরি এক্সপায়ারি ও স্টক রাডার</span>
+                  <span style="color:#cfe98e;">মোট স্টক মূল্য: ৳ ১৮,৪০,০০০</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; font:12px var(--mono);">
+                  <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:#1b1b19; border-left:3px solid #ef4444;">
+                    <div>
+                      <div style="font-weight:700;">প্যারাসিটামল ৫০০মিগ্রা (বক্স ১০০'স)</div>
+                      <div style="color:#f87171; font-size:11px;">মেয়াদ বাকি ২৮ দিন · ব্যাচ #B-4091</div>
+                    </div>
+                    <span style="background:#ef444433; color:#fca5a5; padding:3px 8px; font-weight:700;">স্টক: ১৪ বক্স</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:#1b1b19; border-left:3px solid var(--yellow);">
+                    <div>
+                      <div style="font-weight:700;">গ্রিন টি অর্গানিক ২৫ ব্যাগ প্যাক</div>
+                      <div style="color:var(--yellow); font-size:11px;">স্টক ঘাটতি সতর্কতা · থ্রেশহোল্ড ১০</div>
+                    </div>
+                    <span style="background:#ffda0033; color:var(--yellow); padding:3px 8px; font-weight:700;">স্টক: মাত্র ৩টি</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: REPORTS -->
+          <div id="tab-reports" class="feature-tab-content" style="display: none;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center;">
+              <div>
+                <span class="micro-label">রিয়েল-টাইম আর্থিক অন্তর্দৃষ্টি</span>
+                <h3 style="font: 600 clamp(24px, 2.5vw, 32px)/1.2 var(--serif); margin: 12px 0 16px;">
+                  মাস শেষে লাভ হয়েছে নাকি ক্ষতি—আর অনুমানে থাকতে হবে না
+                </h3>
+                <p style="color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px;">
+                  দোকানের পণ্যের ক্রয়মূল্য, কর্মচারী বেতন, বিদ্যুৎ বিল ও অপচয় বাদ দিয়ে সঠিক গ্রস ও নিট লাভ হিসেব করে হিসাবী। ভ্যাট ও অডিট রিটার্নের জন্য রেডি শিট এক ক্লিকেই তৈরি।
+                </p>
+                <div style="border-top: 1px solid var(--soft-line); padding-top: 16px; display:flex; flex-direction:column; gap:8px; font:12px var(--mono);">
+                  <div>✓ ক্যাশ কাউন্টার খোলা ও বন্ধের দৈনিক ক্যাশ ড্রয়ার রিকনসিলিয়েশন</div>
+                  <div>✓ কোন আইটেমে সর্বোচ্চ মার্জিন ও মুনাফা তার প্রোডাক্টভিত্তিক র‍্যাংকিং</div>
+                  <div>✓ সম্পূর্ণ ব্যালেন্স শিট এক্সেল ও পিডিএফে এক্সপোর্ট সুবিধা</div>
+                </div>
+              </div>
+
+              <div class="terminal-frame">
+                <div class="terminal-topbar">
+                  <span>এক্সিকিউটিভ ফিনান্সিয়াল সামারি</span>
+                  <span style="color:var(--yellow);">চলতি মাস ২০২৬</span>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:14px; text-align:center; font:11px var(--mono);">
+                  <div style="background:#1b1b19; padding:12px 8px; border:1px solid #2b2b28;">
+                    <div style="color:#888;">মোট বিক্রি</div>
+                    <div style="font-size:16px; font-weight:700; color:#fff; margin-top:4px; font-family:var(--serif);">৳ ১২.৪ লাখ</div>
+                  </div>
+                  <div style="background:#1b1b19; padding:12px 8px; border:1px solid #2b2b28;">
+                    <div style="color:#888;">মোট পরিচালন ব্যয়</div>
+                    <div style="font-size:16px; font-weight:700; color:#ccc; margin-top:4px; font-family:var(--serif);">৳ ৮.১৫ লাখ</div>
+                  </div>
+                  <div style="background:#1b1b19; padding:12px 8px; border:1px solid #cfe98e;">
+                    <div style="color:#cfe98e;">প্রকৃত নিট মুনাফা</div>
+                    <div style="font-size:16px; font-weight:700; color:#cfe98e; margin-top:4px; font-family:var(--serif);">৳ ৪.২৫ লাখ</div>
+                  </div>
+                </div>
+                <div style="padding:10px; background:#151514; font:11px var(--mono); color:#aaa; display:flex; justify-content:space-between;">
+                  <span>সর্বোচ্চ বিক্রিত ক্যাটাগরি:</span>
+                  <b style="color:#fff;">মুদি ও প্যাকেটজাত পণ্য (৪২%)</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRY SOLUTIONS GRID -->
+    <section id="solutions" class="solutions-section">
+      <div class="shell">
+        <div class="section-heading split-heading">
+          <div>
+            <h2>আপনার ব্যবসার <em>উপযোগী।</em></h2>
+            <p><span class="live-dot" style="width:6px;height:6px;"></span> যেকোনো কাজের ধরন ও যেকোনো সাইজের দোকানের সমাধান</p>
+          </div>
+          <p>আপনি পাড়ার মুদি দোকান চালান কিংবা ২০টি শাখা বিশিষ্ট চেইন স্টোর—হিসাবীর প্রতিটি ফিচার সাজানো হয়েছে আপনার দৈনন্দিন প্রয়োজনের কথা মাথায় রেখে।</p>
+        </div>
+
+        <div class="solutions-grid">
+          <!-- Solution 1 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">রিটেইল গ্রোসারি</span>
+              <h3>সুপারমার্কেট ও মুদি দোকান</h3>
+              <p>ওয়েইং স্কেল ইন্টিগ্রেশন, দ্রুত বারকোড স্ক্যানিং, মাল্টি-প্যাক ডিসকাউন্ট ও কাস্টমার বাকি খাতার দ্রুত হিসাব।</p>
+            </div>
+            <a href="#pricing">সুপারশপ পিওএস সম্পর্কে জানুন →</a>
+          </article>
+
+          <!-- Solution 2 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">লাইফস্টাইল ও ফ্যাশন</span>
+              <h3>পোশাক, জুতা ও ফ্যাশন বুটিক</h3>
+              <p>সাইজ, কালার ও ফিট ম্যাট্রিক্স ম্যানেজমেন্ট, নিজস্ব বারকোড স্টিকার প্রিন্ট ও সিজনাল সেলস ডিসকাউন্ট কন্ট্রোল।</p>
+            </div>
+            <a href="#pricing">বুটিক পিওএস সম্পর্কে জানুন →</a>
+          </article>
+
+          <!-- Solution 3 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">ফার্মাসিউটিক্যালস</span>
+              <h3>ফার্মেসি ও ড্রাগ স্টোর</h3>
+              <p>জেনারের নামসহ হাজারো ঔষধের ডাটাবেজ, ব্যাচ ট্র্যাকিং, এক্সপায়ারি অ্যালার্ট এবং চিকিৎসকের প্রেসক্রিপশন সংরক্ষণ।</p>
+            </div>
+            <a href="#pricing">ফার্মেসি ইআরপি সম্পর্কে জানুন →</a>
+          </article>
+
+          <!-- Solution 4 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">হার্ডওয়্যার ও ডিভাইস</span>
+              <h3>ইলেকট্রনিক্স ও মোবাইল শপ</h3>
+              <p>সিরিয়াল নম্বর ও আইএমইআই (IMEI) ওয়ারেন্টি ট্র্যাকিং, কাস্টমার সার্ভিস জব কার্ড ও যন্ত্রাংশ রিপ্লেসমেন্ট লগ।</p>
+            </div>
+            <a href="#pricing">ইলেকট্রনিক্স সফটওয়্যার সম্পর্কে জানুন →</a>
+          </article>
+
+          <!-- Solution 5 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">পাইকারি ও আড়ত</span>
+              <h3>পাইকারি ব্যবসায়ী ও পরিবেশক</h3>
+              <p>বাল্ক ভলিউম হোলসেল রেট, ডিস্ট্রিবিউটর বাকি লেজার, ডেলিভারি চালান ও সেলস রিপ্রেজেন্টেটিভ অর্ডার বুকিং।</p>
+            </div>
+            <a href="#pricing">হোলসেল সফটওয়্যার সম্পর্কে জানুন →</a>
+          </article>
+
+          <!-- Solution 6 -->
+          <article class="solution-card">
+            <div>
+              <span class="micro-label">খাবার ও পানীয়</span>
+              <h3>রেস্তোরাঁ, ক্যাফে ও বেকারি</h3>
+              <p>টেবিল ম্যানেজমেন্ট, কিচেন অর্ডার টিকিট (KOT) প্রিন্টিং, খাদ্য রেসিপি খরচ এবং অনলাইন ডেলিভারি হিসাব।</p>
+            </div>
+            <a href="#pricing">রেস্তোরাঁ বিলিং সম্পর্কে জানুন →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (3 SIMPLE STEPS - GhushSite Style) -->
+    <section id="how-it-works" class="how-section shell">
+      <div class="section-heading split-heading">
+        <div>
+          <h2>যেভাবে কাজ করে। <em>তিনটি ধাপ।</em></h2>
+          <p><span class="live-dot" style="width:6px;height:6px;"></span> কোনো জটিল আইটি সেটআপ নেই। ৩ মিনিটেই চালু।</p>
+        </div>
+        <p>ব্যয়বহুল কম্পিউটার বিশেষজ্ঞ বা টেকনিশিয়ান ডাকার কোনো প্রয়োজন নেই। আপনার হাতের সাধারণ স্মার্টফোন বা ল্যাপটপ দিয়েই এখনই শুরু করতে পারেন।</p>
+      </div>
+
+      <div class="steps">
+        <article>
+          <span>০১</span>
+          <b>সহজ সেটআপ</b>
+          <h3>দোকানের প্রোফাইল তৈরি</h3>
+          <p>আপনার মোবাইল নম্বর বা ইমেইল দিয়ে মাত্র ৩০ সেকেন্ডে সাইন আপ করে দোকানের ধরন ও ভ্যাট সেটিংস পছন্দ করুন।</p>
+        </article>
+
+        <article>
+          <span>০২</span>
+          <b>পণ্য ও খাতা</b>
+          <h3>পণ্য ও কাস্টমার তালিকা আপলোড</h3>
+          <p>আমাদের রেডি এক্সেল শিট দিয়ে এক ক্লিকে সব প্রোডাক্ট আপলোড দিন, অথবা ফোনের ক্যামেরা দিয়ে বারকোড স্ক্যান করে ক্যাটালগ করুন।</p>
+        </article>
+
+        <article>
+          <span>০৩</span>
+          <b>গ্রোথ ও সাফল্য</b>
+          <h3>বিলিং ও লাভ-ক্ষতির পূর্ণ নিয়ন্ত্রণ</h3>
+          <p>ক্যাশ মেমো কাটুন, বাকি গ্রাহককে অটো পে-লিঙ্ক পাঠান এবং যেকোনো সময় যেকোনো স্থান থেকে দৈনিক নিট লাভ লাইভ দেখুন।</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- QUOTES SECTION (GhushSite-style Hover Yellow Banner) -->
+    <section class="quotes-section">
+      <div class="shell quote-inner">
+        <h2>স্মার্ট হিসাব। <em>নিশ্চিন্ত ব্যবসা।</em></h2>
+        <p>"হিসাবী চালুর পর থেকে আমাদের ৩টি সুপারশপের বকেয়া আদায়ের হার ৯৪% বৃদ্ধি পেয়েছে এবং ক্যাশিয়ারদের ড্রয়ার অমিল শূন্যে নেমে এসেছে।" — মোহাম্মদ রফিক, চেয়ারম্যান, সততা রিটেইল চেইন (চট্টগ্রাম)</p>
+        <a href="#pricing">আজই আপনার ফ্রি ১৪ দিনের ট্রায়াল শুরু করুন →</a>
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="pricing-section shell">
+      <div class="section-heading split-heading">
+        <div>
+          <h2>স্বচ্ছ <em>প্রাইসিং।</em></h2>
+          <p><span class="live-dot" style="width:6px;height:6px;"></span> কোনো লুকানো ফি নেই · ১৪ দিনের ফ্রি ট্রায়াল অন্তর্ভুক্ত</p>
+        </div>
+        <p>সব প্ল্যানে সম্পূর্ণ সাপোর্ট, আনলিমিটেড ইনভয়েস ও ডাটা ব্যাকআপ অন্তর্ভুক্ত। কোনো ক্রেডিট কার্ডের দরকার নেই।</p>
+      </div>
+
+      <!-- Billing Toggle (Monthly vs Annual) -->
+      <div class="billing-switch-wrapper">
+        <span>মাসিক বিলিং</span>
+        <label class="switch-toggle-box" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন করুন">
+          <input type="checkbox" id="billing-toggle">
+          <span class="switch-slider"></span>
+        </label>
+        <span style="display:flex; align-items:center; gap:6px;">
+          <span>বার্ষিক বিলিং</span>
+          <span style="background:var(--yellow); color:var(--ink); font-size:10px; font-weight:700; padding:2px 8px; border:1px solid var(--line);">২০% ছাড়</span>
+        </span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Plan 1: Starter -->
+        <article class="pricing-card">
+          <div>
+            <span class="micro-label">একক দোকান ও স্টার্টআপ</span>
+            <h3>স্টারটার স্টোর</h3>
+            <p class="plan-desc">একক খুচরা দোকান, ফার্মেসি কিংবা ছোট গ্রোসারির জন্য আদর্শ।</p>
+            <div class="pricing-price-box">
+              <span id="price-starter" class="pricing-price">$12</span>
+              <span class="pricing-period billing-period-text">/month</span>
+              <div style="font: 11px var(--mono); color: var(--muted); margin-top: 4px;">১৪ দিনের পূর্ণ ফ্রি ট্রায়াল</div>
+            </div>
+            <ul>
+              <li><i>✓</i> ১টি স্টোর লোকেশন ও ২ জন ক্যাশিয়ার</li>
+              <li><i>✓</i> আনলিমিটেড পণ্য ক্যাটালগ ও মেমো বিলিং</li>
+              <li><i>✓</i> ডিজিটাল খাতা ও প্রতি মাসে ১০০টি ফ্রি এসএমএস</li>
+              <li><i>✓</i> অফলাইন পিওএস বিলিং সাপোর্ট</li>
+              <li><i>✓</i> ব্লুটুথ ও থার্মাল প্রিন্টার ইন্টিগ্রেশন</li>
+            </ul>
+          </div>
+          <a href="#cta" class="button button-outline" style="width: 100%;">
+            স্টারটার ট্রায়াল শুরু করুন
+          </a>
+        </article>
+
+        <!-- Plan 2: Growth Pro (Featured) -->
+        <article class="pricing-card pricing-card-featured">
+          <div class="plan-tag">★ সর্বাধিক জনপ্রিয় চয়েস</div>
+          <div>
+            <span class="micro-label" style="color:var(--ink); font-weight:700;">গ্রোইং বিজনেস ও চেইন</span>
+            <h3>গ্রোথ প্রো (Growth Pro)</h3>
+            <p class="plan-desc">ব্যস্ত রিটেলার, বুটিক ও মাঝারি আকারের পাইকারি দোকানের জন্য সেরা।</p>
+            <div class="pricing-price-box">
+              <span id="price-growth" class="pricing-price">$29</span>
+              <span class="pricing-period billing-period-text">/month</span>
+              <div style="font: 11px var(--mono); color: var(--ink); font-weight:600; margin-top: 4px;">ফ্রি ডাটা অনবোর্ডিং সাপোর্ট অন্তর্ভুক্ত</div>
+            </div>
+            <ul>
+              <li><i>✓</i> ৩টি শাখা ও ১০ জন কর্মচারীর রোল পারমিশন</li>
+              <li><i>✓</i> ব্যাচ নম্বর, এক্সপায়ারি তারিখ ও সিরিয়াল ট্র্যাকিং</li>
+              <li><i>✓</i> অটো বাকি আদায় লেজার (প্রতি মাসে ৫০০ ফ্রি এসএমএস)</li>
+              <li><i>✓</i> কাস্টম বারকোড স্টিকার প্রিন্ট ও ডিজাইন মেকার</li>
+              <li><i>✓</i> অ্যাডভান্সড লাভ-ক্ষতি ও ভ্যাট এক্সপোর্ট রিপোর্ট</li>
+              <li><i>✓</i> সার্বক্ষণিক ডেডিকেটেড হোয়াটসঅ্যাপ সাপোর্ট</li>
+            </ul>
+          </div>
+          <a href="#cta" class="button button-dark" style="width: 100%;">
+            গ্রোথ প্রো ট্রায়াল শুরু করুন →
+          </a>
+        </article>
+
+        <!-- Plan 3: Enterprise -->
+        <article class="pricing-card">
+          <div>
+            <span class="micro-label">লার্জ এন্টারপ্রাইজ ও ফ্র্যাঞ্চাইজ</span>
+            <h3>এন্টারপ্রাইজ চেইন</h3>
+            <p class="plan-desc">মাল্টিপল আউটলেট, ডিপার্টমেন্টাল স্টোর ও ডিস্ট্রিবিউটরদের জন্য।</p>
+            <div class="pricing-price-box">
+              <span id="price-enterprise" class="pricing-price">$69</span>
+              <span class="pricing-period billing-period-text">/month</span>
+              <div style="font: 11px var(--mono); color: var(--muted); margin-top: 4px;">কাস্টম ডাটা মাইগ্রেশন ও ভিআইপি এসএলএ</div>
+            </div>
+            <ul>
+              <li><i>✓</i> আনলিমিটেড ব্রাঞ্চ ও আনলিমিটেড স্টাফ মেম্বার</li>
+              <li><i>✓</i> সেন্ট্রাল গুদাম থেকে আন্তঃশাখা পণ্য ট্রান্সফার</li>
+              <li><i>✓</i> কাস্টম ই-কমার্স ও দারাজ/ফেসবুক এপিআই সিঙ্ক</li>
+              <li><i>✓</i> আনলিমিটেড এসএমএস ও হোয়াটসঅ্যাপ বাকি তাগাদা</li>
+              <li><i>✓</i> ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার ও প্রায়োরিটি ট্রেনিং</li>
+            </ul>
+          </div>
+          <a href="#cta" class="button button-outline" style="width: 100%;">
+            সেলস টিমের সাথে কথা বলুন
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section shell">
+      <div class="section-heading split-heading">
+        <div>
+          <h2>গ্রাহকের <em>মতামত।</em></h2>
+          <p><span class="live-dot" style="width:6px;height:6px;"></span> বাস্তব মার্চেন্টদের সরাসরি অভিজ্ঞতা ও ব্যবসায়িক প্রবৃদ্ধি</p>
+        </div>
+        <p>সারা দেশে ১০,০০০+ এরও বেশি সফল ব্যবসায়ী প্রতিদিন তাদের দোকান ও গুদামের নিরাপত্তায় হিসাবী ব্যবহার করছেন।</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "হিসাবী ব্যবহারের পূর্বে আমাদের তিনটি ছেঁড়া ডায়েরিতে প্রায় ৩.৫ লাখ টাকার বকেয়া হিসাব ঝুলে ছিল। তাদের অটো এসএমএস রিমাইন্ডার ফিচারের মাধ্যমে প্রথম ৪৫ দিনের মধ্যেই আমরা ৮০% বকেয়া টাকা নির্বিঘ্নে আদায় করেছি।"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-initials">MK</div>
+            <div class="author-info">
+              <strong>মোহাম্মদ কবির</strong>
+              <span>স্বত্বাধিকারী, কবির সুপার শপ (চট্টগ্রাম)</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "ঢাকায় আমাদের ৪টি ফ্যাশন আউটলেট আছে। প্রতিদিন রাতে প্রতিটি দোকানের ক্যাশ ড্রয়ার মিল করতে রাত ১টা বেজে যেত। এখন যেকোনো জায়গা থেকে মোবাইলেই রিয়েল-টাইমে প্রতিটি ব্রাঞ্চের লাইভ সেলস দেখতে পারি।"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-initials">SA</div>
+            <div class="author-info">
+              <strong>শারমিন আক্তার</strong>
+              <span>ম্যানেজিং ডিরেক্টর, ভেলভেট লাইফস্টাইল</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <p class="testimonial-quote">
+            "তাদের অফলাইন মোডটি আমাদের জন্য আশীর্বাদ। লোডশেডিংয়ে ওয়াইফাই বন্ধ হয়ে গেলেও ক্যাশিয়ারদের ১ সেকেন্ডের জন্যও বিলিং থামাতে হয় না। বিদ্যুৎ আসার পর স্বয়ংক্রিয়ভাবে সব ডাটা সিঙ্ক হয়ে যায়।"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-initials">RH</div>
+            <div class="author-info">
+              <strong>রফিকুল হাসান</strong>
+              <span>প্রতিষ্ঠাতা, হাসান ইলেকট্রনিক্স ও পাইকারি বিতান</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS (FAQ - GhushSite Split Layout) -->
+    <section id="faq" class="faq-section">
+      <div class="shell faq">
+        <!-- Sticky Left Intro -->
+        <div class="faq-intro">
+          <div class="eyebrow">
+            <span><i class="live-dot"></i>প্রশ্ন / সাপোর্ট নোট</span>
+          </div>
+          <h2>প্রশ্নোত্তর।</h2>
+          <p>হিসাবী চালুর পূর্বে প্রয়োজনীয় প্রশ্নগুলোর পরিষ্কার উত্তর জেনে নিন।</p>
+        </div>
+
+        <!-- Right FAQ Accordion List -->
+        <div class="faq-list" role="region" aria-label="প্রশ্নোত্তর তালিকা">
+          <!-- FAQ 1 (Default Open) -->
+          <div class="faq-item faq-item-open">
+            <button type="button" aria-expanded="true">
+              <span class="faq-index">01</span>
+              <b>দোকানের ইন্টারনেট বা বিদ্যুৎ না থাকলে কি হিসাবী চলবে?</b>
+              <span class="faq-icon" aria-hidden="true">−</span>
+            </button>
+            <div class="faq-answer">
+              <p>হ্যাঁ, সম্পূর্ণভাবে চলবে। হিসাবী লোকাল-ফার্স্ট প্রযুক্তিতে তৈরি। ওয়াইফাই বা ডাটা সংযোগ বিচ্ছিন্ন হলেও আপনি বারকোড স্ক্যান করতে পারবেন, গ্রাহকের মেমো তৈরি করতে পারবেন, থার্মাল প্রিন্টারে রিসিট ছাপাতে পারবেন এবং ক্যাশ জমা নিতে পারবেন। নেটওয়ার্ক ফিরে আসার সাথে সাথে ব্যাকগ্রাউন্ডে সব ট্রানজেকশন অটোমেটিক ক্লাউডে সিঙ্ক হয়ে যাবে।</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button type="button" aria-expanded="false">
+              <span class="faq-index">02</span>
+              <b>এক্সেল থেকে কি আগের পণ্যের তালিকা ও গ্রাহকের বাকি ইমপোর্ট করা যাবে?</b>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>অবশ্যই! আমরা সহজ এক্সেল বা সিএসভি (CSV) টেমপ্লেট সরবরাহ করি। আপনি ৬০ সেকেন্ডের মধ্যে হাজারো পণ্য, ক্রয়মূল্য, খুচরা মূল্য, বারকোড এবং পূর্বের বকেয়া আপলোড করতে পারবেন। প্রয়োজনে আমাদের ডেডিকেটেড অনবোর্ডিং সাপোর্ট টিম সম্পূর্ণ বিনামূল্যে আপনার ডাটা ট্রান্সফার করে দেবে।</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button type="button" aria-expanded="false">
+              <span class="faq-index">03</span>
+              <b>হিসাবী ব্যবহার করতে কী কী ডিভাইস ও প্রিন্টার সাপোর্ট করে?</b>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>আপনার বর্তমানে থাকা যেকোনো ডিভাইসেই হিসাবী কাজ করবে—অ্যান্ড্রয়েড ফোন, আইফোন, ট্যাব, উইন্ডোজ পিসি, ল্যাপটপ কিংবা অ্যান্ড্রয়েড পিওএস টার্মিনাল। এটি বাজারে প্রচলিত সকল ব্লুটুথ, ইউএসবি এবং ওয়াইফাই থার্মাল প্রিন্টার (যেমন: Epson, Xprinter, Rongta, Sunmi), বারকোড স্ক্যানার ও ক্যাশ ড্রয়ারের সাথে সম্পূর্ণ সামঞ্জস্যপূর্ণ।</p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button type="button" aria-expanded="false">
+              <span class="faq-index">04</span>
+              <b>স্বয়ংক্রিয় বাকি আদায়ের (খাতা) এসএমএস রিমাইন্ডার কীভাবে কাজ করে?</b>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>গ্রাহক যখন বাকিতে পণ্য নেন, হিসাবী তার মোবাইল নম্বরে ডিজিটাল হিসাব খুলে রাখে। আপনি চাইলে নির্দিষ্ট দিনে (যেমন বাকি নেওয়ার ৭ দিন পর বা প্রতি মাসের ১ তারিখ) স্বয়ংক্রিয় মার্জিত এসএমএস শিডিউল করে রাখতে পারেন। এসএমএসের ভেতরে একটি গোপন ও নিরাপদ অনলাইন লিঙ্ক থাকবে, যাতে ক্লিক করে গ্রাহক তার সম্পূর্ণ ভাউচার দেখতে পারবেন এবং বিকাশ বা নগদে টাকা পরিশোধ করতে পারবেন।</p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button type="button" aria-expanded="false">
+              <span class="faq-index">05</span>
+              <b>আমার দোকানের আর্থিক হিসাব কি সম্পূর্ণ গোপন ও নিরাপদ থাকবে?</b>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>১০০% নিরাপদ ও গোপন। হিসাবী ব্যাংক-গ্রেড ২৫৬-বিট এসএসএল (SSL) এনক্রিপশন ব্যবহার করে। আপনার ব্যবসায়িক হিসাব, মুনাফা ও স্টক ডাটা শুধুমাত্র আপনি এবং আপনার অনুমোদিত কর্মীরাই দেখতে পারবেন। প্রতি ঘণ্টায় স্বয়ংক্রিয় ক্লাউড ব্যাকআপ নেওয়ার কারণে ডিভাইস নষ্ট বা চুরি হলেও আপনার এক পয়সার হিসাবও হারাবে না।</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION BANNER (GhushSite Style) -->
+    <section id="cta" class="final-cta">
+      <h2>হিসাবের অসতর্কতা ব্যবসাকে পিছিয়ে দেয়।<br/>ডিজিটাল লেজার এনে দেয় অপার গতি।</h2>
+      <p>শুরু করতে দুই মিনিটেরও কম সময় লাগে। কোনো পরিচয়পত্র বা ক্রেডিট কার্ডের প্রয়োজন নেই।</p>
+      
+      <form class="final-cta-form">
+        <input type="text" placeholder="আপনার মোবাইল বা ইমেইল লিখুন..." required aria-label="মোবাইল বা ইমেইল">
+        <button type="submit">ফ্রি ট্রায়াল শুরু করুন →</button>
+      </form>
+
+      <div style="font: 11px var(--mono); color: #888; margin-top: 18px;">
+        তাৎক্ষণিক অ্যাক্টিভেশন · ১৪ দিন পূর্ণাঙ্গ আনলিমিটেড ব্যবহার · যেকোনো সময় বাতিলযোগ্য
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (GhushSite Minimalist Editorial Design) -->
+  <footer>
+    <div class="shell">
+      <div class="footer-top">
+        <!-- Brand Info -->
+        <div class="footer-brand-col">
+          <a class="brand" href="#">Hisabee<span>OS</span><sup>পিওএস</sup></a>
+          <p>হিসাবী হলো আধুনিক যুগের স্মার্ট ব্যবসায়িক অপারেটিং সিস্টেম ও ক্লাউড লেজার। রিটেইল, পাইকারি ও মাল্টি-ব্রাঞ্চ শপের বিক্রয় ও ইনভেন্টরি পরিচালনায় নির্ভরযোগ্য সহযোগী।</p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Facebook">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter / X">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Features -->
+        <div class="footer-col">
+          <h5>ফিচারসমূহ</h5>
+          <ul>
+            <li><a href="#features">এক্সপ্রেস পিওএস বিলিং</a></li>
+            <li><a href="#features">ডিজিটাল খাতা (বাকি)</a></li>
+            <li><a href="#features">মাল্টি-ব্রাঞ্চ ইনভেন্টরি</a></li>
+            <li><a href="#features">মেয়াদোত্তীর্ণ সতর্কতা</a></li>
+            <li><a href="#features">ক্যাশিয়ার ক্যাশ ড্রয়ার মিলকরণ</a></li>
+            <li><a href="#features">ভ্যাট ও অডিট ট্যাক্স শিট</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Industries -->
+        <div class="footer-col">
+          <h5>ইন্ডাস্ট্রিজ</h5>
+          <ul>
+            <li><a href="#solutions">সুপারমার্কেট ও মুদি</a></li>
+            <li><a href="#solutions">পোশাক ও বুটিক</a></li>
+            <li><a href="#solutions">ফার্মেসি ও ড্রাগিস্ট</a></li>
+            <li><a href="#solutions">ইলেকট্রনিক্স ও হার্ডওয়্যার</a></li>
+            <li><a href="#solutions">পাইকারি ও আড়ত</a></li>
+            <li><a href="#solutions">রেস্তোরাঁ ও ক্যাফে</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Support -->
+        <div class="footer-col">
+          <h5>হেল্প ও যোগাযোগ</h5>
+          <ul>
+            <li><a href="tel:+8801800447223">হটলাইন: +৮৮০ ১৮০০-HISABEE</a></li>
+            <li><a href="mailto:support@hisabee.com">ইমেইল: support@hisabee.com</a></li>
+            <li><a href="#faq">নলেজ বেস ও সাধারণ জিজ্ঞাসা</a></li>
+            <li><a href="#pricing">হার্ডওয়্যার সামঞ্জস্যতা গাইড</a></li>
+            <li><span style="color:#777; font:11px var(--mono);">গুলশান-১, ঢাকা, বাংলাদেশ</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; ২০২৬ Hisabee Technologies Ltd. সর্বস্বত্ব সংরক্ষিত।
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">গোপনীয়তা নীতি (Privacy)</a>
+          <a href="#">শর্তাবলী (Terms)</a>
+          <a href="#">নিরাপত্তা ও অডিট (Security)</a>
+          <a href="#">প্রেস কিট (Press)</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VIDEO DEMO MODAL POPUP -->
+  <div id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content-box">
+      <div class="modal-topbar">
+        <h3 id="modal-title">হিসাবী প্ল্যাটফর্ম ওভারভিউ (২ মিনিটের ডেমো)</h3>
+        <button id="close-demo-modal" class="modal-close-btn" type="button" aria-label="মডাল বন্ধ করুন">✕</button>
+      </div>
+
+      <div style="background:#111110; border:1px solid var(--line); padding:40px 20px; text-align:center; color:#fff;">
+        <div style="width:64px; height:64px; background:var(--yellow); color:var(--ink); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px; cursor:pointer;">
+          <i data-lucide="play" class="w-8 h-8 ml-1"></i>
+        </div>
+        <h4 style="font:600 22px var(--serif); margin:0 0 8px; color:#fff;">ইন্টারঅ্যাক্টিভ ভিডিও প্রিভিউ</h4>
+        <p style="color:#888; font-size:13px; max-width:440px; margin:0 auto 24px; line-height:1.6;">
+          দেখুন কীভাবে মাত্র ৩ সেকেন্ডে ইনভয়েস বানানো যায়, অবশিষ্ট পণ্য চেক করা যায় এবং গ্রাহককে স্বয়ংক্রিয় বাকি তাগাদার এসএমএস পাঠানো যায়।
+        </p>
+        <a href="#pricing" class="button button-accent" onclick="document.getElementById('close-demo-modal').click();">
+          আপনার ফ্রি ১৪ দিনের ট্রায়াল শুরু করুন →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION COMPONENT -->
+  <div id="toast-notification" class="toast-box" role="alert" aria-live="assertive">
+    <div class="toast-icon">✓</div>
+    <div>
+      <p id="toast-message" style="margin:0; font-weight:600;">কার্যক্রম সফলভাবে সম্পন্ন হয়েছে!</p>
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/main.js"></script>
+</body>
+</html>

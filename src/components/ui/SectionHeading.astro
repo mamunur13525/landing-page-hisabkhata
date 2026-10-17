@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  emphasis?: string;
+  eyebrow?: string;
+  description?: string;
+  split?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  emphasis,
+  eyebrow,
+  description,
+  split = false,
+  class: className = ''
+} = Astro.props;
+---
+
+<div class={`border-b border-line pb-5 mb-9 ${className}`}>
+  {
+    split ? (
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          {eyebrow && (
+            <p class="font-mono text-xs text-muted tracking-wider uppercase mb-2 flex items-center">
+              <span class="live-dot" style="width: 6px; height: 6px;" />
+              {eyebrow}
+            </p>
+          )}
+          <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-ink leading-tight">
+            {title} {emphasis && <em class="font-normal italic">{emphasis}</em>}
+          </h2>
+        </div>
+        {description && (
+          <p class="font-mono text-xs sm:text-sm text-muted leading-relaxed max-w-xl">
+            {description}
+          </p>
+        )}
+      </div>
+    ) : (
+      <div>
+        {eyebrow && (
+          <p class="font-mono text-xs text-muted tracking-wider uppercase mb-2 flex items-center">
+            <span class="live-dot" style="width: 6px; height: 6px;" />
+            {eyebrow}
+          </p>
+        )}
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-ink leading-tight mb-2">
+          {title} {emphasis && <em class="font-normal italic">{emphasis}</em>}
+        </h2>
+        {description && (
+          <p class="font-mono text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
+            {description}
+          </p>
+        )}
+      </div>
+    )
+  }
+</div>

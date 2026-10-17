@@ -1,0 +1,182 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Button from './ui/Button.astro';
+
+const plans = [
+  {
+    id: 'starter',
+    name: 'স্টারটার স্টোর',
+    category: 'ছোট দোকান ও ফার্মেসি',
+    desc: 'একক খুচরা দোকান বা মুদির জন্য আদর্শ।',
+    monthlyPrice: '$12',
+    annualPrice: '$9',
+    featured: false,
+    features: [
+      '১টি দোকান ও ২ জন ক্যাশিয়ার',
+      'আনলিমিটেড পণ্য ও বিল মেমো',
+      'ডিজিটাল খাতা ও ফ্রি এসএমএস',
+      'বিদ্যুৎ/নেট ছাড়া অফলাইন মোড',
+      'থার্মাল প্রিন্টার ও বারকোড সাপোর্ট'
+    ],
+    ctaText: 'স্টারটার ট্রায়াল শুরু করুন',
+    ctaVariant: 'outline' as const
+  },
+  {
+    id: 'growth',
+    name: 'গ্রোথ প্রো (Growth Pro)',
+    category: 'ব্যস্ত দোকান ও বুটিক',
+    desc: 'মাঝারি রিটেল, পোশাক ও ইলেকট্রনিক্স দোকানের জন্য।',
+    monthlyPrice: '$29',
+    annualPrice: '$22',
+    featured: true,
+    tag: '★ সর্বাধিক জনপ্রিয়',
+    features: [
+      '৩টি শাখা ও ১০ জন কর্মচারী এক্সেস',
+      'কম স্টক ও মেয়াদ শেষ হওয়ার সতর্কতা',
+      'অটো এসএমএস বাকি আদায় লেজার',
+      'দোকানের নামে বারকোড স্টিকার প্রিন্ট',
+      'লাইভ লাভ-ক্ষতি ও ভ্যাট রিপোর্ট',
+      'সরাসরি ফোন ও হোয়াটসঅ্যাপ সাপোর্ট'
+    ],
+    ctaText: 'গ্রোথ প্রো ট্রায়াল শুরু করুন →',
+    ctaVariant: 'dark' as const
+  },
+  {
+    id: 'enterprise',
+    name: 'এন্টারপ্রাইজ চেইন',
+    category: 'মাল্টি-ব্রাঞ্চ ও পাইকারি',
+    desc: 'একাধিক শোরুম, সুপারশপ ও আড়তের জন্য।',
+    monthlyPrice: '$69',
+    annualPrice: '$55',
+    featured: false,
+    features: [
+      'আনলিমিটেড শাখা ও আনলিমিটেড কর্মচারী',
+      'এক শাখা থেকে অন্য শাখায় স্টক স্থানান্তর',
+      'সেন্ট্রাল গুদাম ও ইনভেন্টরি কন্ট্রোল',
+      'আনলিমিটেড বাকি আদায় এসএমএস',
+      'ভিআইপি ম্যানেজার ও ট্রেনিং সুবিধা'
+    ],
+    ctaText: 'টিমের সাথে কথা বলুন',
+    ctaVariant: 'outline' as const
+  }
+];
+---
+
+<section id="pricing" class="border-t border-line py-14 md:py-20 bg-paper">
+  <div class="shell">
+    <SectionHeading
+      title="আপনার ব্যবসার উপযোগী"
+      emphasis="সহজ প্রাইসিং।"
+      eyebrow="স্বচ্ছ ও সাশ্রয়ী প্ল্যান · কোনো লুকানো চার্জ নেই"
+      description="১৪ দিন সম্পূর্ণ বিনামূল্যে ব্যবহার করুন। পছন্দ না হলে কোনো ফি দিতে হবে না। কোনো ক্রেডিট কার্ডের প্রয়োজন নেই।"
+      split={true}
+    />
+
+    <!-- Billing Switch (Monthly vs Annual) -->
+    <div class="flex items-center justify-center gap-3 my-8">
+      <span class="font-mono text-xs sm:text-sm font-semibold text-ink">মাসিক বিলিং</span>
+      <label class="relative inline-flex items-center cursor-pointer" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন">
+        <input type="checkbox" id="billing-toggle" class="sr-only peer" />
+        <div class="w-12 h-6 border border-line bg-white peer-checked:bg-ink transition-colors relative">
+          <div class="w-4 h-4 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
+        </div>
+      </label>
+      <span class="font-mono text-xs sm:text-sm font-semibold text-ink flex items-center gap-2">
+        <span>বার্ষিক বিলিং</span>
+        <span class="bg-yellow text-ink border border-line text-[10px] font-bold px-1.5 py-0.5 uppercase tracking-wider">
+          ২০% ছাড়
+        </span>
+      </span>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      {
+        plans.map((plan) => (
+          <article
+            class={`border border-line bg-white p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 relative ${plan.featured ? 'ring-2 ring-ink shadow-[6px_6px_0_var(--color-line)] -translate-y-1' : 'hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-line)]'}`}
+          >
+            {plan.featured && (
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-yellow text-ink border border-line font-mono text-[11px] font-bold px-3 py-0.5 uppercase tracking-wider whitespace-nowrap">
+                {plan.tag}
+              </div>
+            )}
+
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+                  {plan.category}
+                </span>
+              </div>
+
+              <h3 class="font-serif font-bold text-2xl text-ink leading-snug mb-1">
+                {plan.name}
+              </h3>
+              <p class="text-xs text-muted leading-relaxed mb-6">
+                {plan.desc}
+              </p>
+
+              <!-- Price Display -->
+              <div class="border-y border-soft-line py-5 mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span
+                    class="font-serif font-bold text-4xl sm:text-5xl text-ink tracking-tight plan-price"
+                    data-monthly={plan.monthlyPrice}
+                    data-annual={plan.annualPrice}
+                  >
+                    {plan.monthlyPrice}
+                  </span>
+                  <span class="font-mono text-xs text-muted billing-unit">/প্রতি মাসে</span>
+                </div>
+                <div class="text-[11px] font-mono text-emerald-700 font-semibold mt-1">
+                  ১৪ দিনের সম্পূর্ণ ফ্রি ট্রায়াল অন্তর্ভুক্ত
+                </div>
+              </div>
+
+              <!-- Feature Checklist -->
+              <ul class="flex flex-col gap-2.5 font-mono text-xs text-ink/85 mb-8">
+                {plan.features.map((feat) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="text-emerald-700 font-bold shrink-0 mt-0.5">✓</span>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Button
+              variant={plan.ctaVariant}
+              size="md"
+              href="#cta"
+              class="w-full text-center font-bold"
+            >
+              {plan.ctaText}
+            </Button>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupPricingToggle() {
+    const toggle = document.getElementById('billing-toggle') as HTMLInputElement | null;
+    const prices = document.querySelectorAll<HTMLElement>('.plan-price');
+    const units = document.querySelectorAll<HTMLElement>('.billing-unit');
+
+    toggle?.addEventListener('change', () => {
+      const isAnnual = toggle.checked;
+      prices.forEach((el) => {
+        const val = isAnnual ? el.getAttribute('data-annual') : el.getAttribute('data-monthly');
+        if (val) el.textContent = val;
+      });
+      units.forEach((el) => {
+        el.textContent = isAnnual ? '/প্রতি মাসে (বাৎসরিক)' : '/প্রতি মাসে';
+      });
+    });
+  }
+
+  setupPricingToggle();
+  document.addEventListener('astro:page-load', setupPricingToggle);
+</script>

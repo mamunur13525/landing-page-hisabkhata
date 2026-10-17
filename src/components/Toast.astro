@@ -1,0 +1,102 @@
+---
+---
+
+<div
+  id="toast-container"
+  class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full px-4 sm:px-0"
+  aria-live="polite"
+>
+  <!-- Toasts injected dynamically -->
+</div>
+
+<template id="toast-template">
+  <div
+    class="toast-item pointer-events-auto border-2 border-line bg-paper p-4 shadow-[4px_4px_0_0_var(--ink)] flex items-start justify-between gap-3 transform translate-y-4 opacity-0 transition-all duration-300"
+  >
+    <div class="flex items-start gap-3">
+      <span class="toast-badge w-6 h-6 border border-line bg-yellow text-ink font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+        ✓
+      </span>
+      <div>
+        <h4 class="toast-title font-mono font-bold text-xs text-ink uppercase tracking-wider mb-0.5">
+          বিজ্ঞপ্তি
+        </h4>
+        <p class="toast-message font-serif text-xs text-charcoal/80 leading-relaxed">
+          আপনার অনুরোধ গৃহীত হয়েছে।
+        </p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="toast-close text-charcoal/60 hover:text-ink font-mono font-bold text-xs p-1 cursor-pointer transition-colors"
+      aria-label="বন্ধ করুন"
+    >
+      ✕
+    </button>
+  </div>
+</template>
+
+<script>
+  interface ToastDetail {
+    title?: string;
+    message: string;
+    variant?: 'success' | 'info' | 'warning';
+    duration?: number;
+  }
+
+  function setupToastListener() {
+    const container = document.getElementById('toast-container');
+    const template = document.getElementById('toast-template') as HTMLTemplateElement | null;
+    if (!container || !template) return;
+
+    window.addEventListener('show-toast', ((e: CustomEvent<ToastDetail>) => {
+      const { title = 'সফল!', message, variant = 'success', duration = 4500 } = e.detail || {};
+
+      const clone = template.content.cloneNode(true) as DocumentFragment;
+      const toastEl = clone.querySelector('.toast-item') as HTMLElement;
+      const titleEl = clone.querySelector('.toast-title') as HTMLElement;
+      const msgEl = clone.querySelector('.toast-message') as HTMLElement;
+      const badgeEl = clone.querySelector('.toast-badge') as HTMLElement;
+      const closeBtn = clone.querySelector('.toast-close') as HTMLElement;
+
+      if (!toastEl) return;
+
+      titleEl.textContent = title;
+      msgEl.textContent = message;
+
+      if (variant === 'warning') {
+        badgeEl.textContent = '!';
+        badgeEl.style.backgroundColor = '#ffda00';
+      } else if (variant === 'info') {
+        badgeEl.textContent = 'i';
+        badgeEl.style.backgroundColor = '#e0f2fe';
+      }
+
+      container.appendChild(toastEl);
+
+      // Animate in
+      requestAnimationFrame(() => {
+        toastEl.classList.remove('translate-y-4', 'opacity-0');
+        toastEl.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      function dismiss() {
+        toastEl.classList.remove('translate-y-0', 'opacity-100');
+        toastEl.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => {
+          toastEl.remove();
+        }, 300);
+      }
+
+      closeBtn.addEventListener('click', dismiss);
+
+      if (duration > 0) {
+        setTimeout(dismiss, duration);
+      }
+    }) as EventListener);
+  }
+
+  setupToastListener();
+  document.addEventListener('astro:page-load', setupToastListener);
+</script>

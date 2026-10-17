@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VisionStrip from '../components/VisionStrip.astro';
+import Header from '../components/Header.astro';
+import MobileDrawer from '../components/MobileDrawer.astro';
+import Hero from '../components/Hero.astro';
+import FeaturesBento from '../components/FeaturesBento.astro';
+import ProductTour from '../components/ProductTour.astro';
+import SolutionsCarousel from '../components/SolutionsCarousel.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Pricing from '../components/Pricing.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import DemoModal from '../components/DemoModal.astro';
+import Toast from '../components/Toast.astro';
+---
+
+<Layout
+  title="HisabeeOS — সহজ ক্লাউড পিওএস ও ব্যবসায়িক হিসাব সফটওয়্যার"
+  description="হিসাবী হলো রিটেল, পাইকারি ও মাল্টি-ব্রাঞ্চ শপের জন্য সহজ বাংলা ক্লাউড লেজার ও স্মার্ট পিওএস বিলিং সফটওয়্যার। ১০,০০০+ ব্যবসায়ীর আস্থা।"
+>
+  <!-- Top ticker bar -->
+  <VisionStrip />
+
+  <!-- Sticky header -->
+  <Header />
+
+  <!-- Mobile navigation drawer -->
+  <MobileDrawer />
+
+  <!-- Main landing page content -->
+  <main id="main-content">
+    <Hero />
+    <FeaturesBento />
+    <ProductTour />
+    <SolutionsCarousel />
+    <HowItWorks />
+    <Pricing />
+    <TestimonialsCarousel />
+    <FaqAccordion />
+    <FinalCta />
+  </main>
+
+  <!-- Editorial footer -->
+  <Footer />
+
+  <!-- Interactive modals & toast notifications -->
+  <DemoModal />
+  <Toast />
+</Layout>

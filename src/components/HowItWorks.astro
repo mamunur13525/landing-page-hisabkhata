@@ -1,0 +1,57 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+
+const steps = [
+  {
+    step: '০১',
+    tag: 'ফ্রি সাইন আপ',
+    title: '১ মিনিটে অ্যাকাউন্ট খুলুন',
+    description: 'কোনো ক্রেডিট কার্ড ছাড়াই শুধুমাত্র মোবাইল নম্বর দিয়ে অ্যাকাউন্ট তৈরি করে আপনার দোকানের নাম লিখুন।'
+  },
+  {
+    step: '০২',
+    tag: 'পণ্য তালিকা',
+    title: 'পণ্য ও দাম যুক্ত করুন',
+    description: 'এক্সেল ফাইল থেকে এক ক্লিকে সব পণ্য আনুন, অথবা মোবাইলের ক্যামেরা দিয়ে বারকোড স্ক্যান করে দাম বসান।'
+  },
+  {
+    step: '০৩',
+    tag: 'বিক্রি ও হিসাব',
+    title: 'বিলিং ও লাভ দেখা শুরু করুন',
+    description: 'কাস্টমারকে দ্রুত মেমো দিন, বাকির অটো এসএমএস পাঠান এবং ফোনে সারাদিনের মোট বিক্রি ও লাভ দেখুন।'
+  }
+];
+---
+
+<section id="how-it-works" class="border-t border-line py-14 md:py-20 bg-paper">
+  <div class="shell">
+    <SectionHeading
+      title="শুরু করা একদম সহজ।"
+      emphasis="মাত্র ৩টি ধাপে।"
+      eyebrow="কোনো টেকনিশিয়ান লাগবে না · ২ মিনিটে প্রস্তুত"
+      description="হাতে থাকা সাধারণ স্মার্টফোন বা ল্যাপটপ দিয়েই আজই আপনার দোকানের পুরো হিসাব সাজিয়ে নিন।"
+      split={true}
+    />
+
+    <div class="border border-line bg-white/40 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-line shadow-xs">
+      {
+        steps.map((item) => (
+          <article class="p-6 sm:p-8 flex flex-col min-h-[220px] bg-white/70 hover:bg-white transition-all duration-200 hover:-translate-y-1">
+            <span class="font-mono text-xs text-muted font-semibold">
+              {item.step}
+            </span>
+            <b class="font-mono text-[11px] font-semibold tracking-wider uppercase text-ink mt-auto pt-6">
+              {item.tag}
+            </b>
+            <h3 class="font-serif font-bold text-xl text-ink leading-snug my-2">
+              {item.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+              {item.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

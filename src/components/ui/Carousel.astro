@@ -1,0 +1,174 @@
+---
+interface Props {
+  id: string;
+  class?: string;
+  showControls?: boolean;
+  showDots?: boolean;
+  autoplay?: boolean;
+  interval?: number;
+}
+
+const {
+  id,
+  class: className = '',
+  showControls = true,
+  showDots = true,
+  autoplay = false,
+  interval = 5000,
+} = Astro.props;
+---
+
+<div
+  class={`carousel-root relative w-full ${className}`}
+  id={id}
+  data-autoplay={autoplay ? 'true' : 'false'}
+  data-interval={interval}
+>
+  <!-- Track Viewport -->
+  <div
+    class="carousel-track flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar gap-5 py-2"
+    tabindex="0"
+    role="region"
+    aria-label="ক্যারোজেল স্লাইডার"
+  >
+    <slot />
+  </div>
+
+  <!-- Bottom Navigation & Indicators Bar -->
+  <div class="flex items-center justify-between gap-4 mt-6 pt-3 border-t border-soft-line">
+    <!-- Dot Indicators -->
+    {
+      showDots && (
+        <div class="carousel-dots flex items-center gap-1.5" role="tablist" aria-label="স্লাইড ইন্ডিকেটর">
+          <!-- Dots dynamically created or synchronized by script -->
+        </div>
+      )
+    }
+
+    <!-- Arrow Buttons -->
+    {
+      showControls && (
+        <div class="carousel-arrows flex items-center gap-2 ml-auto">
+          <button
+            type="button"
+            class="carousel-prev w-9 h-9 border border-line bg-white hover:bg-yellow text-ink flex items-center justify-center font-mono font-bold text-sm cursor-pointer transition-all hover:-translate-y-0.5 active:translate-y-0"
+            aria-label="পূর্ববর্তী স্লাইড"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            class="carousel-next w-9 h-9 border border-line bg-white hover:bg-yellow text-ink flex items-center justify-center font-mono font-bold text-sm cursor-pointer transition-all hover:-translate-y-0.5 active:translate-y-0"
+            aria-label="পরবর্তী স্লাইড"
+          >
+            →
+          </button>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  function setupCarousels() {
+    document.querySelectorAll('.carousel-root').forEach((root) => {
+      const track = root.querySelector('.carousel-track') as HTMLElement | null;
+      const prevBtn = root.querySelector('.carousel-prev') as HTMLElement | null;
+      const nextBtn = root.querySelector('.carousel-next') as HTMLElement | null;
+      const dotsContainer = root.querySelector('.carousel-dots') as HTMLElement | null;
+
+      if (!track) return;
+
+      const items = Array.from(track.children) as HTMLElement[];
+      if (items.length === 0) return;
+
+      // Setup dots if container exists
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        items.forEach((_, idx) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = `w-7 h-2 border border-line transition-all cursor-pointer ${idx === 0 ? 'bg-ink' : 'bg-transparent hover:bg-soft-line'}`;
+          dot.setAttribute('aria-label', `স্লাইড ${idx + 1}`);
+          dot.addEventListener('click', () => {
+            items[idx]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+          });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      const updateDots = () => {
+        if (!dotsContainer) return;
+        const scrollLeft = track.scrollLeft;
+        const width = track.clientWidth;
+        let activeIndex = Math.round(scrollLeft / width);
+        activeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
+
+        dotsContainer.querySelectorAll('button').forEach((d, idx) => {
+          if (idx === activeIndex) {
+            d.classList.add('bg-ink');
+            d.classList.remove('bg-transparent');
+          } else {
+            d.classList.remove('bg-ink');
+            d.classList.add('bg-transparent');
+          }
+        });
+      };
+
+      track.addEventListener('scroll', updateDots, { passive: true });
+
+      // Arrow click handlers
+      prevBtn?.addEventListener('click', () => {
+        const itemWidth = items[0]?.offsetWidth || 300;
+        track.scrollBy({ left: -itemWidth - 20, behavior: 'smooth' });
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        const itemWidth = items[0]?.offsetWidth || 300;
+        track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
+      });
+
+      // Autoplay if enabled
+      if (root.getAttribute('data-autoplay') === 'true') {
+        const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
+        let timer = setInterval(() => {
+          const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+          if (atEnd) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            const itemWidth = items[0]?.offsetWidth || 300;
+            track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
+          }
+        }, interval);
+
+        root.addEventListener('mouseenter', () => clearInterval(timer));
+        root.addEventListener('mouseleave', () => {
+          clearInterval(timer);
+          timer = setInterval(() => {
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+            if (atEnd) {
+              track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+              const itemWidth = items[0]?.offsetWidth || 300;
+              track.scrollBy({ left: itemWidth + 20, behavior: 'smooth' });
+            }
+          }, interval);
+        });
+      }
+    });
+  }
+
+  // Run on page load
+  setupCarousels();
+  document.addEventListener('astro:page-load', setupCarousels);
+</script>

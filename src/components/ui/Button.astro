@@ -1,0 +1,49 @@
+---
+interface Props {
+  variant?: 'dark' | 'outline' | 'accent';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  id?: string;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'dark',
+  size = 'md',
+  href,
+  type = 'button',
+  id,
+  class: className = '',
+  ariaLabel
+} = Astro.props;
+
+const baseStyles = "inline-flex items-center justify-center gap-2 font-mono font-semibold transition-all duration-150 cursor-pointer text-center select-none";
+
+const variantStyles = {
+  dark: "bg-ink text-white border border-ink hover:bg-yellow hover:text-ink hover:border-line hover:-translate-y-0.5 active:translate-y-0",
+  outline: "bg-transparent text-ink border border-line hover:bg-white hover:-translate-y-0.5 active:translate-y-0",
+  accent: "bg-yellow text-ink border border-line hover:bg-ink hover:text-white hover:border-ink hover:-translate-y-0.5 active:translate-y-0"
+};
+
+const sizeStyles = {
+  sm: "min-h-[38px] px-3.5 text-xs",
+  md: "min-h-[44px] px-5 text-xs sm:text-sm",
+  lg: "min-h-[50px] px-6 text-sm sm:text-base"
+};
+
+const combinedClasses = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} id={id} class={combinedClasses} aria-label={ariaLabel}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} id={id} class={combinedClasses} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}

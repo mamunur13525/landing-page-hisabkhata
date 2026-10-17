@@ -1,0 +1,152 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import Carousel from './ui/Carousel.astro';
+
+interface Testimonial {
+  initials: string;
+  name: string;
+  role: string;
+  business: string;
+  location: string;
+  category: string;
+  quote: string;
+  metric: string;
+  metricLabel: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    initials: 'MK',
+    name: 'মোহাম্মদ কবির',
+    role: 'স্বত্বাধিকারী',
+    business: 'কবির সুপার শপ',
+    location: 'চকবাজার, চট্টগ্রাম',
+    category: 'সুপারমার্কেট ও মুদি',
+    quote: 'হিসাবী ব্যবহারের পূর্বে আমাদের তিনটি ছেঁড়া ডায়েরিতে প্রায় ৩.৫ লাখ টাকার বকেয়া হিসাব ঝুলে ছিল। তাদের অটো এসএমএস রিমাইন্ডারের মাধ্যমে প্রথম ৪৫ দিনের মধ্যেই আমরা ৮০% বকেয়া টাকা নির্বিঘ্নে আদায় করেছি।',
+    metric: '৮০% বাকি আদায়',
+    metricLabel: 'প্রথম ৪৫ দিনে'
+  },
+  {
+    initials: 'SA',
+    name: 'শারমিন আক্তার',
+    role: 'ম্যানেজিং ডিরেক্টর',
+    business: 'ভেলভেট লাইফস্টাইল',
+    location: 'ধানমন্ডি, ঢাকা',
+    category: 'পোশাক ও ফ্যাশন বুটিক',
+    quote: 'ঢাকায় আমাদের ৪টি ফ্যাশন আউটলেট আছে। আগে রাতে ক্যাশ ড্রয়ার মিল করতে রাত ১টা বেজে যেত। এখন যেকোনো জায়গা থেকে মোবাইলেই রিয়েল-টাইমে প্রতিটি ব্রাঞ্চের লাইভ সেলস ও স্টক দেখতে পারি।',
+    metric: '৪টি শাখা নিয়ন্ত্রণ',
+    metricLabel: 'একক ড্যাশবোর্ডে'
+  },
+  {
+    initials: 'RH',
+    name: 'রফিকুল হাসান',
+    role: 'প্রতিষ্ঠাতা',
+    business: 'হাসান ইলেকট্রনিক্স ও পাইকারি বিতান',
+    location: 'নবাবপুর, ঢাকা',
+    category: 'ইলেকট্রনিক্স ও হার্ডওয়্যার',
+    quote: 'অফলাইন মোডটি আমাদের জন্য আশীর্বাদ। লোডশেডিংয়ে ওয়াইফাই বন্ধ হয়ে গেলেও ক্যাশিয়ারদের ১ সেকেন্ডের জন্যও বিলিং থামাতে হয় না। বিদ্যুৎ আসার পর স্বয়ংক্রিয়ভাবে সব ডাটা ক্লাউডে সিঙ্ক হয়ে যায়।',
+    metric: '১০০% আপটাইম',
+    metricLabel: 'নেটওয়ার্ক ছাড়া বিলিং'
+  },
+  {
+    initials: 'TA',
+    name: 'ডাঃ তানভীর আহমেদ',
+    role: 'স্বত্বাধিকারী',
+    business: 'মেডিসিন কর্নার',
+    location: 'সুবিদবাজার, সিলেট',
+    category: 'ফার্মেসি ও ড্রাগ স্টোর',
+    quote: 'ফার্মেসির সবচেয়ে বড় ভয় মেয়াদোত্তীর্ণ ওষুধ। হিসাবী সফটওয়্যারটি মেয়াদ শেষের ৯০ দিন আগেই সতর্কবার্তা দেয়। এর ফলে আমাদের প্রতি মাসে অন্তত ৩৫ থেকে ৪০ হাজার টাকার অপচয় পুরোপুরি রোধ হয়েছে।',
+    metric: '৪০,০০০৳ মাসিক সেভ',
+    metricLabel: 'এক্সপায়ারি অ্যালার্টে'
+  },
+  {
+    initials: 'MH',
+    name: 'মোজাম্মেল হক',
+    role: 'চেয়ারম্যান',
+    business: 'ফ্রেশ ফুডস অ্যান্ড ডেইরি',
+    location: 'খাতুনগঞ্জ, চট্টগ্রাম',
+    category: 'পাইকারি ও পরিবেশক',
+    quote: 'আগে মাসের শেষে স্টক মেলাতে গিয়ে মাথায় হাত পড়ত। হিসাবী চালুর পর ইনভেন্টরি শর্টেজ প্রায় ৯৫% কমে এসেছে। আর এক ক্লিকে সম্পূর্ণ ভ্যাট অডিট রিপোর্ট তৈরি হওয়া হিসাবরক্ষণের গতি বদলে দিয়েছে।',
+    metric: '৯৫% স্টক নির্ভুলতা',
+    metricLabel: 'ইনভেন্টরি অডিটে'
+  },
+  {
+    initials: 'AI',
+    name: 'আরিফুল ইসলাম',
+    role: 'পরিচালক',
+    business: 'ক্যাফে নস্টালজিয়া',
+    location: 'উত্তরা, ঢাকা',
+    category: 'রেস্তোরাঁ ও ক্যাফে',
+    quote: 'টেবিল অর্ডার থেকে শুরু করে কিচেন প্রিন্টার (KOT) ও বিকাশ পেমেন্ট—সবকিছু চোখের পলকে হয়ে যায়। পিক আওয়ারে কাস্টমারদের কোনো লাইনে দাঁড়িয়ে থাকতে হয় না, ক্যাশিয়ারও থাকে একদম নির্ভার।',
+    metric: '৩x দ্রুত বিলিং',
+    metricLabel: 'পিক আওয়ার কাভারেজ'
+  }
+];
+---
+
+<section id="testimonials" class="border-t border-line py-16 md:py-20 bg-paper">
+  <div class="shell">
+    <SectionHeading
+      title="গ্রাহকের"
+      emphasis="বাস্তব অভিজ্ঞতা।"
+      eyebrow="১০,০০০+ বিশ্বস্ত মার্চেন্টের ব্যবসায়িক রূপান্তর ও মতামত"
+      description="সারা দেশে হাজারো সফল ব্যবসায়ী প্রতিদিন তাদের দোকান ও গুদামের নিরাপত্তায় হিসাবী ব্যবহার করছেন। জেনে নিন তাদের অভিজ্ঞতার সরাসরি বিবরণ।"
+      split={true}
+    />
+
+    <Carousel id="testimonials-carousel" autoplay={true} interval={6000}>
+      {
+        testimonials.map((item) => (
+          <article class="w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] shrink-0 snap-start border border-line bg-white p-6 md:p-7 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0_0_var(--line)]">
+            <div>
+              <!-- Top Category & Rating Tag -->
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-soft-line">
+                <span class="font-mono text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 border border-line bg-paper">
+                  {item.category}
+                </span>
+                <span class="font-mono text-xs font-bold text-ink flex items-center gap-1">
+                  <span class="text-yellow-600">★★★★★</span>
+                  <span>5.0</span>
+                </span>
+              </div>
+
+              <!-- Quote Content -->
+              <blockquote class="font-serif italic text-ink text-[15px] leading-relaxed mb-6">
+                "{item.quote}"
+              </blockquote>
+            </div>
+
+            <!-- Bottom Metric & Author Info -->
+            <div class="pt-4 border-t border-soft-line mt-auto">
+              <!-- Result Stat Tag -->
+              <div class="bg-paper border border-line/40 px-3 py-1.5 mb-4 flex items-center justify-between font-mono text-xs">
+                <span class="font-bold text-ink">{item.metric}</span>
+                <span class="text-charcoal/70 text-[11px]">{item.metricLabel}</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 border border-line bg-ink text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                  {item.initials}
+                </div>
+                <div class="min-w-0">
+                  <div class="font-bold text-sm text-ink truncate flex items-center gap-1.5">
+                    {item.name}
+                    <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-300 px-1 py-0.2 rounded-xs font-normal">
+                      ✓ ভেরিফায়েড
+                    </span>
+                  </div>
+                  <div class="font-mono text-[11px] text-charcoal/70 truncate">
+                    {item.role}, {item.business}
+                  </div>
+                  <div class="font-mono text-[10px] text-charcoal/50 truncate">
+                    📍 {item.location}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </Carousel>
+  </div>
+</section>

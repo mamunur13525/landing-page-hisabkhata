@@ -1,0 +1,70 @@
+---
+import Button from './ui/Button.astro';
+
+const navLinks = [
+  { label: 'ফিচার্স', href: '#features' },
+  { label: 'সফটওয়্যার ট্যুর', href: '#showcase' },
+  { label: 'ব্যবসার ধরন', href: '#solutions' },
+  { label: 'যেভাবে কাজ করে', href: '#how-it-works' },
+  { label: 'প্রাইসিং', href: '#pricing' },
+  { label: 'প্রশ্নোত্তর', href: '#faq' },
+];
+---
+
+<header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-line transition-all duration-200">
+  <div class="shell h-[68px] flex items-center justify-between gap-6">
+    <!-- Brand Mark -->
+    <a href="#" class="font-mono font-bold text-xl tracking-tighter text-ink flex items-center group select-none">
+      <span>Hisabee</span>
+      <span class="text-xs bg-yellow px-1 py-0.5 ml-1 border border-line">OS</span>
+      <sup class="text-[#777670] font-sans font-medium text-[11px] ml-1.5 tracking-normal">পিওএস</sup>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-6" aria-label="প্রধান নেভিগেশন">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-mono text-xs tracking-wider text-ink hover:underline underline-offset-4 transition-transform hover:-translate-y-0.5"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-3">
+      <Button
+        variant="outline"
+        size="sm"
+        id="open-demo-modal"
+        class="hidden sm:inline-flex text-xs"
+        data-open-demo
+      >
+        ডেমো দেখুন ▷
+      </Button>
+
+      <Button
+        variant="dark"
+        size="sm"
+        href="#pricing"
+        class="text-xs"
+      >
+        <span class="hidden sm:inline">ফ্রি ট্রায়াল শুরু করুন →</span>
+        <span class="sm:hidden">ট্রায়াল →</span>
+      </Button>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="lg:hidden w-10 h-10 border border-line bg-transparent flex items-center justify-center text-lg cursor-pointer hover:bg-white transition-colors"
+        aria-label="নেভিগেশন মেনু খুলুন"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+</header>

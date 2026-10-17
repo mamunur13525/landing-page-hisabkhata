@@ -1,0 +1,82 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<section id="cta" class="bg-ink text-white border-t border-line py-16 md:py-20 relative overflow-hidden">
+  <!-- Yellow highlight line at top -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-yellow"></div>
+
+  <div class="shell max-w-3xl text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 font-mono text-xs text-yellow uppercase tracking-widest mb-5">
+      <span class="w-2 h-2 rounded-full bg-yellow animate-ping"></span>
+      আজই আপনার দোকানে হিসাবী চালু করুন
+    </div>
+
+    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4">
+      হিসাবের অসতর্কতা ব্যবসাকে পিছিয়ে দেয়।<br />
+      <span class="text-yellow">হিসাবী</span> এনে দেয় নিশ্চিত গতি।
+    </h2>
+
+    <p class="font-serif text-sm md:text-base text-white/75 max-w-xl mx-auto mb-7 leading-relaxed">
+      শুরু করতে মাত্র ২ মিনিট সময় লাগে। কোনো ক্রেডিট কার্ড লাগবে না। আজই ফ্রি ট্রায়াল শুরু করুন।
+    </p>
+
+    <!-- Lead capture form -->
+    <form class="final-cta-form flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-5" id="cta-lead-form">
+      <input
+        type="text"
+        name="contact"
+        required
+        placeholder="আপনার মোবাইল নম্বর লিখুন..."
+        class="flex-1 px-4 py-3 bg-white text-ink font-mono text-sm border-2 border-transparent focus:border-yellow focus:outline-none placeholder:text-muted"
+        aria-label="মোবাইল নম্বর"
+      />
+      <Button variant="accent" size="lg" type="submit" class="whitespace-nowrap font-bold">
+        ফ্রি শুরু করুন →
+      </Button>
+    </form>
+
+    <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-white/60">
+      <span class="flex items-center gap-1">
+        <span class="text-emerald-400">✓</span> ২ মিনিটে চালু
+      </span>
+      <span>·</span>
+      <span class="flex items-center gap-1">
+        <span class="text-emerald-400">✓</span> ১৪ দিন আনলিমিটেড
+      </span>
+      <span>·</span>
+      <span class="flex items-center gap-1">
+        <span class="text-emerald-400">✓</span> ফ্রি ডাটা সেটাপ
+      </span>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupCtaForm() {
+    const form = document.getElementById('cta-lead-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input') as HTMLInputElement | null;
+      const value = input?.value.trim() || '';
+
+      if (value) {
+        window.dispatchEvent(
+          new CustomEvent('show-toast', {
+            detail: {
+              title: 'অভিনন্দন!',
+              message: `আপনার রেজিস্ট্রেশন সফল হয়েছে (${value})। শীঘ্রই আমাদের প্রতিনিধি যোগাযোগ করবেন।`,
+              variant: 'success'
+            }
+          })
+        );
+        form.reset();
+      }
+    });
+  }
+
+  setupCtaForm();
+  document.addEventListener('astro:page-load', setupCtaForm);
+</script>

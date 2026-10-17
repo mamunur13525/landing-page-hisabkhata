@@ -1,0 +1,260 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+
+const tabs = [
+  { id: 'pos', label: '[০১] পিওএস বিলিং' },
+  { id: 'khata', label: '[০২] ডিজিটাল খাতা' },
+  { id: 'inventory', label: '[০৩] ইনভেন্টরি' },
+  { id: 'reports', label: '[০৪] লাভ-ক্ষতি' },
+];
+---
+
+<section id="showcase" class="border-t border-line py-14 md:py-20 bg-paper">
+  <div class="shell">
+    <SectionHeading
+      title="সফটওয়্যারটি দেখতে ও চালাতে"
+      emphasis="কেমন?"
+      eyebrow="সহজ ও পরিষ্কার ইন্টারফেস"
+      description="কোনো জটিলতা নেই। সাধারণ স্মার্টফোন বা কম্পিউটার দিয়েই দোকানের যে কেউ এটি স্বাচ্ছন্দ্যে চালাতে পারবে।"
+      split={true}
+    />
+
+    <!-- Tab Filter Row -->
+    <div class="flex items-center justify-center flex-wrap gap-2 mb-8" role="tablist">
+      {
+        tabs.map((tab, idx) => (
+          <button
+            type="button"
+            class={`tour-tab-btn font-mono text-xs font-semibold px-4 sm:px-5 py-2.5 border border-line cursor-pointer transition-all duration-150 ${idx === 0 ? 'bg-ink text-white' : 'bg-transparent text-ink hover:bg-white hover:-translate-y-0.5'}`}
+            data-target={tab.id}
+            role="tab"
+            aria-selected={idx === 0 ? 'true' : 'false'}
+          >
+            {tab.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Showcase Container -->
+    <div class="border border-line bg-white p-6 sm:p-8 shadow-xs">
+      <!-- TAB 1: POS -->
+      <div id="tour-panel-pos" class="tour-panel block">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+              লোডশেডিং বা নেট ছাড়াও সচল
+            </span>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-tight my-2.5">
+              দ্রুততম মেমো প্রিন্ট করুন যেকোনো ডিভাইসে
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed mb-4">
+              ক্যাশ, বিকাশ কিংবা বাকি—যেকোনো পেমেন্ট দ্রুত গ্রহণ করুন। লোডশেডিংয়ে ওয়াইফাই বন্ধ হলেও অফলাইনে বিলিং চলবে। নেট আসার পর সব ডাটা ক্লাউডে সিঙ্ক হয়ে যাবে।
+            </p>
+            <ul class="border-t border-soft-line pt-3 flex flex-col gap-1.5 font-mono text-xs text-ink/80">
+              <li>✓ ব্লুটুথ ও ইউএসবি থার্মাল প্রিন্টারে ২-ইঞ্চি ও ৩-ইঞ্চি রিসিট সাপোর্ট</li>
+              <li>✓ কাস্টমারের হোয়াটসঅ্যাপ বা এসএমএসে ডিজিটাল মেমো পাঠানো</li>
+              <li>✓ বারকোড স্ক্যানার বা টাচস্ক্রিন গ্রিড মেনু</li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111110] border border-line p-5 text-white shadow-inner font-mono text-xs">
+            <div class="flex justify-between items-center pb-3 border-b border-[#272725] mb-4 text-[11px]">
+              <span class="text-muted">টার্মিনাল #০১ · পিওএস মেমো</span>
+              <span class="text-yellow font-semibold">মেমো #INV-9281</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="flex justify-between p-2.5 bg-[#1b1b19] border border-[#2b2b28]">
+                <span>১x কটন শার্ট (Navy - L)</span>
+                <b class="text-yellow">৳ ৮৫০</b>
+              </div>
+              <div class="flex justify-between p-2.5 bg-[#1b1b19] border border-[#2b2b28]">
+                <span>২x চিনো প্যান্টস (Beige - 32)</span>
+                <b class="text-yellow">৳ ২,৪০০</b>
+              </div>
+              <div class="flex justify-between pt-2.5 border-t border-[#333] text-sm font-bold">
+                <span>মোট বিল:</span>
+                <span class="text-emerald-400">৳ ৩,২৫০</span>
+              </div>
+              <div class="flex justify-between items-center pt-2 text-[11px]">
+                <span class="text-[#888]">পেমেন্ট: বিকাশ</span>
+                <span class="bg-yellow text-ink px-2.5 py-1 font-bold">প্রিন্ট সম্পন্ন (F12)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: KHATA -->
+      <div id="tour-panel-khata" class="tour-panel hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+              ডিজিটাল বাকি খাতা
+            </span>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-tight my-2.5">
+              বাকি টাকা আদায় করুন কোনো বিবাদ ছাড়াই
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed mb-4">
+              কাগজের খাতা হারিয়ে যেতে পারে বা হিসাব নিয়ে ভুল হতে পারে। হিসাবী গ্রাহকের কাছে পাঠায় স্বচ্ছ ডিজিটাল হিসাব, যাতে ঘরে বসেই বিকাশ বা নগদে বাকি পরিশোধ করতে পারেন।
+            </p>
+            <ul class="border-t border-soft-line pt-3 flex flex-col gap-1.5 font-mono text-xs text-ink/80">
+              <li>✓ নির্ধারিত তারিখে স্বয়ংক্রিয় শিডিউলড মার্জিত এসএমএস রিমাইন্ডার</li>
+              <li>✓ তারিখসহ প্রতিটি মেমোর পূর্ণাঙ্গ ডিজিটাল হিস্ট্রি</li>
+              <li>✓ অতিরিক্ত বাকি হওয়া রোধে কাস্টমার বাকি সীমা সতর্কতা</li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111110] border border-line p-5 text-white shadow-inner font-mono text-xs">
+            <div class="flex justify-between items-center pb-3 border-b border-[#272725] mb-4 text-[11px]">
+              <span class="text-muted">গ্রাহক: মোঃ তারিকুল ইসলাম</span>
+              <span class="text-emerald-400 font-semibold">ভেরিফায়েড গ্রাহক</span>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="flex justify-between items-center p-3 bg-[#1b1b19] border border-[#2b2b28]">
+                <span class="text-muted text-xs">মোট বকেয়া</span>
+                <strong class="text-2xl font-serif text-yellow">৳ ৮,৪৫০</strong>
+              </div>
+              <div class="p-2.5 bg-[#151514] border-l-2 border-yellow text-slate-300 leading-relaxed text-xs">
+                "সম্মানিত গ্রাহক, আপনার দোকানে ৳ ৮,৪৫০ বকেয়া রয়েছে। ঘরে বসে পরিশোধ করতে ক্লিক করুন: hisabee.link/pay/8450"
+              </div>
+              <div class="flex justify-end">
+                <span class="bg-yellow text-ink font-bold px-3 py-1 text-xs">অটো এসএমএস পাঠানো হয়েছে ✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: INVENTORY -->
+      <div id="tour-panel-inventory" class="tour-panel hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+              ইনভেন্টরি ও মেয়াদ ট্র্যাকিং
+            </span>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-tight my-2.5">
+              পণ্য নষ্ট হওয়া বা মেয়াদ শেষ হওয়ার ক্ষতি বাঁচান
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed mb-4">
+              কোন পণ্য শেষ হয়ে আসছে আর কোনটার মেয়াদ শেষের পথে—আগেই নোটিফিকেশন পাবেন। অপ্রয়োজনীয় কেনাকাটা বন্ধ করে লাভ বাড়ান।
+            </p>
+            <ul class="border-t border-soft-line pt-3 flex flex-col gap-1.5 font-mono text-xs text-ink/80">
+              <li>✓ মেয়াদ শেষ হওয়ার ৬০-৯০ দিন আগেই নোটিফিকেশন</li>
+              <li>✓ কম স্টকের পণ্যগুলোর স্বয়ংক্রিয় ক্রয়ের তালিকা</li>
+              <li>✓ এক্সেল থেকে ১ ক্লিকে পুরো ইনভেন্টরি আপডেট</li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111110] border border-line p-5 text-white shadow-inner font-mono text-xs">
+            <div class="flex justify-between items-center pb-3 border-b border-[#272725] mb-4 text-[11px]">
+              <span class="text-muted">স্টক এলার্ট ড্যাশবোর্ড</span>
+              <span class="text-red-400 font-semibold">২টি কম স্টক</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="p-2.5 bg-[#1b1b19] border border-[#2b2b28] flex justify-between items-center">
+                <div>
+                  <div class="font-bold">সয়াবিন তেল ৫ লিটার</div>
+                  <div class="text-[10px] text-muted">সর্বনিম্ন লিমিট: ১০ বোতল</div>
+                </div>
+                <span class="text-red-400 font-bold bg-red-950/50 px-2 py-0.5 border border-red-800">মাত্র ৩টি বাকি</span>
+              </div>
+              <div class="p-2.5 bg-[#1b1b19] border border-[#2b2b28] flex justify-between items-center">
+                <div>
+                  <div class="font-bold">প্যারাসিটামল ৫০০ মি.গ্রা.</div>
+                  <div class="text-[10px] text-muted">মেয়াদ শেষ: ৩০ দিন বাকি</div>
+                </div>
+                <span class="text-yellow font-bold bg-yellow-950/50 px-2 py-0.5 border border-yellow-800">মেয়াদ এলার্ট</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: REPORTS -->
+      <div id="tour-panel-reports" class="tour-panel hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+              লাভ-ক্ষতি ও ক্যাশ হিসাব
+            </span>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-ink leading-tight my-2.5">
+              দিনশেষে এক ক্লিকে সঠিক মুনাফা দেখুন
+            </h3>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed mb-4">
+              হিসাবরক্ষক ছাড়াই জানুন আপনার প্রকৃত লাভ। কর্মচারীর বেতন, দোকান ভাড়া, বিদ্যুৎ বিল এবং কেনা খরচের পর কত টাকা নিট লাভ রইল তা ফোনে দেখুন।
+            </p>
+            <ul class="border-t border-soft-line pt-3 flex flex-col gap-1.5 font-mono text-xs text-ink/80">
+              <li>✓ আজকের মোট বিক্রি, ক্যাশ ইন ও ক্যাশ আউট</li>
+              <li>✓ কোন পণ্যে কত টাকা লাভ হচ্ছে তার পরিষ্কার গ্রাফ</li>
+              <li>✓ ১-ক্লিকে এক্সেল ও পিডিএফ রিপোর্ট ডাউনলোড</li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111110] border border-line p-5 text-white shadow-inner font-mono text-xs">
+            <div class="flex justify-between items-center pb-3 border-b border-[#272725] mb-4 text-[11px]">
+              <span class="text-muted">আজকের নিট প্রফিট স্টেটমেন্ট</span>
+              <span class="text-emerald-400 font-semibold">লাইভ আপডেট</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div class="flex justify-between py-1.5 border-b border-[#272725]">
+                <span class="text-muted">মোট বিক্রি:</span>
+                <b class="text-white">৳ ৪২,৫০০</b>
+              </div>
+              <div class="flex justify-between py-1.5 border-b border-[#272725]">
+                <span class="text-muted">পণ্য ক্রয়ের খরচ:</span>
+                <b class="text-red-400">-৳ ৩১,২০০</b>
+              </div>
+              <div class="flex justify-between py-1.5 border-b border-[#272725]">
+                <span class="text-muted">দোকান খরচ (চা/নাস্তা/বিল):</span>
+                <b class="text-red-400">-৳ ৮৫০</b>
+              </div>
+              <div class="flex justify-between pt-2.5 text-sm font-bold">
+                <span>আজকের নিট লাভ:</span>
+                <span class="text-emerald-400 text-base">৳ ১০,৪৫০</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupTourTabs() {
+    const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tour-tab-btn');
+    const panels = document.querySelectorAll<HTMLElement>('.tour-panel');
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        if (!targetId) return;
+
+        tabBtns.forEach((b) => {
+          b.classList.remove('bg-ink', 'text-white');
+          b.classList.add('bg-transparent', 'text-ink');
+          b.setAttribute('aria-selected', 'false');
+        });
+
+        btn.classList.add('bg-ink', 'text-white');
+        btn.classList.remove('bg-transparent', 'text-ink');
+        btn.setAttribute('aria-selected', 'true');
+
+        panels.forEach((p) => {
+          p.classList.add('hidden');
+          p.classList.remove('block');
+        });
+
+        const activePanel = document.getElementById(`tour-panel-${targetId}`);
+        if (activePanel) {
+          activePanel.classList.remove('hidden');
+          activePanel.classList.add('block');
+        }
+      });
+    });
+  }
+
+  setupTourTabs();
+  document.addEventListener('astro:page-load', setupTourTabs);
+</script>

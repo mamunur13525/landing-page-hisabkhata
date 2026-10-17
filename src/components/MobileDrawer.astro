@@ -1,0 +1,110 @@
+---
+import Button from './ui/Button.astro';
+
+const navLinks = [
+  { label: 'ফিচার্স / Features', href: '#features' },
+  { label: 'সফটওয়্যার ট্যুর / Tour', href: '#showcase' },
+  { label: 'ব্যবসার ধরন / Solutions', href: '#solutions' },
+  { label: 'যেভাবে কাজ করে / Steps', href: '#how-it-works' },
+  { label: 'প্রাইসিং / Pricing', href: '#pricing' },
+  { label: 'প্রশ্নোত্তর / FAQ', href: '#faq' },
+];
+---
+
+<!-- Mobile Drawer Backdrop -->
+<div
+  id="mobile-drawer-backdrop"
+  class="fixed inset-0 bg-ink/50 z-50 backdrop-blur-xs hidden transition-opacity duration-200"
+>
+</div>
+
+<!-- Mobile Drawer Sidebar -->
+<aside
+  id="mobile-drawer"
+  class="fixed top-0 right-0 bottom-0 w-[min(340px,85vw)] bg-paper border-l border-line z-50 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out"
+  aria-label="মোবাইল ড্রয়ার নেভিগেশন"
+>
+  <div>
+    <!-- Top Row -->
+    <div class="flex items-center justify-between pb-4 border-b border-soft-line">
+      <a href="#" class="font-mono font-bold text-lg tracking-tighter text-ink flex items-center">
+        <span>Hisabee</span>
+        <span class="text-xs bg-yellow px-1 py-0.5 ml-1 border border-line">OS</span>
+        <sup class="text-[#777670] font-sans font-medium text-[10px] ml-1">পিওএস</sup>
+      </a>
+      <button
+        id="close-menu-btn"
+        class="w-8 h-8 border border-line bg-transparent flex items-center justify-center text-sm cursor-pointer hover:bg-yellow transition-colors"
+        aria-label="মেনু বন্ধ করুন"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- Navigation List -->
+    <nav class="flex flex-col gap-1 py-6 border-b border-soft-line" aria-label="মোবাইল মেনু লিংক">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link font-mono text-sm py-2 px-2 text-ink hover:bg-white hover:underline transition-colors"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+
+  <!-- Bottom CTA Actions -->
+  <div class="flex flex-col gap-3 pt-6">
+    <Button variant="outline" size="md" class="w-full text-center" data-open-demo>
+      ভিডিও ডেমো দেখুন ▷
+    </Button>
+    <Button variant="dark" size="md" href="#pricing" class="w-full text-center mobile-nav-link">
+      ফ্রি ট্রায়াল শুরু করুন →
+    </Button>
+    <div class="text-[11px] font-mono text-center text-muted mt-2">
+      সরাসরি সাপোর্ট: +৮৮০ ১৮০০-HISABEE
+    </div>
+  </div>
+</aside>
+
+<script>
+  function setupDrawer() {
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openDrawer() {
+      drawer?.classList.remove('translate-x-full');
+      backdrop?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer?.classList.add('translate-x-full');
+      backdrop?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    mobileBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    backdrop?.addEventListener('click', closeDrawer);
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer?.classList.contains('translate-x-full')) {
+        closeDrawer();
+      }
+    });
+  }
+
+  setupDrawer();
+  document.addEventListener('astro:page-load', setupDrawer);
+</script>

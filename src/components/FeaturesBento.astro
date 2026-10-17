@@ -1,0 +1,123 @@
+---
+import SectionHeading from './ui/SectionHeading.astro';
+import { Zap, BookOpenCheck, Boxes, Store, ChartPie, QrCode } from 'lucide-astro';
+
+const features = [
+  {
+    index: '০১',
+    tag: 'দ্রুত পিওএস',
+    title: '৩ সেকেন্ডে ক্যাশ মেমো বিলিং',
+    description: 'বারকোড স্ক্যান করুন আর ১ ক্লিকে মেমো প্রিন্ট দিন। লোডশেডিং বা ইন্টারনেট না থাকলেও অফলাইনে বিলিং চলবে নিরবচ্ছিন্নভাবে।',
+    icon: Zap,
+    points: [
+      'ব্লুটুথ ও থার্মাল প্রিন্টারে মেমো প্রিন্ট',
+      'হোয়াটসঅ্যাপ ও এসএমএসে ডিজিটাল রিসিট'
+    ]
+  },
+  {
+    index: '০২',
+    tag: 'ডিজিটাল খাতা',
+    title: 'অটো এসএমএস বাকি আদায়',
+    description: 'মুখে টাকা চাওয়ার অস্বস্তি দূর করুন। নির্দিষ্ট দিনে কাস্টমারের মোবাইলে অটোমেটিক বিকাশ পেমেন্ট লিংকসহ মার্জিত এসএমএস চলে যাবে।',
+    icon: BookOpenCheck,
+    points: [
+      'বকেয়া টাকা দ্রুত আদায় নিশ্চিত',
+      'গ্রাহকভিত্তিক বাকি সীমা নির্ধারণ'
+    ]
+  },
+  {
+    index: '০৩',
+    tag: 'স্টক অ্যালার্ট',
+    title: 'স্টক শেষ হওয়ার আগেই নোটিফিকেশন',
+    description: 'দোকানে মাল শেষ হয়ে কাস্টমার ফিরে যাবে না। কোন পণ্য শেষ হয়ে আসছে বা মেয়াদ শেষ হচ্ছে—মুহূর্তেই ফোনে সতর্কবার্তা পাবেন।',
+    icon: Boxes,
+    points: [
+      'মেয়াদোত্তীর্ণ পণ্যের আর্থিক ক্ষতি রোধ',
+      'এক্সেল থেকে ১ মিনিটে সব প্রোডাক্ট আপলোড'
+    ]
+  },
+  {
+    index: '০৪',
+    tag: 'মোবাইল কন্ট্রোল',
+    title: 'দোকানে না থেকেও লাইভ লাভ-ক্ষতি',
+    description: 'আপনি যেখানেই থাকুন, স্মার্টফোনেই দেখতে পাবেন আজকের মোট বিক্রি, ক্যাশ ড্রয়ারের জমা টাকা এবং আসল নিট লাভ।',
+    icon: ChartPie,
+    points: [
+      'কর্মচারী চুরির ঝুঁকি পুরোপুরি শূন্য',
+      'দোকান ভাড়া ও খরচ বাদে আসল লাভ'
+    ]
+  },
+  {
+    index: '০৫',
+    tag: 'মাল্টি-ব্রাঞ্চ',
+    title: 'একাধিক শাখা ও কর্মচারী নিয়ন্ত্রণ',
+    description: 'একটি দোকান হোক বা ৫টি শাখা—সবগুলোর স্টক ও বিক্রি নিয়ন্ত্রণ করুন একক স্ক্রিন থেকে। ক্যাশিয়ারের জন্য আলাদা পাসওয়ার্ড রাখুন।',
+    icon: Store,
+    points: [
+      'এক শাখা থেকে অন্য শাখায় স্টক ট্রান্সফার',
+      'ক্যাশ ড্রয়ার দৈনিক নিখুঁত মিলকরণ'
+    ]
+  },
+  {
+    index: '০৬',
+    tag: 'বারকোড প্রিন্টার',
+    title: 'দোকানের নামে বারকোড স্টিকার',
+    description: 'পণ্যের গায়ে নিজের দোকানের নাম ও দামসহ বারকোড স্টিকার প্রিন্ট করুন। ক্যাশিয়ার ভুল দামে পণ্য বিক্রি করতে পারবে না।',
+    icon: QrCode,
+    points: [
+      'যেকোনো স্টিকার প্রিন্টারে কাজ করে',
+      'সহজ ও দ্রুত প্রোডাক্ট খোঁজার সুবিধা'
+    ]
+  }
+];
+---
+
+<section id="features" class="border-t border-line py-14 md:py-20 bg-white">
+  <div class="shell">
+    <SectionHeading
+      title="কেন আপনার দোকানে"
+      emphasis="হিসাবী দরকার?"
+      eyebrow="ব্যবসা অটোমেশনের সহজ সমাধান"
+      description="খাতার ভুলভ্রান্তি ও কর্মচারীর গরমিল বন্ধ করুন। আপনার ব্যবসার প্রতিটি পয়সার নিখুঁত হিসাব রাখুন চোখের সামনে।"
+      split={true}
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        features.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <article class="border border-line bg-paper p-6 sm:p-7 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-line)] transition-all duration-200">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-[11px] font-semibold text-muted uppercase tracking-wider">
+                    [ {item.index} · {item.tag} ]
+                  </span>
+                  <div class="w-10 h-10 border border-line bg-white flex items-center justify-center text-ink shrink-0">
+                    <IconComponent class="w-5 h-5" />
+                  </div>
+                </div>
+
+                <h3 class="font-serif font-bold text-lg sm:text-xl text-ink leading-snug mb-2.5">
+                  {item.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed mb-5">
+                  {item.description}
+                </p>
+              </div>
+
+              <ul class="border-t border-soft-line pt-3.5 flex flex-col gap-2 font-mono text-xs text-ink/80">
+                {item.points.map((pt) => (
+                  <li class="flex items-center gap-2">
+                    <span class="font-bold text-emerald-700">✓</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
