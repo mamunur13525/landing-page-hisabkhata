@@ -35,25 +35,38 @@ const navLinks = [
     </nav>
 
     <!-- Header Actions -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2.5 sm:gap-3">
       <Button
         variant="outline"
         size="sm"
         id="open-demo-modal"
-        class="hidden sm:inline-flex text-xs"
+        class="hidden md:inline-flex text-xs"
         data-open-demo
       >
-        ডেমো দেখুন ▷
+        ভিডিও ডেমো ▷
       </Button>
 
       <Button
-        variant="dark"
+        variant="outline"
         size="sm"
         href="#pricing"
-        class="text-xs"
+        class="hidden sm:inline-flex text-xs"
       >
-        <span class="hidden sm:inline">ফ্রি ট্রায়াল শুরু করুন →</span>
-        <span class="sm:hidden">ট্রায়াল →</span>
+        ফ্রি ট্রায়াল
+      </Button>
+
+      <!-- Far Right Login Button -->
+      <Button
+        variant="dark"
+        size="sm"
+        href="https://hisabs-khata.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-xs font-bold"
+        ariaLabel="হিসাবী অ্যাকাউন্টে লগইন করুন"
+      >
+        <span>লগইন</span>
+        <span class="text-yellow ml-0.5 font-bold">↗</span>
       </Button>
 
       <!-- Mobile Hamburger Button -->

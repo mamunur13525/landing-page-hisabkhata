@@ -1886,13 +1886,15 @@ footer .shell {
       </nav>
 
       <!-- Header Action CTAs -->
-      <div class="header-right">
-        <button type="button" class="button button-outline" id="open-demo-modal" style="min-height: 40px; padding: 0 14px; font-size: 11px;">
-          ডেমো ▷
+      <div class="header-right" style="display:flex; align-items:center; gap:8px;">
+        <button type="button" class="button button-outline" id="open-demo-modal" style="min-height: 38px; padding: 0 12px; font-size: 11px;">
+          ভিডিও ডেমো ▷
         </button>
-        <a href="#pricing" class="button button-dark header-cta">
-          <span class="header-cta-full">ফ্রি ট্রায়াল শুরু করুন →</span>
-          <span class="header-cta-short">ট্রায়াল</span>
+        <a href="#pricing" class="button button-outline header-cta" style="min-height: 38px; padding: 0 12px; font-size: 11px;">
+          ফ্রি ট্রায়াল
+        </a>
+        <a href="https://hisabs-khata.vercel.app/" target="_blank" rel="noopener noreferrer" class="button button-dark" style="min-height: 38px; padding: 0 14px; font-size: 12px; font-weight: bold;" aria-label="হিসাবী অ্যাকাউন্টে লগইন করুন">
+          লগইন ↗
         </a>
         <button class="menu-button" id="mobile-menu-btn" type="button" aria-label="নেভিগেশন মেনু খুলুন">☰</button>
       </div>
@@ -1920,6 +1922,9 @@ footer .shell {
       </nav>
     </div>
     <div style="display:flex; flex-direction:column; gap:10px;">
+      <a href="https://hisabs-khata.vercel.app/" target="_blank" rel="noopener noreferrer" class="button button-accent" style="width:100%; text-align:center; font-weight:bold;">
+        হিসাবী অ্যাকাউন্টে লগইন করুন ↗
+      </a>
       <a href="#pricing" class="button button-dark mobile-nav-link" style="width:100%; text-align:center;">
         ১৪ দিনের ফ্রি ট্রায়াল →
       </a>
@@ -1932,30 +1937,70 @@ footer .shell {
   <main>
     <!-- HERO SECTION -->
     <section class="hero shell">
-      <div class="eyebrow">
-        <span><i class="live-dot"></i>লাইভ ক্লাউড প্ল্যাটফর্ম · v৩.২</span>
-        <span>১০,০০০+ সক্রিয় মার্চেন্ট</span>
-        <span>৳৫০+ কোটি মাসিক লেনদেন</span>
-        <span>৯৯.৯% আপটাইম</span>
-      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center; margin-bottom: 30px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 16px;">
+            <span><i class="live-dot"></i>লাইভ ক্লাউড প্ল্যাটফর্ম · v৩.২</span>
+            <span>১০,০০০+ মার্চেন্ট</span>
+            <span>৯৯.৯% আপটাইম</span>
+          </div>
 
-      <h1>
-        সব বিক্রয়, ইনভেন্টরি ও বাকি।<br/>
-        এবার এক ক্লিকে <mark>স্মার্ট খাতায়।</mark><br/>
-        অটো এসএমএস <mark>আদায়।</mark>
-      </h1>
+          <h1 style="font-size: clamp(32px, 4vw, 52px); line-height: 1.2; margin: 0 0 16px;">
+            দোকানের হিসাব ও বাকি নিয়ে আর চিন্তা নয়।<br/>
+            এবার এক ক্লিকে <mark>স্মার্ট খাতায়।</mark><br/>
+            অটো এসএমএস <mark>আদায়।</mark>
+          </h1>
 
-      <p class="lead">
-        হাতের লেখার ভুলের কারণে আর কোনো বকেয়া খোয়া যাবে না। হিসাবী হলো আধুনিক রিটেল ও পাইকারি দোকানের জন্য ক্লাউড ও অফলাইন পিওএস বিলিং, স্বয়ংক্রিয় এসএমএস বাকি আদায় এবং মাল্টি-শাখা ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম।
-      </p>
+          <p class="lead" style="margin-bottom: 24px;">
+            হাতের লেখার ভুলের কারণে আর কোনো বকেয়া খোয়া যাবে না। হিসাবী হলো আধুনিক রিটেল ও পাইকারি দোকানের জন্য ক্লাউড ও অফলাইন পিওএস বিলিং, স্বয়ংক্রিয় এসএমএস বাকি আদায় এবং মাল্টি-শাখা ইনভেন্টরি।
+          </p>
 
-      <div class="hero-actions">
-        <a href="#pricing" class="button button-dark">
-          ফ্রি ১৪ দিনের ট্রায়াল শুরু করুন →
-        </a>
-        <button type="button" class="button button-outline" id="hero-watch-demo">
-          ভিডিও ডেমো দেখুন ▷
-        </button>
+          <div class="hero-actions" style="margin-bottom: 20px;">
+            <a href="#pricing" class="button button-dark">
+              ১৪ দিনের ফ্রি ট্রায়াল শুরু করুন →
+            </a>
+            <button type="button" class="button button-outline" id="hero-watch-demo" onclick="document.getElementById('open-demo-modal').click();">
+              ভিডিও ডেমো দেখুন ▷
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Side: Demo Showcase Player -->
+        <div>
+          <div style="position: relative; border: 2px solid var(--line); background: var(--paper); box-shadow: 8px 8px 0 0 var(--line); cursor: pointer;" onclick="document.getElementById('open-demo-modal').click();">
+            <div style="background: #fff; border-bottom: 2px solid var(--line); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <span style="width:10px; height:10px; border-radius:50%; background:#ef4444; border:1px solid #171715; display:inline-block;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#ffda00; border:1px solid #171715; display:inline-block;"></span>
+                <span style="width:10px; height:10px; border-radius:50%; background:#10b981; border:1px solid #171715; display:inline-block;"></span>
+                <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-left: 6px;">HisabeeOS Player</span>
+              </div>
+              <span style="font-family: var(--mono); font-size: 10px; font-weight: 700; padding: 2px 6px; background: rgba(255,218,0,0.4); border: 1px solid var(--line);">HD 1080p</span>
+            </div>
+
+            <div style="position: relative; aspect-ratio: 16/9; width: 100%; background: #0c0c0b; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+              <img src="https://i.ytimg.com/vi/X6IcwLWZcFM/hqdefault.jpg" alt="Hisabee POS Demo" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.65;" />
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3), rgba(0,0,0,0.5));"></div>
+              
+              <!-- BIG PLAY BUTTON IN THE MIDDLE -->
+              <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0 0 #171715;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0b0b0a" style="width: 32px; height: 32px; margin-left: 4px;">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <span style="padding: 4px 10px; background: rgba(11,11,10,0.9); border: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--yellow); font-weight: bold;">
+                  ক্লিক করে ডেমো দেখুন ▷
+                </span>
+              </div>
+            </div>
+
+            <div style="padding: 10px 14px; background: var(--paper); border-top: 2px solid var(--line); display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-family: var(--serif); font-size: 13px; font-weight: 700; color: var(--ink);">কীভাবে পণ্য বিক্রি ও রিসিট প্রিন্ট করবেন?</span>
+              <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; text-decoration: underline; background: #fff; border: 1px solid var(--line); padding: 2px 6px;">প্লে করুন ▷</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- GhushSite-style Snapshot Grid -->
@@ -2943,23 +2988,45 @@ footer .shell {
 
   <!-- VIDEO DEMO MODAL POPUP -->
   <div id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content-box">
-      <div class="modal-topbar">
-        <h3 id="modal-title">হিসাবী প্ল্যাটফর্ম ওভারভিউ (২ মিনিটের ডেমো)</h3>
-        <button id="close-demo-modal" class="modal-close-btn" type="button" aria-label="মডাল বন্ধ করুন">✕</button>
+    <div class="modal-content-box" style="width: 88vw; height: 88vh; max-width: 1440px; padding: 0; overflow: hidden; background: var(--paper, #f4f3ef); border: 2px solid var(--line, #171715); box-shadow: 8px 8px 0 0 #171715; display: flex; flex-direction: column;">
+      <div class="modal-topbar" style="margin: 0; padding: 12px 20px; background: #fff; border-bottom: 2px solid var(--line, #171715); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="width:12px; height:12px; border-radius:50%; background:#ef4444; border:1px solid #171715; display:inline-block;"></span>
+          <span style="width:12px; height:12px; border-radius:50%; background:#ffda00; border:1px solid #171715; display:inline-block;"></span>
+          <span style="width:12px; height:12px; border-radius:50%; background:#10b981; border:1px solid #171715; display:inline-block;"></span>
+          <h3 id="modal-title" style="margin: 0 0 0 8px; font-family: var(--mono); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink);">HisabeeOS · প্রোডাক্ট ভিডিও ডেমো</h3>
+        </div>
+        <button id="close-demo-modal" class="modal-close-btn" type="button" aria-label="মডাল বন্ধ করুন" style="width:32px; height:32px; border:1px solid var(--line); background:#f4f3ef; font-weight:bold; cursor:pointer;">✕</button>
       </div>
 
-      <div style="background:#111110; border:1px solid var(--line); padding:40px 20px; text-align:center; color:#fff;">
-        <div style="width:64px; height:64px; background:var(--yellow); color:var(--ink); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px; cursor:pointer;">
-          <i data-lucide="play" class="w-8 h-8 ml-1"></i>
+      <div style="flex: 1; min-height: 0; position: relative; width: 100%; background: #000; overflow: hidden;">
+        <iframe
+          id="demo-youtube-iframe-html"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+          src=""
+          data-video-id="X6IcwLWZcFM"
+          title="Hisabee POS Demo Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div style="padding: 12px 20px; background: var(--paper, #f4f3ef); border-top: 2px solid var(--line, #171715); flex-shrink: 0;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-family: var(--mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted);"><span style="color:#dc2626;">▶</span> অফিসিয়াল গাইড</span>
+            <span style="color: var(--muted);">·</span>
+            <h4 style="font-family: var(--serif); font-size: 15px; font-weight: 700; margin: 0; color: var(--ink);">
+              সহজ পয়েন্ট অফ সেলস (POS), দ্রুত মেমো প্রিন্ট ও ডিজিটাল বাকি খাতা
+            </h4>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button type="button" id="close-demo-modal-secondary" class="button button-outline" style="min-height: 34px; padding: 0 14px; font-size: 12px; cursor: pointer;">বন্ধ করুন</button>
+            <a href="#pricing" class="button button-accent" style="min-height: 34px; padding: 0 14px; font-size: 12px;" onclick="document.getElementById('close-demo-modal').click();">
+              ফ্রি ট্রায়াল শুরু করুন →
+            </a>
+          </div>
         </div>
-        <h4 style="font:600 22px var(--serif); margin:0 0 8px; color:#fff;">ইন্টারঅ্যাক্টিভ ভিডিও প্রিভিউ</h4>
-        <p style="color:#888; font-size:13px; max-width:440px; margin:0 auto 24px; line-height:1.6;">
-          দেখুন কীভাবে মাত্র ৩ সেকেন্ডে ইনভয়েস বানানো যায়, অবশিষ্ট পণ্য চেক করা যায় এবং গ্রাহককে স্বয়ংক্রিয় বাকি তাগাদার এসএমএস পাঠানো যায়।
-        </p>
-        <a href="#pricing" class="button button-accent" onclick="document.getElementById('close-demo-modal').click();">
-          আপনার ফ্রি ১৪ দিনের ট্রায়াল শুরু করুন →
-        </a>
       </div>
     </div>
   </div>

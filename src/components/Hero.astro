@@ -3,54 +3,158 @@ import Button from './ui/Button.astro';
 import SnapshotGrid from './SnapshotGrid.astro';
 ---
 
-<section class="shell pt-10 pb-12 md:pt-16 md:pb-16">
-  <!-- Eyebrow Stats Bar -->
-  <div class="font-mono text-xs text-muted tracking-wider flex items-center flex-wrap gap-x-4 gap-y-2 mb-6">
-    <span class="inline-flex items-center">
-      <span class="live-dot"></span>
-      ১০,০০০+ দোকানদারের বিশ্বস্ত পিওএস সফটওয়্যার
-    </span>
-    <span>·</span>
-    <span class="text-ink font-semibold">৯৯.৯% ক্লাউড আপটাইম</span>
-    <span>·</span>
-    <span>সহজ ও দ্রুত</span>
-  </div>
+<section class="shell pt-10 pb-12 md:pt-14 md:pb-16">
+  <!-- Hero Split Layout: Headline & CTA on Left, Interactive Demo Player on Right -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+    <!-- Left Column: Value Message & CTAs -->
+    <div class="lg:col-span-7 flex flex-col">
+      <!-- Eyebrow Stats Bar -->
+      <div class="font-mono text-xs text-muted tracking-wider flex items-center flex-wrap gap-x-3 gap-y-1.5 mb-5">
+        <span class="inline-flex items-center">
+          <span class="live-dot"></span>
+          ১০,০০০+ দোকানদারের বিশ্বস্ত পিওএস
+        </span>
+        <span>·</span>
+        <span class="text-ink font-semibold">৯৯.৯% ক্লাউড আপটাইম</span>
+        <span>·</span>
+        <span>সহজ ও দ্রুত</span>
+      </div>
 
-  <!-- Main Editorial Headline -->
-  <h1 class="text-3xl sm:text-5xl lg:text-[58px] font-serif font-bold text-ink leading-[1.2] tracking-tight max-w-4xl">
-    দোকানের হিসাব ও বাকি নিয়ে আর চিন্তা নয়।<br />
-    <mark>সহজ পিওএস ও লেজার</mark> এবার আপনার হাতে।
-  </h1>
+      <!-- Main Editorial Headline -->
+      <h1 class="text-3xl sm:text-4xl lg:text-[46px] xl:text-[52px] font-serif font-bold text-ink leading-[1.2] tracking-tight">
+        দোকানের হিসাব ও বাকি নিয়ে আর চিন্তা নয়।<br />
+        <mark>সহজ পিওএস ও লেজার</mark> এবার আপনার হাতে।
+      </h1>
 
-  <!-- Short, Punchy Value Message -->
-  <p class="text-base sm:text-lg text-muted leading-relaxed max-w-2xl mt-4">
-    ৩ সেকেন্ডে ক্যাশ মেমো প্রিন্ট করুন, বাকির অটো এসএমএস রিমাইন্ডার পাঠান, আর যেখানেই থাকুন মোবাইলে লাইভ লাভ-লোকসান দেখুন। কোনো ট্রেনিং ছাড়াই মাত্র ২ মিনিটে শুরু করুন।
-  </p>
+      <!-- Short, Punchy Value Message -->
+      <p class="text-base sm:text-lg text-muted leading-relaxed mt-4 max-w-xl">
+        ৩ সেকেন্ডে ক্যাশ মেমো প্রিন্ট করুন, বাকির অটো এসএমএস রিমাইন্ডার পাঠান, আর যেখানেই থাকুন মোবাইলে লাইভ লাভ-লোকসান দেখুন। কোনো ট্রেনিং ছাড়াই মাত্র ২ মিনিটে শুরু করুন।
+      </p>
 
-  <!-- CTA Buttons -->
-  <div class="flex items-center flex-wrap gap-3.5 mt-8">
-    <Button variant="dark" size="lg" href="#pricing">
-      ১৪ দিনের ফ্রি ট্রায়াল শুরু করুন →
-    </Button>
-    <Button variant="outline" size="lg" data-open-demo>
-      ভিডিও ডেমো দেখুন ▷
-    </Button>
-  </div>
+      <!-- CTA Buttons -->
+      <div class="flex items-center flex-wrap gap-3.5 mt-7">
+        <Button variant="dark" size="lg" href="#pricing">
+          ১৪ দিনের ফ্রি ট্রায়াল শুরু করুন →
+        </Button>
+        <Button variant="outline" size="lg" id="hero-watch-demo" data-open-demo>
+          ভিডিও ডেমো দেখুন ▷
+        </Button>
+      </div>
 
-  <!-- Trust Badges List -->
-  <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-6 pt-5 border-t border-soft-line font-mono text-xs text-muted">
-    <span class="flex items-center gap-1.5 text-ink font-semibold">
-      <span class="text-emerald-600">✓</span> নেট ছাড়াও চলে
-    </span>
-    <span class="flex items-center gap-1.5 text-ink font-semibold">
-      <span class="text-emerald-600">✓</span> মোবাইল ও কম্পিউটার
-    </span>
-    <span class="flex items-center gap-1.5 text-ink font-semibold">
-      <span class="text-emerald-600">✓</span> সব প্রিন্টারে রেডি
-    </span>
-    <span class="flex items-center gap-1.5 text-ink font-semibold">
-      <span class="text-emerald-600">✓</span> ক্রেডিট কার্ড লাগে না
-    </span>
+      <!-- Trust Badges List -->
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-6 pt-5 border-t border-soft-line font-mono text-xs text-muted">
+        <span class="flex items-center gap-1.5 text-ink font-semibold">
+          <span class="text-emerald-600">✓</span> নেট ছাড়াও চলে
+        </span>
+        <span class="flex items-center gap-1.5 text-ink font-semibold">
+          <span class="text-emerald-600">✓</span> মোবাইল ও কম্পিউটার
+        </span>
+        <span class="flex items-center gap-1.5 text-ink font-semibold">
+          <span class="text-emerald-600">✓</span> সব প্রিন্টারে রেডি
+        </span>
+        <span class="flex items-center gap-1.5 text-ink font-semibold">
+          <span class="text-emerald-600">✓</span> ক্রেডিট কার্ড লাগে না
+        </span>
+      </div>
+    </div>
+
+    <!-- Right Column: Demo Showcase Player (Click to open modal & start video) -->
+    <div class="lg:col-span-5 w-full">
+      <div class="relative">
+        <!-- Floating badge atop showcase -->
+        <div class="absolute -top-3.5 right-4 z-10 px-2.5 py-1 bg-yellow border-2 border-line font-mono text-[11px] font-bold text-ink uppercase tracking-wider shadow-[2px_2px_0_0_#171715]">
+          ★ ২ মিনিটের ভিডিও ডেমো
+        </div>
+
+        <button
+          type="button"
+          data-open-demo
+          class="w-full text-left group block relative border-2 border-line bg-paper shadow-[8px_8px_0_0_#171715] hover:shadow-[12px_12px_0_0_#171715] hover:-translate-y-1 active:translate-y-0 transition-all duration-200 cursor-pointer overflow-hidden select-none focus:outline-none"
+          aria-label="ভিডিও ডেমো চালু করুন"
+        >
+          <!-- Player Retro Window Header -->
+          <div class="bg-white border-b-2 border-line px-3.5 sm:px-4 py-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 border border-line"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow border border-line"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 border border-line"></span>
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-ink ml-1.5">
+                HisabeeOS Player
+              </span>
+            </div>
+
+            <span class="flex items-center gap-1.5 px-2 py-0.5 bg-yellow/40 border border-line font-mono text-[10px] font-bold text-ink">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              HD 1080p
+            </span>
+          </div>
+
+          <!-- Player Video Canvas with BIG PLAY BUTTON in the middle -->
+          <div class="relative aspect-video w-full bg-[#0c0c0b] overflow-hidden flex items-center justify-center">
+            <!-- Video Thumbnail Backdrop -->
+            <img
+              src="https://i.ytimg.com/vi/X6IcwLWZcFM/hqdefault.jpg"
+              alt="হিসাবী পিওএস ডেমো ভিডিও প্রিভিউ"
+              class="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:opacity-85 group-hover:scale-105 transition-all duration-300 filter contrast-115"
+              loading="eager"
+            />
+
+            <!-- Dark Vignette Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/55 pointer-events-none"></div>
+
+            <!-- Corner Badges -->
+            <div class="absolute top-3 left-3 px-2 py-0.5 bg-black/80 border border-white/20 font-mono text-[10px] text-white/90 uppercase tracking-widest backdrop-blur-xs">
+              লাইভ ওয়াকথ্রু
+            </div>
+            <div class="absolute top-3 right-3 px-2 py-0.5 bg-black/80 border border-white/20 font-mono text-[10px] text-yellow font-bold backdrop-blur-xs">
+              ২:৩৮ মিনিট
+            </div>
+
+            <!-- BIG PLAY BUTTON IN THE MIDDLE -->
+            <div class="relative z-10 flex flex-col items-center gap-2.5">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-yellow border-2 border-line text-ink flex items-center justify-center shadow-[4px_4px_0_0_#171715] group-hover:scale-110 group-hover:bg-white group-hover:shadow-[6px_6px_0_0_#171715] transition-all duration-200">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-7 h-7 sm:w-9 sm:h-9 ml-1 text-ink"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+
+              <span class="px-3 py-1 bg-ink/90 border border-line font-mono text-xs text-yellow font-bold tracking-wider shadow-xs group-hover:text-white transition-colors">
+                ক্লিক করে ডেমো দেখুন ▷
+              </span>
+            </div>
+
+            <!-- Bottom Console Status inside Screen -->
+            <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white/80 font-mono text-[10px] pointer-events-none">
+              <div class="flex items-center gap-1.5">
+                <span class="inline-block w-1.5 h-3 bg-yellow animate-pulse"></span>
+                <span class="inline-block w-1.5 h-4 bg-emerald-400"></span>
+                <span class="inline-block w-1.5 h-2 bg-yellow/80"></span>
+                <span class="text-white/90">সাউন্ড সহ দেখুন</span>
+              </div>
+              <span class="text-white/60">ক্লিক করলেই চালু হবে</span>
+            </div>
+          </div>
+
+          <!-- Player Bottom Control Panel -->
+          <div class="p-3 sm:p-3.5 bg-paper border-t-2 border-line flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+              <span class="font-serif font-bold text-xs sm:text-sm text-ink truncate">
+                কীভাবে পণ্য বিক্রি ও রিসিট প্রিন্ট করবেন?
+              </span>
+            </div>
+            <span class="font-mono text-[11px] font-bold text-ink underline group-hover:bg-ink group-hover:text-yellow px-2 py-0.5 border border-line bg-white transition-colors shrink-0">
+              প্লে করুন ▷
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Clean Snapshot Grid -->

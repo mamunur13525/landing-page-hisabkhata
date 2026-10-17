@@ -151,19 +151,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const openDemoModalBtn = document.getElementById('open-demo-modal');
   const heroWatchDemoBtn = document.getElementById('hero-watch-demo');
   const closeDemoModalBtn = document.getElementById('close-demo-modal');
+  const closeDemoModalSecBtn = document.getElementById('close-demo-modal-secondary');
   const demoModal = document.getElementById('demo-modal');
+  const demoIframeHtml = document.getElementById('demo-youtube-iframe-html');
+
+  const videoId = demoIframeHtml ? (demoIframeHtml.getAttribute('data-video-id') || 'X6IcwLWZcFM') : 'X6IcwLWZcFM';
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1`;
 
   const openModal = () => {
-    if (demoModal) demoModal.classList.add('active');
+    if (demoModal) {
+      demoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (demoIframeHtml && demoIframeHtml.getAttribute('src') !== embedUrl) {
+        demoIframeHtml.setAttribute('src', embedUrl);
+      }
+    }
   };
 
   const closeModal = () => {
-    if (demoModal) demoModal.classList.remove('active');
+    if (demoModal) {
+      demoModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (demoIframeHtml) {
+        demoIframeHtml.setAttribute('src', '');
+      }
+    }
   };
 
   if (openDemoModalBtn) openDemoModalBtn.addEventListener('click', openModal);
   if (heroWatchDemoBtn) heroWatchDemoBtn.addEventListener('click', openModal);
   if (closeDemoModalBtn) closeDemoModalBtn.addEventListener('click', closeModal);
+  if (closeDemoModalSecBtn) closeDemoModalSecBtn.addEventListener('click', closeModal);
 
   if (demoModal) {
     demoModal.addEventListener('click', (e) => {

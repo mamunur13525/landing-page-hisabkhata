@@ -58,7 +58,7 @@ landing-page-hisabee/
     │   ├── SnapshotGrid.astro         # 3-card immediate value proposition (< 70 lines)
     │   ├── FeaturesBento.astro        # 6-card bento grid with Lucide icons (< 125 lines)
     │   ├── ProductTour.astro          # Interactive module tour tabs (< 260 lines)
-    │   ├── SolutionsCarousel.astro    # Industry solutions carousel (< 100 lines)
+    │   ├── SolutionsSection.astro     # Store banner image & 6-solution industry grid (< 175 lines)
     │   ├── HowItWorks.astro           # 3-step onboarding walkthrough (< 60 lines)
     │   ├── Pricing.astro              # Monthly/annual billing toggle & plan tiers (< 185 lines)
     │   ├── TestimonialsCarousel.astro # Customer reviews carousel with verified badges (< 155 lines)

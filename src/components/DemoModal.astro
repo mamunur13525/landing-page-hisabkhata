@@ -4,94 +4,95 @@ import Button from './ui/Button.astro';
 
 <div
   id="demo-modal"
-  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
+  class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-ink/80 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
 >
   <div
-    class="demo-modal-dialog w-full max-w-2xl bg-paper border-2 border-line shadow-[8px_8px_0_0_var(--ink)] scale-95 transition-transform duration-300 overflow-hidden"
+    class="demo-modal-dialog w-[92vw] sm:w-[88vw] h-[86vh] sm:h-[88vh] max-w-[1440px] bg-paper border-2 border-line shadow-[8px_8px_0_0_#171715] scale-95 transition-all duration-300 overflow-hidden flex flex-col my-auto"
   >
-    <!-- Modal Header -->
-    <div class="flex items-center justify-between px-6 py-4 bg-white border-b border-line">
-      <div class="flex items-center gap-2.5">
-        <span class="w-3 h-3 rounded-full bg-red-500"></span>
-        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-        <span id="modal-title" class="font-mono text-xs font-bold uppercase tracking-wider text-ink ml-2">
-          HisabeeOS · লাইভ সিস্টেম ওয়াকথ্রু
+    <!-- Modal Header (Fixed height, retro window bar) -->
+    <div class="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 bg-white border-b-2 border-line shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-red-500 border border-line"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow border border-line"></span>
+        <span class="w-3 h-3 rounded-full bg-emerald-500 border border-line"></span>
+        <span id="modal-title" class="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-ink ml-1.5 flex items-center gap-2">
+          <span>HisabeeOS · প্রোডাক্ট ভিডিও ডেমো</span>
+          <span class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-yellow/40 border border-line text-[10px] text-ink font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            HD 1080p
+          </span>
         </span>
       </div>
 
       <button
         type="button"
         id="modal-close-btn"
-        class="w-7 h-7 border border-line bg-paper hover:bg-yellow flex items-center justify-center font-mono font-bold text-sm text-ink cursor-pointer transition-colors"
-        aria-label="বন্ধ করুন"
+        class="w-8 h-8 border border-line bg-paper hover:bg-yellow active:bg-ink active:text-white flex items-center justify-center font-mono font-bold text-sm text-ink cursor-pointer transition-all duration-150 shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0 select-none"
+        aria-label="মডাল বন্ধ করুন"
+        title="বন্ধ করুন (Esc)"
       >
         ✕
       </button>
     </div>
 
-    <!-- Modal Content -->
-    <div class="p-6 md:p-8 space-y-6">
-      <!-- Simulated Interactive System Player -->
-      <div class="relative bg-ink border border-line text-white p-6 md:p-8 font-mono overflow-hidden">
-        <div class="flex items-center justify-between text-xs text-white/60 pb-3 border-b border-white/15 mb-4">
-          <span class="text-yellow flex items-center gap-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            LIVE DEMO ACTIVE
+    <!-- Modal Middle: Full Theater 85-90% Video Area -->
+    <div class="flex-1 min-h-0 w-full bg-[#080807] relative flex items-center justify-center overflow-hidden">
+      <iframe
+        id="demo-youtube-iframe"
+        class="w-full h-full border-0 absolute inset-0"
+        src=""
+        data-video-id="X6IcwLWZcFM"
+        title="Hisabee POS & Business Manager Demo Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- Modal Footer: Fixed height, compact editorial details & CTAs -->
+    <div class="px-4 sm:px-6 py-3 sm:py-3.5 bg-paper border-t-2 border-line shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="hidden md:inline-flex items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-wider text-muted shrink-0">
+          <span class="text-red-600">▶</span> অফিসিয়াল গাইড
+        </span>
+        <span class="hidden md:inline text-muted shrink-0">·</span>
+        <h3 class="font-serif font-bold text-sm sm:text-base text-ink truncate">
+          পণ্য বিক্রয় (POS), দ্রুত মেমো প্রিন্ট ও ডিজিটাল বাকি খাতা
+        </h3>
+        <div class="hidden lg:flex items-center gap-2 shrink-0 ml-1">
+          <span class="px-2 py-0.5 bg-white border border-line font-mono text-[11px] text-ink font-semibold">
+            ⚡ ৩ সেকেন্ডে বিল
           </span>
-          <span>v2.8.4 CLOUD-LOCAL</span>
-        </div>
-
-        <div class="space-y-3 text-xs md:text-sm">
-          <p class="text-white/80">
-            > ইনিশিয়ালাইজেশন সম্পন্ন... লোকাল স্টোরেজ প্রস্তুত।
-          </p>
-          <div class="p-3 bg-white/5 border border-white/10 space-y-1.5">
-            <div class="flex justify-between text-white/90">
-              <span>বারকোড স্ক্যানার:</span>
-              <span class="text-emerald-400 font-bold">অনলাইন (USB / Bluetooth)</span>
-            </div>
-            <div class="flex justify-between text-white/90">
-              <span>থার্মাল প্রিন্টার:</span>
-              <span class="text-emerald-400 font-bold">কানেক্টেড (80mm Auto-cut)</span>
-            </div>
-            <div class="flex justify-between text-white/90">
-              <span>অফলাইন ডাটাবেজ:</span>
-              <span class="text-emerald-400 font-bold">সিঙ্ক্রোনাইজড (SQLite/IndexedDB)</span>
-            </div>
-          </div>
-          <p class="text-yellow text-xs">
-            ★ কোনো টেকনিক্যাল জটিলতা ছাড়াই দোকানে মাত্র ৫ মিনিটে চালু করা সম্ভব।
-          </p>
+          <span class="px-2 py-0.5 bg-white border border-line font-mono text-[11px] text-ink font-semibold">
+            📱 অটো এসএমএস বাকি
+          </span>
         </div>
       </div>
 
-      <!-- Quick Feature Checklist -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
-        <div class="p-3 border border-line bg-white">
-          <div class="font-bold text-ink mb-1">⚡ ১ সেকেন্ডে বিলিং</div>
-          <p class="text-charcoal/70">বারকোড স্ক্যানে দ্রুততম ক্যাশ/কার্ড মেমো প্রিন্ট</p>
-        </div>
-        <div class="p-3 border border-line bg-white">
-          <div class="font-bold text-ink mb-1">📱 অটো খাতা এসএমএস</div>
-          <p class="text-charcoal/70">এক ক্লিকে বাকি পরিশোধের ডিজিটাল লিঙ্ক প্রেরণ</p>
-        </div>
-        <div class="p-3 border border-line bg-white">
-          <div class="font-bold text-ink mb-1">🏢 মাল্টি-ব্রাঞ্চ লগ</div>
-          <p class="text-charcoal/70">স্মার্টফোনে লাইভ স্টক ও প্রফিট রিপোর্ট মনিটরিং</p>
-        </div>
-      </div>
+      <!-- Action buttons & badges -->
+      <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0">
+        <span class="hidden xl:inline text-xs font-mono text-muted mr-1">
+          <span class="text-emerald-600 font-bold">✓</span> ১৪ দিন ফ্রি ট্রায়াল
+        </span>
 
-      <!-- Footer Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 pt-2">
-        <Button variant="accent" size="md" href="#cta" class="flex-1 text-center font-bold" id="modal-start-free">
-          ১৪ দিনের ফ্রি ট্রায়াল শুরু করুন →
-        </Button>
-        <Button variant="outline" size="md" href="tel:+8801800447223" class="text-center font-bold">
-          সরাসরি প্রতিনিধির সাথে কথা বলুন
+        <button
+          type="button"
+          id="modal-secondary-close"
+          class="inline-flex items-center justify-center px-3.5 py-1.5 border border-line bg-white hover:bg-paper font-mono text-xs font-bold text-ink cursor-pointer transition-colors shadow-[2px_2px_0_0_#171715] hover:-translate-y-0.5 active:translate-y-0"
+        >
+          বন্ধ করুন
+        </button>
+
+        <Button
+          variant="accent"
+          size="sm"
+          href="#pricing"
+          id="modal-start-free"
+          class="font-bold whitespace-nowrap shadow-[2px_2px_0_0_#171715]"
+        >
+          ফ্রি ট্রায়াল শুরু করুন →
         </Button>
       </div>
     </div>
@@ -102,28 +103,63 @@ import Button from './ui/Button.astro';
   function setupDemoModal() {
     const modal = document.getElementById('demo-modal');
     const closeBtn = document.getElementById('modal-close-btn');
+    const secondaryCloseBtn = document.getElementById('modal-secondary-close');
     const startFreeBtn = document.getElementById('modal-start-free');
+    const iframe = document.getElementById('demo-youtube-iframe') as HTMLIFrameElement | null;
     if (!modal) return;
 
+    // Prevent duplicate listeners
+    if (modal.dataset.initialized === 'true') return;
+    modal.dataset.initialized = 'true';
+
+    const videoId = iframe?.getAttribute('data-video-id') || 'X6IcwLWZcFM';
+    const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1`;
+
     function openModal() {
-      modal?.classList.remove('opacity-0', 'pointer-events-none');
-      modal?.classList.add('opacity-100', 'pointer-events-auto');
-      const dialog = modal?.querySelector('.demo-modal-dialog');
+      if (!modal) return;
+
+      // Close mobile drawer if currently open
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const mobileBackdrop = document.getElementById('mobile-drawer-backdrop');
+      if (mobileDrawer && !mobileDrawer.classList.contains('translate-x-full')) {
+        mobileDrawer.classList.add('translate-x-full');
+        mobileBackdrop?.classList.add('hidden');
+      }
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+
+      const dialog = modal.querySelector('.demo-modal-dialog');
       dialog?.classList.remove('scale-95');
       dialog?.classList.add('scale-100');
+
       document.body.style.overflow = 'hidden';
+
+      // Load & Autoplay video
+      if (iframe && iframe.getAttribute('src') !== embedUrl) {
+        iframe.setAttribute('src', embedUrl);
+      }
     }
 
     function closeModal() {
-      modal?.classList.add('opacity-0', 'pointer-events-none');
-      modal?.classList.remove('opacity-100', 'pointer-events-auto');
-      const dialog = modal?.querySelector('.demo-modal-dialog');
+      if (!modal) return;
+
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+
+      const dialog = modal.querySelector('.demo-modal-dialog');
       dialog?.classList.add('scale-95');
       dialog?.classList.remove('scale-100');
+
       document.body.style.overflow = '';
+
+      // Stop video immediately by resetting iframe src
+      if (iframe) {
+        iframe.setAttribute('src', '');
+      }
     }
 
-    // Attach to triggers
+    // Attach to triggers with data-open-demo attribute
     document.querySelectorAll('[data-open-demo]').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
@@ -132,9 +168,10 @@ import Button from './ui/Button.astro';
     });
 
     closeBtn?.addEventListener('click', closeModal);
+    secondaryCloseBtn?.addEventListener('click', closeModal);
     startFreeBtn?.addEventListener('click', closeModal);
 
-    // Click outside backdrop
+    // Click outside dialog on backdrop
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeModal();
@@ -152,6 +189,11 @@ import Button from './ui/Button.astro';
     window.addEventListener('open-demo-modal', openModal);
   }
 
-  setupDemoModal();
+  // Support direct execution and Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupDemoModal);
+  } else {
+    setupDemoModal();
+  }
   document.addEventListener('astro:page-load', setupDemoModal);
 </script>
