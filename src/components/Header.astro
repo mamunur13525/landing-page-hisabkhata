@@ -40,16 +40,18 @@ const navLinks = [
 
     <!-- Header Actions -->
     <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-      <!-- Demo button (Shown on xl+) -->
-      <Button
-        variant="outline"
-        size="sm"
-        id="open-demo-modal"
-        class="hidden xl:inline-flex text-xs"
-        data-open-demo
-      >
-        ভিডিও ডেমো ▷
-      </Button>
+      <!-- Demo button (Desktop xl+ only) -->
+      <div class="hidden xl:block">
+        <Button
+          variant="outline"
+          size="sm"
+          id="open-demo-modal"
+          class="text-xs"
+          data-open-demo
+        >
+          ভিডিও ডেমো ▷
+        </Button>
+      </div>
 
       <!-- Far Right Login Button: Clean and perfectly responsive on all screen sizes -->
       <Button
