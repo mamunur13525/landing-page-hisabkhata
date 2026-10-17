@@ -76,7 +76,14 @@ const plans = [
     <div class="flex items-center justify-center gap-4 my-10 sm:my-12">
       <span class="font-mono text-xs sm:text-sm font-semibold text-ink">মাসিক বিলিং</span>
       <label class="relative inline-flex items-center cursor-pointer" aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন">
-        <input type="checkbox" id="billing-toggle" class="sr-only peer" />
+        <input
+          type="checkbox"
+          id="billing-toggle"
+          role="switch"
+          aria-checked="false"
+          aria-label="মাসিক বা বার্ষিক বিলিং নির্বাচন"
+          class="sr-only peer"
+        />
         <div class="w-13 h-7 border-2 border-line bg-white peer-checked:bg-ink transition-colors relative">
           <div class="w-4.5 h-4.5 bg-yellow border border-line absolute top-0.5 left-0.5 peer-checked:left-[26px] transition-all"></div>
         </div>
@@ -167,6 +174,7 @@ const plans = [
 
     toggle?.addEventListener('change', () => {
       const isAnnual = toggle.checked;
+      toggle.setAttribute('aria-checked', isAnnual ? 'true' : 'false');
       prices.forEach((el) => {
         const val = isAnnual ? el.getAttribute('data-annual') : el.getAttribute('data-monthly');
         if (val) el.textContent = val;

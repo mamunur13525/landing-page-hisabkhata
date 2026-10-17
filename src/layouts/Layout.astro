@@ -4,12 +4,115 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
 }
 
 const {
-  title = "Hisabee — Smart POS, Inventory & Digital Khata Platform",
-  description = "হিসাবী — খুচরা, পাইকারি ও চেইন স্টোরের জন্য নির্ভরযোগ্য ক্লাউড ও অফলাইন পিওএস, অটো এসএমএস বাকি আদায় লেজার এবং রিয়েল-টাইম ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম।"
+  title = "HisabeeOS — সহজ ক্লাউড পিওএস ও ব্যবসায়িক হিসাব সফটওয়্যার",
+  description = "দোকানের হিসাব ও বাকি নিয়ে আর চিন্তা নয়। ৩ সেকেন্ডে ক্যাশ মেমো প্রিন্ট, বাকির অটো এসএমএস রিমাইন্ডার ও মোবাইলে লাইভ লাভ-লোকসান হিসাব। ১০,০০০+ ব্যবসায়ীর আস্থা।",
+  canonicalUrl = "https://hisabee.com",
+  ogImage = "https://hisabee.com/images/shop-owner-pos.jpg"
 } = Astro.props;
+
+// Schema.org Structured Data for Google Rich Snippets
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${canonicalUrl}/#software`,
+      "name": "HisabeeOS",
+      "alternateName": "হিসাবী",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Android, iOS, Windows, macOS, Web",
+      "description": description,
+      "url": canonicalUrl,
+      "image": ogImage,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "10450",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "12.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": `${canonicalUrl}/#organization`,
+      "name": "Hisabee Technologies Limited",
+      "alternateName": "Hisabee",
+      "url": canonicalUrl,
+      "logo": ogImage,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+8801800447223",
+        "contactType": "customer service",
+        "areaServed": "BD",
+        "availableLanguage": ["Bengali", "English"]
+      },
+      "sameAs": [
+        "https://facebook.com/hisabee",
+        "https://twitter.com/hisabee",
+        "https://linkedin.com/company/hisabee",
+        "https://youtube.com/@hisabee"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}/#faq`,
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "দোকানের বিদ্যুৎ বা ইন্টারনেট না থাকলে কি সফটওয়্যার চলবে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ, ১০০% চলবে। হিসাবী অফলাইনে কাজ করে। লোডশেডিং বা ওয়াইফাই না থাকলেও আপনি বারকোড স্ক্যান করতে পারবেন, ক্যাশ মেমো প্রিন্ট করতে পারবেন। নেট আসার সাথে সাথে সব ডাটা স্বয়ংক্রিয়ভাবে ক্লাউডে ব্যাকআপ হয়ে যাবে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আগের খাতা বা এক্সেল থেকে পণ্যের তালিকা ও বাকি আনা যাবে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "অবশ্যই! এক্সেল ফাইল থেকে মাত্র ১ মিনিটে হাজারো পণ্য ও পূর্বের বকেয়া হিসাব আপলোড করতে পারবেন। প্রয়োজনে আমাদের সাপোর্ট টিম সম্পূর্ণ বিনামূল্যে আপনার ডাটা ট্রান্সফার করে দেবে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "কী কী ডিভাইস ও প্রিন্টারে হিসাবী কাজ করবে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "আপনার হাতের সাধারণ মোবাইল, ট্যাব, ল্যাপটপ বা পিসি—যেকোনো ডিভাইসে হিসাবী চলে। বাজারে প্রচলিত যেকোনো ব্লুটুথ, ইউএসবি থার্মাল প্রিন্টার (২ ইঞ্চি ও ৩ ইঞ্চি) এবং বারকোড স্ক্যানারে সরাসরি কাজ করে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "অটো এসএমএস বাকি আদায় কীভাবে কাজ করে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "গ্রাহক বাকি নিলে তার ফোনে নির্দিষ্ট দিনে মার্জিত এসএমএস চলে যাবে। এসএমএসের ভেতরে বিকাশ বা নগদ পেমেন্ট লিংক থাকবে, যাতে গ্রাহক ঘরে বসেই আপনার পাওনা টাকা পরিশোধ করতে পারেন।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আমার দোকানের হিসাব ও ডাটা কি গোপন ও নিরাপদ থাকবে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "১০০% নিরাপদ ও সুরক্ষিত। ব্যাংক-গ্রেড এনক্রিপশনের মাধ্যমে আপনার দোকানের হিসাব শুধু আপনি দেখতে পারবেন। নিয়মিত ক্লাউড ব্যাকআপের কারণে ফোন নষ্ট বা চুরি হলেও আপনার এক টাকার হিসাবও হারাবে না।"
+          }
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -20,17 +123,58 @@ const {
     <meta name="theme-color" content="#f4f3ef" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="হিসাবী, পিওএস সফটওয়্যার, দোকান হিসাব, ডিজিটাল খাতা, বাকি আদায়, ইনভেন্টরি সফটওয়্যার, POS Bangladesh, Cloud Ledger, Shop Accounting" />
+    <meta name="author" content="Hisabee Technologies Limited" />
     <meta name="application-name" content="HisabeeOS" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn / Instagram -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HisabeeOS" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta property="og:image:alt" content="হিসাবী পার্টনার শপ - হাসিমুখ দোকানদার ও ক্যাশ কাউন্টার" />
+    <meta property="og:locale" content="bn_BD" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hisabee" />
+    <meta name="twitter:creator" content="@hisabee" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="HisabeeOS Store Preview" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0b0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z'/><path d='M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8'/><path d='M12 6v2'/><path d='M12 16v2'/></svg>" />
 
-    <!-- Google Fonts: Source Serif 4 + Noto Serif Bengali + IBM Plex Mono + Plus Jakarta Sans + Noto Sans Bengali -->
+    <!-- Optimized Subset Web Fonts (Strictly only used weights & non-blocking swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&family=Noto+Serif+Bengali:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Search Rich Snippet JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body class="min-h-screen flex flex-col font-sans bg-paper text-ink selection:bg-yellow selection:text-ink">
+    <!-- Accessibility: Accessible Skip to Content Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-yellow focus:text-ink focus:font-bold focus:border-2 focus:border-line focus:shadow-[4px_4px_0_0_#171715]"
+    >
+      মূল বিষয়বস্তুতে সরাসরি যান (Skip to content)
+    </a>
+
     <slot />
   </body>
 </html>
