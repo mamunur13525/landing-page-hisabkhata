@@ -1,6 +1,6 @@
-# HisabeeOS — Smart POS & Cloud Ledger Landing Page
+# Hisabe KhataOS — Smart POS & Cloud Ledger Landing Page
 
-A modern, high-converting editorial landing page built for **Hisabee** (an all-in-one Smart POS, Khata/Due Recovery, and Business Management platform).
+A modern, high-converting editorial landing page built for **Hisabe Khata** (an all-in-one Smart POS, Khata/Due Recovery, and Business Management platform).
 
 Rebuilt with **Astro 7 (latest)**, **Tailwind CSS v4**, and **Lucide Icons**, retaining the iconic editorial newspaper / brutalist public ledger design system inspired by [GhushSite (ghush.site)](https://www.ghush.site/).
 
@@ -36,7 +36,7 @@ Rebuilt with **Astro 7 (latest)**, **Tailwind CSS v4**, and **Lucide Icons**, re
 ## 📂 Project Structure
 
 ```
-landing-page-hisabee/
+landing-page-hisabkhata/
 ├── astro.config.mjs             # Astro 7 configuration with Vite Tailwind plugin
 ├── package.json                 # ESM scripts & modern dependencies
 ├── README.md                    # Project documentation

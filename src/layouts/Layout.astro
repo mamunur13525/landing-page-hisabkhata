@@ -9,10 +9,10 @@ interface Props {
 }
 
 const {
-  title = "HisabeeOS — সহজ ক্লাউড পিওএস ও ব্যবসায়িক হিসাব সফটওয়্যার",
+  title = "Hisabe KhataOS — সহজ ক্লাউড পিওএস ও ব্যবসায়িক হিসাব সফটওয়্যার",
   description = "দোকানের হিসাব ও বাকি নিয়ে আর চিন্তা নয়। ৩ সেকেন্ডে ক্যাশ মেমো প্রিন্ট, বাকির অটো এসএমএস রিমাইন্ডার ও মোবাইলে লাইভ লাভ-লোকসান হিসাব। ১০,০০০+ ব্যবসায়ীর আস্থা।",
-  canonicalUrl = "https://hisabee.com",
-  ogImage = "https://hisabee.com/images/shop-owner-pos.jpg"
+  canonicalUrl = "https://hisabekhata.runs-on.dev",
+  ogImage = "https://hisabekhata.runs-on.dev/images/shop-owner-pos.webp"
 } = Astro.props;
 
 // Schema.org Structured Data for Google Rich Snippets
@@ -22,7 +22,7 @@ const schemaData = {
     {
       "@type": "SoftwareApplication",
       "@id": `${canonicalUrl}/#software`,
-      "name": "HisabeeOS",
+      "name": "Hisabe KhataOS",
       "alternateName": "হিসাবী",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Android, iOS, Windows, macOS, Web",
@@ -47,8 +47,8 @@ const schemaData = {
     {
       "@type": "Organization",
       "@id": `${canonicalUrl}/#organization`,
-      "name": "Hisabee Technologies Limited",
-      "alternateName": "Hisabee",
+      "name": "Hisabe Khata Technologies Limited",
+      "alternateName": "Hisabe Khata",
       "url": canonicalUrl,
       "logo": ogImage,
       "contactPoint": {
@@ -60,10 +60,10 @@ const schemaData = {
         "availableLanguage": ["Bengali", "English"]
       },
       "sameAs": [
-        "https://facebook.com/hisabee",
-        "https://twitter.com/hisabee",
-        "https://linkedin.com/company/hisabee",
-        "https://youtube.com/@hisabee"
+        "https://facebook.com/Hisabe Khata",
+        "https://twitter.com/Hisabe Khata",
+        "https://linkedin.com/company/Hisabe Khata",
+        "https://youtube.com/@Hisabe Khata"
       ]
     },
     {
@@ -125,14 +125,14 @@ const schemaData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="হিসাবী, পিওএস সফটওয়্যার, দোকান হিসাব, ডিজিটাল খাতা, বাকি আদায়, ইনভেন্টরি সফটওয়্যার, POS Bangladesh, Cloud Ledger, Shop Accounting" />
-    <meta name="author" content="Hisabee Technologies Limited" />
-    <meta name="application-name" content="HisabeeOS" />
+    <meta name="author" content="Hisabe Khata Technologies Limited" />
+    <meta name="application-name" content="Hisabe KhataOS" />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn / Instagram -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="HisabeeOS" />
+    <meta property="og:site_name" content="Hisabe KhataOS" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -146,12 +146,12 @@ const schemaData = {
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@hisabee" />
-    <meta name="twitter:creator" content="@hisabee" />
+    <meta name="twitter:site" content="@Hisabe Khata" />
+    <meta name="twitter:creator" content="@Hisabe Khata" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="HisabeeOS Store Preview" />
+    <meta name="twitter:image:alt" content="Hisabe KhataOS Store Preview" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0b0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z'/><path d='M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8'/><path d='M12 6v2'/><path d='M12 16v2'/></svg>" />

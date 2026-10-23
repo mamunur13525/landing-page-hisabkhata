@@ -1,8 +1,8 @@
 {
-  "name": "landing-page-hisabee",
+  "name": "landing-page-hisabkhata",
   "version": "1.0.0",
   "type": "module",
-  "description": "Hisabee - Smart POS, Inventory & Business Accounting Landing Page built with Astro and Tailwind CSS",
+  "description": "Hisabe Khata - Smart POS, Inventory & Business Accounting Landing Page built with Astro and Tailwind CSS",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
